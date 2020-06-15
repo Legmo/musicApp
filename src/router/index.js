@@ -13,44 +13,41 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import("../views/About.vue")
+  },
+  {
+    path: "/contacts",
+    name: "Contacts",
+    component: () =>
+      import("../views/Node.vue")
   },
   {
     path: "/node",
     name: "Article",
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/Node.vue")
+
+    component: () => import("../views/Node.vue")
   },
   {
     path: "/results",
     name: "Results",
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/Results.vue")
+    component: () => import( "../views/Results.vue")
   },
   {
-    path: "/tags",
+    path: "/tags/:tagId",
     name: "Tags",
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/Tags.vue")
+    component: () => import( "../views/Tags.vue")
   }
 
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history'
 });
+
 
 export default router;

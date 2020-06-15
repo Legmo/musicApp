@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <mainHeader />
-      <main role="main" class="">
+      <main role="main" class="container-fluid">
         <div class="row">
              <div class="col-xl-4">
                <leftBlock />
@@ -12,7 +12,7 @@
         </div>
       </main>
       <footer class="footer fixed-bottom">
-            <div class="">
+            <div class="container-fluid">
                   <player />
             </div>
           </footer>

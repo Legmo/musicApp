@@ -2,16 +2,15 @@
   <div class="leftBlock">
     <h3>Выпуски</h3>
     <ul class="sidebar-menu">
-      <li><router-link to="/invoicing" :class="{'nav-invoicing':true, 'active': isSelected('invoicing') }">о пректе</router-link></li>
-    <li><router-link to="/invoicing" :class="{'nav-invoicing':true, 'active': isSelected('invoicing') }">приложение</router-link></li>
-    <li><router-link to="/invoicing" :class="{'nav-invoicing':true, 'active': isSelected('invoicing') }">контакты</router-link></li>
+      <li><router-link to="/about" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">о проекте</router-link></li>
+    <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">приложение</router-link></li>
+    <li><router-link to="/contacts" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">контакты</router-link></li>
   </ul>
   <p> текст что это такое и чего там когда выходит
   </p>
 <div class="tag" >
-  <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.count) }"><router-link :to="{ name: 'Tags', params: { tagId: item.id } }" >{{item.name}}</router-link></span>
-  <span class="tag-item tag-item--all"><router-link :to="{ name: 'Tags', params: { tagId: null } }" >все тэги</router-link></span>
-
+  <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.count) }"><a @click="reroute(item.id)" >{{item.name}}</a></span>
+  <span class="tag-item tag-item--all"><a @click="reroute('All')" >все тэги</a></span>
 </div>
 <div class="">
 соцсети</div>
@@ -62,7 +61,16 @@ export default {
       var fontSize = (((count - minVal )/(maxVal - minVal)) * (maxFont - minFont)) + minFont;
       sizeDepending = fontSize+fontUnits;
     return sizeDepending
+  },
+  reroute(id) {
+    let tagId
+    if(isNaN(id)){
+      tagId = id
+    }else {
+      tagId = '' + id;
     }
+      this.$router.push({name: 'Tags', params: { tagId: tagId }});
+  },
   }
 };
 </script>

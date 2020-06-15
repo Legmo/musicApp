@@ -10,19 +10,19 @@
 
     <div class="player-bottom">
       <div class="buttons-block">
-        <span class="player-button" @click="back()">
+        <span class="player-button" @click="back()" :disabled="entity.id == null">
           <i class="el-icon-d-arrow-left"></i>
         </span>
-        <span class="player-button" @click="checkCurrent()">
+        <span class="player-button" @click="checkCurrent()" :disabled="entity.id == null">
           <i v-if="isPaused" class="el-icon-video-play"></i>
           <i v-else class="el-icon-video-pause"></i>
         </span>
-        <span class="player-button" @click="next()">
+        <span class="player-button" @click="next()" :disabled="entity.id == null">
           <i class="el-icon-d-arrow-right"></i>
         </span>
       </div>
 
-      <div class="info-block">
+      <div class="info-block" v-if="entity.id != null">
         <div class="cover--thumb">
           <img :src="entity.cover" />
         </div>
@@ -32,8 +32,7 @@
           <router-link
             :to="{ name: 'Article', params: { id: entity.id } }"
             class="read-more"
-            >Читать</router-link
-          >
+            >Читать</router-link>
         </div>
       </div>
 
@@ -45,7 +44,7 @@
           text-color="#ff9900"
         >
         </el-rate>
-        <a :href="entity.url" download> <i class="el-icon-download"></i></a>
+        <a :href="entity.url" download :disabled="entity.id == null"> <i class="el-icon-download"></i></a>
       </div>
     </div>
   </div>
@@ -115,10 +114,11 @@ export default {
       ]
     };
   },
-  mounted() {},
+  mounted() {
+    this.getCurrentMusic()
+  },
   methods: {
-    getCurrentMusic(e) {
-      console.log(e);
+    getCurrentMusic() {
       this.entity = this.$refs.aplayer.currentMusic;
       this.isPaused = false;
     },
