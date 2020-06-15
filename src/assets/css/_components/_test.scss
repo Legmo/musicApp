@@ -1,0 +1,76 @@
+#app {
+  margin-top: 60px;
+}
+.footer{
+  background: #fff;
+}
+.leftBlock {
+  padding: 30px;
+  margin: 50px;
+  border: 1px solid gray;
+}
+.tag {
+  &-item {
+    display: inline-block;
+    margin: 0 3px;
+    a {
+
+    }
+  }
+}
+.layout-icon {
+  opacity: 0.5;
+  &.active {
+    opacity: 1;
+  }
+}
+.navbar {
+  background: gray;
+}
+.aplayer {
+  overflow: visible!important;
+  .aplayer-bar,
+  .aplayer-loaded,
+  .aplayer-played {
+    height: 10px!important;
+  }
+  .aplayer-played {
+    background-color: yellow!important;
+  }
+    .aplayer-time {
+      position: absolute!important;
+      bottom: -50px!important;
+      .aplayer-icon-menu,
+      .aplayer-time-inner {
+        display: none!important;
+      }
+      .aplayer-icon {
+        width: 35px!important;
+        height: 35px!important;
+      }
+    }
+}
+.player-button {
+  font-size: 40px;
+}
+.cover {
+  &--thumb {
+    width: 66px;
+    height: 66px;
+    img {
+      object-fit: cover;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.player-bottom{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 150px;
+  align-items: center;
+  .info-block {
+    flex: 1;
+  }
+}
