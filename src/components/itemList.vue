@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'item': true, 'item-list': layout == 'List', 'item-grid': layout == 'Grid'}">
+  <div :class="['item', layout == 'grid' ? 'item-grid' : 'item-list']">
     <!-- List layout -->
     <template v-if="layout=='list'">
     <div class="number">{{itemEntity.number}}
@@ -12,10 +12,11 @@
       class="read-more"
       >Читать</router-link>
       <el-collapse>
-  <el-collapse-item title="Список композиций" name="1">
-    <div v-for="(song, index) in itemEntity.composition_list" :key="index"> {{song.composition_name}}</div>
-  </el-collapse-item>
-</el-collapse>
+        <el-collapse-item title="Список композиций" name="1">
+          <div v-for="(song, index) in itemEntity.composition_list" :key="index"> {{song.composition_name}}</div>
+        </el-collapse-item>
+      </el-collapse>
+      <div class="text" v-if="itemEntity.search_excerpt"> <p v-html="itemEntity.search_excerpt"></p></div>
 <div class="rating">нету рейтинга в json</div>
 <a :href="itemEntity.audiofile_url" download> <i class="el-icon-download"></i></a>
 <div class="date">{{itemEntity.date}}</div>

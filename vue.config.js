@@ -6,5 +6,5 @@ module.exports = {
       preProcessor: "scss",
       patterns: [path.resolve(__dirname,"./src/assets/css/site.scss")]
     }
-  }
+  },
 };

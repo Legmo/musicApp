@@ -20,6 +20,14 @@ Vue.use(APlayer, {
   productionTip: false // disable console output
 });
 
+// Vue.http.options.root = '/';
+// Vue.http.options.headers = {
+//     "Expires": "-1",
+//     "Cache-Control": "no-cache",
+//     "Pragma": "no-cache"
+// };
+// Vue.http.headers.common['Authorization'] = 'Basic ' + btoa("i20:devsites");
+
 Vue.config.productionTip = false;
 
 new Vue({

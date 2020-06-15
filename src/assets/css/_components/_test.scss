@@ -24,6 +24,15 @@
     opacity: 1;
   }
 }
+.item {
+  border: 1px solid red;
+  margin: 10px 0;
+  &-grid {
+    width: 20%;
+    float: left;
+    margin: 10px;
+  }
+}
 .navbar {
   background: gray;
 }

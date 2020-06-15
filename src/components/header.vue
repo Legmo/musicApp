@@ -14,7 +14,17 @@
           </div>
           <template v-if="ifShowSort()">
           <div class="sorting">
-            Сортировка: надо нарисовать
+            <span>Сортировка:</span>
+            <span @click="sortingDate()">по date
+              <i v-if="sortDateDirection == ''" class="el-icon-sort" />
+              <i v-else-if="sortDateDirection == 'asc'" class="el-icon-sort-up" />
+              <i v-else-if="sortDateDirection == 'desc'" class="el-icon-sort-down" />
+            </span>
+            <span @click="sortingTitle()">по названию
+              <i v-if="sortTitleDirection == ''" class="el-icon-sort" />
+              <i v-else-if="sortTitleDirection == 'asc'" class="el-icon-sort-up" />
+              <i v-else-if="sortTitleDirection == 'desc'" class="el-icon-sort-down" />
+            </span>
           </div>
           <div class="layout-switch">
             <a class="layout-icon" @click="changeLayout('list')" :class="{ 'active': layout == 'list'}" title="List"><i class="el-icon-s-grid" /></a>
@@ -39,6 +49,8 @@ export default {
   data() {
     return {
       layout: 'list',
+      sortDateDirection: '',
+      sortTitleDirection: '',
     }
   },
   methods: {
@@ -46,9 +58,36 @@ export default {
       this.$root.$emit('handleLayoutChange', data);
     },
     ifShowSort() {
-      let names = ['List', 'Tags', 'Results']
+      //let names = ['List', 'Tags', 'Results'] - if we decide to use sorting & different layouts on all these pages
+      let names = ['List']
       return names.includes(this.$route.name);
-    }
+    },
+    sortingDate() {
+      this.sortTitleDirection = ''
+      if(this.sortDateDirection == '') {
+        this.sortDateDirection = 'asc'
+        this.$root.$emit('sortingDateChange', this.sortDateDirection);
+      } else if (this.sortDateDirection == 'asc') {
+        this.sortDateDirection = 'desc'
+        this.$root.$emit('sortingDateChange', this.sortDateDirection);
+      } else if (this.sortDateDirection == 'desc') {
+        this.sortDateDirection = ''
+        this.$root.$emit('sortingDateChange', this.sortDateDirection);
+      }
+    },
+    sortingTitle() {
+      this.sortDateDirection = ''
+      if(this.sortTitleDirection == '') {
+        this.sortTitleDirection = 'asc'
+        this.$root.$emit('sortingTitleChange', this.sortTitleDirection);
+      } else if (this.sortTitleDirection == 'asc') {
+        this.sortTitleDirection = 'desc'
+        this.$root.$emit('sortingTitleChange', this.sortTitleDirection);
+      } else if (this.sortTitleDirection == 'desc') {
+        this.sortTitleDirection = ''
+        this.$root.$emit('sortingTitleChange', this.sortTitleDirection);
+      }
+    },
   }
 };
 </script>

@@ -7,17 +7,15 @@
                          class="form-control"
                          name="x"
                          placeholder="Search"
-                         v-model.trim="queryString"
-                         v-on:input="sendQueryString()" />
+                         v-model.trim="queryString" />
                   <span class="input-group-btn">
                       <router-link :to="{
                                    name: 'Results',
-                                   params: { searchQuery: searchQuery,}
+                                   query: { text: queryString,}
                                    }"
                                    tag="button"
                                    class="btn btn-search"
-                                   typeof="submit"
-                                   >
+                                   typeof="submit">
                           Найти
                       </router-link>
                   </span>
@@ -33,9 +31,6 @@
         return {
             queryString: '',
             isChanged: false,
-            searchQuery: {
-                queryString: '',
-            },
             delayTimer: 0,
             isActive: false,
         }
