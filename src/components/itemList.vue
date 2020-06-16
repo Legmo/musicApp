@@ -2,13 +2,15 @@
   <div :class="['item', layout == 'grid' ? 'item-grid' : 'item-list']">
     <!-- List layout -->
     <template v-if="layout=='list'">
-    <div class="number">{{itemEntity.number}}
-      <i class="el-icon-video-play"></i>
-      <i class="el-icon-video-pause"></i>
-    </div>
-    <div class="title ">{{itemEntity.title}}</div>
+      <div @click="playSong(itemEntity)">
+        <div class="number">{{itemEntity.number}}
+          <i class="el-icon-video-play"></i>
+          <i class="el-icon-video-pause"></i>
+        </div>
+        <div class="title ">{{itemEntity.title}}</div>
+      </div>
     <router-link
-      :to="{ name: 'Article', params: { id: itemEntity.id } }"
+      :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
       class="read-more"
       >Читать</router-link>
       <el-collapse>
@@ -31,7 +33,7 @@
   <div style v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
     <div class="rating">нету рейтинга в json</div>
     <div class="showOnHover">
-      <span class="player-button">
+      <span class="player-button" @click="playSong(itemEntity)">
         <i v-if="isPaused" class="el-icon-video-play"></i>
         <i v-else class="el-icon-video-pause"></i>
       </span>
@@ -55,6 +57,10 @@
 export default {
   name: "itemList",
   props: {
+    layout:{
+      type: String,
+      default: 'list'
+    },
     itemEntity: {
       type: Object,
       default:  function () {
@@ -73,16 +79,16 @@ export default {
   },
   data() {
     return {
-      layout: 'list',
       isPaused: true,
     };
   },
   mounted() {
-    this.$root.$on('handleLayoutChange', data => {
-        this.layout = data
-    });
   },
   methods: {
+    playSong(item) {
+      console.log(item)
+      //this.$root.$emit('playSong', item.number);
+    },
     reroute(id) {
         this.$router.push({name: 'Tags', params: { tagId: id }});
     },

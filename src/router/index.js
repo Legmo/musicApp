@@ -23,10 +23,9 @@ const routes = [
       import("../views/Node.vue")
   },
   {
-    path: "/node",
+    path: "/release/:path",
     name: "Article",
     props: true,
-
     component: () => import("../views/Node.vue")
   },
   {

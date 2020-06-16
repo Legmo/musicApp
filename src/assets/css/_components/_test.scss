@@ -1,5 +1,5 @@
 #app {
-  margin-top: 60px;
+  margin: 60px 0 200px;
 }
 .footer{
   background: #fff;
@@ -23,6 +23,9 @@
   &.active {
     opacity: 1;
   }
+}
+.mainList {
+  overflow: hidden;
 }
 .item {
   border: 1px solid red;

@@ -5,10 +5,19 @@
       Ничего не найдено
     </div>
     <div v-else>
-      <div v-for="item in entity" :key="item.number">
+      <div v-for="item in pagedEntity" :key="item.number">
         <itemList :itemEntity='item' />
       </div>
     </div>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page.sync="currentPage"
+      :page-sizes="[4, 8, 24, 48]"
+      :page-size.sync="itemsPerPage"
+      layout="prev, pager, next, sizes"
+      :total="Object.keys(entity).length">
+    </el-pagination>
   </div>
 </template>
 
@@ -28,9 +37,16 @@ export default {
   },
   data() {
     return {
+      itemsPerPage: 8,
+      currentPage: 1,
       entity: require("../assets/search_cogo.json"),
       localQuery: ''
     }
+  },
+  computed: {
+    pagedEntity () {
+      return this.entity.slice(((this.currentPage - 1) * this.itemsPerPage), (this.itemsPerPage * this.currentPage))
+    },
   },
   mounted() {
     if (this.searchQuery == '') {
@@ -44,6 +60,14 @@ export default {
     // }).catch(function (e) {
     //   self.$message.error("There was an error while reading data");
     // });
-},
+  },
+  methods: {
+    handleSizeChange(val) {
+      this.itemsPerPage = val;
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
+    },
+  },
 };
 </script>

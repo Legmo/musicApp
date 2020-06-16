@@ -5,6 +5,9 @@ import VueResource from 'vue-resource'
 import APlayer from "@moefe/vue-aplayer";
 APlayer.disableVersionBadge = true;
 import ElementUI from "element-ui";
+import locale from 'element-ui/lib/locale/lang/en'
+
+locale.el.pagination.pagesize = ' на странице'
 
 
 import "element-ui/lib/theme-chalk/index.css";
@@ -15,7 +18,7 @@ Vue.prototype.$rootPath = rootPath;
 Vue.prototype.$rootApiPath = rootPath + '/api/';
 
 Vue.use(VueResource);
-Vue.use(ElementUI);
+Vue.use(ElementUI, { locale });
 Vue.use(APlayer, {
   productionTip: false // disable console output
 });
