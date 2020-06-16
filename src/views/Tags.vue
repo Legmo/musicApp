@@ -1,14 +1,14 @@
 <template>
 <div class="mainList">
   <h1 v-if="tagId=='All'">Выпуски по тэгам</h1>
-
-
-  <div v-for="(item, key, index) in pagedEntity" :key="key">
-  <h3 class="tagName" v-if="tagId=='All'">Тэг {{Object.keys(entity)[index]}} <span class="small gray">({{item.length}} {{getNoun(item.length, 'выпуск', 'выпуска', 'выпусков')}} )</span></h3>
-    <h1 v-else>{{pagedNames[index]}}</h1>
-
-
-    <itemList v-for="(release, index) in item" :key="index" :itemEntity='release'/>
+  <div v-for="(item, key) in pagedEntity" :key="key">
+    <template v-if="item.additionalTagInfo">
+      <h3>Тэг {{item.additionalTagInfo.tagTitle}} <span class="small gray">({{item.additionalTagInfo.tagLength}} {{getNoun(item.additionalTagInfo.tagLength, 'выпуск', 'выпуска', 'выпусков')}} )</span></h3>
+      <itemList :itemEntity='item'/>
+    </template>
+    <template v-else>
+      <itemList :itemEntity='item'/>
+    </template>
   </div>
   <el-pagination
     @size-change="handleSizeChange"
@@ -24,6 +24,7 @@
 
 <script>
 import itemList from "@/components/itemList.vue";
+import _ from 'lodash'
 
 export default {
   name: "Tags",
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       entity: require("../assets/tags.json"),
+      cloneEntity: {},
       tagNames: [],
       itemsPerPage: 8,
       currentPage: 1,
@@ -48,18 +50,22 @@ export default {
     this.$root.$on('handleLayoutChange', data => {
         this.layout = data
     });
+    this.rewriteEntityForPagination()
 },
 computed: {
   pagedEntity () {
-    let ent = Object.keys(this.entity).map(i => this.entity[i]);
+    let ent = Object.keys(this.cloneEntity).map(i => this.cloneEntity[i]);
     return ent.slice(((this.currentPage - 1) * this.itemsPerPage), (this.itemsPerPage * this.currentPage))
   },
-  pagedNames() {
-    let tagN = Object.keys(this.entity);
-    return tagN.slice(((this.currentPage - 1) * this.itemsPerPage), (this.itemsPerPage * this.currentPage));
-  }
 },
   methods: {
+    rewriteEntityForPagination(){
+      this.cloneEntity = _.cloneDeep(this.entity);
+      this.cloneEntity = _.flatMap(_.map(this.cloneEntity, function(currentObject, key) {
+        currentObject[0].additionalTagInfo = {'tagTitle':key, 'tagLength': currentObject.length}
+        return currentObject;
+      }))
+    },
     getNoun(number, one, two, five) {
         let n = Math.abs(number);
         n %= 100;
@@ -84,16 +90,13 @@ computed: {
   },
   watch: {
     'tagId': function (newValue) {
-      //let self = this
       if (newValue == "All"){
         this.entity = require("../assets/tags.json");
-        // this.tagNames = Object.keys(this.entity)
-        // this.entity = Object.keys(this.entity).map(i => this.entity[i])
+        this.rewriteEntityForPagination()
       }
       else {
         this.entity = require("../assets/tag20.json");
-        // this.tagNames = Object.keys(this.entity)
-        // this.entity = Object.keys(this.entity).map(i => this.entity[i])
+        this.rewriteEntityForPagination()
       }
     },
   }

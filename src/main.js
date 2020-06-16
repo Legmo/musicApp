@@ -6,6 +6,8 @@ import APlayer from "@moefe/vue-aplayer";
 APlayer.disableVersionBadge = true;
 import ElementUI from "element-ui";
 import locale from 'element-ui/lib/locale/lang/en'
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
 
 locale.el.pagination.pagesize = ' на странице'
 
@@ -22,7 +24,7 @@ Vue.use(ElementUI, { locale });
 Vue.use(APlayer, {
   productionTip: false // disable console output
 });
-
+Vue.use(VueLodash, {lodash: lodash })
 // Vue.http.options.root = '/';
 // Vue.http.options.headers = {
 //     "Expires": "-1",
