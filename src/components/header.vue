@@ -15,15 +15,13 @@
           <template v-if="ifShowSort()">
           <div class="sorting">
             <span>Сортировка:</span>
-            <span @click="sortingDate()">по date
-              <i v-if="sortDateDirection == ''" class="el-icon-sort" />
-              <i v-else-if="sortDateDirection == 'asc'" class="el-icon-sort-up" />
-              <i v-else-if="sortDateDirection == 'desc'" class="el-icon-sort-down" />
+            <span :class="{'active': $store.state.sort.sortBy == 'date'}" @click="sorting('date')">по date
+              <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
+              v-if="$store.state.sort.sortBy == 'date'" />
             </span>
-            <span @click="sortingTitle()">по названию
-              <i v-if="sortTitleDirection == ''" class="el-icon-sort" />
-              <i v-else-if="sortTitleDirection == 'asc'" class="el-icon-sort-up" />
-              <i v-else-if="sortTitleDirection == 'desc'" class="el-icon-sort-down" />
+            <span :class="{'active': $store.state.sort.sortBy == 'title'}" @click="sorting('title')">по названию
+              <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
+              v-if="$store.state.sort.sortBy == 'title'" />
             </span>
           </div>
           <div class="layout-switch">
@@ -49,13 +47,14 @@ export default {
   data() {
     return {
       layout: 'list',
-      sortDateDirection: '',
-      sortTitleDirection: '',
+      sort: {
+        sortBy:'date',
+        switcher: true
+      }
     }
   },
   methods: {
     changeLayout(data){
-      //this.$root.$emit('handleLayoutChange', data);
       this.$store.commit('setLayout', data);
     },
     ifShowSort() {
@@ -63,32 +62,33 @@ export default {
       let names = ['List']
       return names.includes(this.$route.name);
     },
-    sortingDate() {
-      this.sortTitleDirection = ''
-      if(this.sortDateDirection == '') {
-        this.sortDateDirection = 'asc'
-        this.$root.$emit('sortingDateChange', this.sortDateDirection);
-      } else if (this.sortDateDirection == 'asc') {
-        this.sortDateDirection = 'desc'
-        this.$root.$emit('sortingDateChange', this.sortDateDirection);
-      } else if (this.sortDateDirection == 'desc') {
-        this.sortDateDirection = ''
-        this.$root.$emit('sortingDateChange', this.sortDateDirection);
+    changeDirection(dir, changed) {
+      let finalDir
+        if (changed == true) {
+          finalDir = 'asc'
+        } else {
+          if(dir == 'asc') {finalDir = 'desc'}
+          else if(dir == 'desc') {finalDir = 'asc'}
+        }
+      return finalDir
+    },
+    sorting(name) {
+      let data = {'sortBy': name, 'switcher': !this.sort.switcher}
+      this.sort = data
+    },
+  },
+  watch: {
+    'sort': function (newValue, oldValue) {
+      let data;
+      if (newValue.sortBy == oldValue.sortBy) {
+        data = {'dir': this.changeDirection(this.$store.state.sort.dir, false), 'sortBy': newValue.sortBy}
+        this.$store.commit('setSort', data);
+      } else {
+        data = {'dir': this.changeDirection(this.$store.state.sort.dir, true), 'sortBy': newValue.sortBy}
+        this.$store.commit('setSort', data);
       }
     },
-    sortingTitle() {
-      this.sortDateDirection = ''
-      if(this.sortTitleDirection == '') {
-        this.sortTitleDirection = 'asc'
-        this.$root.$emit('sortingTitleChange', this.sortTitleDirection);
-      } else if (this.sortTitleDirection == 'asc') {
-        this.sortTitleDirection = 'desc'
-        this.$root.$emit('sortingTitleChange', this.sortTitleDirection);
-      } else if (this.sortTitleDirection == 'desc') {
-        this.sortTitleDirection = ''
-        this.$root.$emit('sortingTitleChange', this.sortTitleDirection);
-      }
-    },
-  }
+
+},
 };
 </script>

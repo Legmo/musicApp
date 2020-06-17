@@ -39,12 +39,9 @@ export default {
     this.$store.watch(() =>  this.$store.state.layout, newValue => {
       this.layout = newValue
     })
-    this.$root.$on('sortingDateChange', data => {
-        this.getSorted('date', data)
-    });
-    this.$root.$on('sortingTitleChange', data => {
-        this.getSorted('title', data)
-    });
+    this.$store.watch(() =>  this.$store.state.sort, newValue => {
+      this.getSorted(newValue.dir, newValue.sortBy)
+    })
   },
   computed: {
     pagedEntity () {
@@ -58,37 +55,19 @@ export default {
     handleCurrentChange(val) {
       this.currentPage = val;
     },
-    getSorted(field, order) {
+    getSorted(order, field) {
       if(field == 'title') {
-        if(order != '') {
-          this.$http.get(`${this.apiUrl}/releases?_format=json?sort_by=title&sort_order=${order}`).then(function (e) {
+          this.$http.get(`${this.$rootApiPath}releases?_format=json?sort_by=title&sort_order=${order}`).then(function (e) {
             self.entity = e.body;
           }).catch(function () {
             self.$message.error("There was an error while reading data");
           });
-        } else {
-          this.$http.get(`${this.apiUrl}/releases?_format=json`).then(function (e) {
-            self.entity = e.body;
-          }).catch(function () {
-            self.$message.error("There was an error while reading data");
-          });
-        }
-
       } else if(field == 'date') {
-        if(order != '') {
-          this.$http.get(`${this.apiUrl}/releases?_format=json?sort_by=field_release_date_value&sort_order=${order}`).then(function (e) {
+          this.$http.get(`${this.$rootApiPath}releases?_format=json?sort_by=field_release_date_value&sort_order=${order}`).then(function (e) {
             self.entity = e.body;
           }).catch(function () {
             self.$message.error("There was an error while reading data");
           });
-        } else {
-          this.$http.get(`${this.apiUrl}/releases?_format=json`).then(function (e) {
-            self.entity = e.body;
-          }).catch(function () {
-            self.$message.error("There was an error while reading data");
-          });
-        }
-
       }
     }
   }

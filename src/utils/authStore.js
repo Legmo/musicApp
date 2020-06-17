@@ -6,7 +6,11 @@ export default new Vuex.Store({
     state: {
         songPlayed: null,
         isPaused: true,
-        layout: 'list'
+        layout: 'list',
+        sort: {
+          dir: 'asc',
+          sortBy: 'date'
+        }
     },
     mutations: {
         setSong(state, value) {
@@ -17,6 +21,9 @@ export default new Vuex.Store({
         },
         setLayout(state, value) {
             state.layout = value;
+        },
+        setSort(state, value) {
+            state.sort = value;
         },
     }
 })

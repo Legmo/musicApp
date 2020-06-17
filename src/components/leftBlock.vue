@@ -1,7 +1,7 @@
 <template>
   <div class="leftBlock">
-    <h3>Выпуски</h3>
     <ul class="sidebar-menu">
+      <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">выпуски</router-link></li>
       <li><router-link to="/about" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">о проекте</router-link></li>
     <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">приложение</router-link></li>
     <li><router-link to="/contacts" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">контакты</router-link></li>
