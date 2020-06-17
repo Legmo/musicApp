@@ -103,10 +103,12 @@ this.$store.watch(() => this.$store.state.songPlayed, newValue => {
     next() {
       this.entity = this.$refs.aplayer.currentMusic;
       this.$refs.aplayer.skipForward();
+      this.$store.commit('setSong', this.$refs.aplayer.currentMusic.number);
     },
     back() {
       this.entity = this.$refs.aplayer.currentMusic;
       this.$refs.aplayer.skipBack();
+      this.$store.commit('setSong', this.$refs.aplayer.currentMusic.number);
     }
   }
 };
