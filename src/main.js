@@ -8,6 +8,7 @@ import ElementUI from "element-ui";
 import locale from 'element-ui/lib/locale/lang/en'
 import VueLodash from 'vue-lodash'
 import lodash from 'lodash'
+import store from './utils/authStore';
 
 locale.el.pagination.pagesize = ' на странице'
 
@@ -22,6 +23,7 @@ Vue.prototype.$rootApiPath = rootPath + '/api/';
 Vue.use(VueResource);
 Vue.use(ElementUI, { locale });
 Vue.use(APlayer, {
+  defaultCover: 'https://github.com/u3u.png',
   productionTip: false // disable console output
 });
 Vue.use(VueLodash, {lodash: lodash })
@@ -37,6 +39,7 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   components: {},
   render: h => h(App)
 }).$mount("#app");

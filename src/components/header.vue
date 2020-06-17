@@ -55,7 +55,8 @@ export default {
   },
   methods: {
     changeLayout(data){
-      this.$root.$emit('handleLayoutChange', data);
+      //this.$root.$emit('handleLayoutChange', data);
+      this.$store.commit('setLayout', data);
     },
     ifShowSort() {
       //let names = ['List', 'Tags', 'Results'] - if we decide to use sorting & different layouts on all these pages

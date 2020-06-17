@@ -4,8 +4,12 @@
     <template v-if="layout=='list'">
       <div @click="playSong(itemEntity)">
         <div class="number">{{itemEntity.number}}
-          <i class="el-icon-video-play"></i>
-          <i class="el-icon-video-pause"></i>
+          <template v-if="$store.state.songPlayed == itemEntity.number">
+            <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
+          </template>
+          <template v-else>
+            <i class="el-icon-video-play" />
+          </template>
         </div>
         <div class="title ">{{itemEntity.title}}</div>
       </div>
@@ -19,7 +23,7 @@
         </el-collapse-item>
       </el-collapse>
       <div class="text" v-if="itemEntity.search_excerpt"> <p v-html="itemEntity.search_excerpt"></p></div>
-<div class="rating">нету рейтинга в json</div>
+<div class="rating" v-if="itemEntity.rating" >нету рейтинга в json</div>
 <a :href="itemEntity.audiofile_url" download> <i class="el-icon-download"></i></a>
 <div class="date">{{itemEntity.date}}</div>
 <div class="tags">
@@ -31,11 +35,10 @@
 <!-- Grid layout -->
 <template v-else-if="layout=='grid'">
   <div style v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
-    <div class="rating">нету рейтинга в json</div>
+    <div class="rating"  v-if="itemEntity.rating">нету рейтинга в json</div>
     <div class="showOnHover">
       <span class="player-button" @click="playSong(itemEntity)">
-        <i v-if="isPaused" class="el-icon-video-play"></i>
-        <i v-else class="el-icon-video-pause"></i>
+        <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
       </span>
       <a :href="itemEntity.audiofile_url" download> <i class="el-icon-download"></i></a>
       <router-link
@@ -64,30 +67,27 @@ export default {
     itemEntity: {
       type: Object,
       default:  function () {
-    return {
-          id: null,
-          title: "",
-          number: "",
-          date: "",
-          image_url: "",
-          tags: [],
-          audiofile_url: null,
-          composition_list: []
-        }
+        return {}
     }
+  },
+  songPlayed: {
+    type: Number,
+    default: null
   }
   },
   data() {
     return {
-      isPaused: true,
     };
   },
   mounted() {
   },
   methods: {
     playSong(item) {
-      console.log(item)
-      //this.$root.$emit('playSong', item.number);
+      if(this.$store.state.isPaused) {
+        this.$store.commit('setSong', item.number);
+      } else {
+        this.$store.commit('setPaused', true);
+      }
     },
     reroute(id) {
         this.$router.push({name: 'Tags', params: { tagId: id }});

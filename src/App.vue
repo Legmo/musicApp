@@ -13,17 +13,15 @@
       </main>
       <footer class="footer fixed-bottom">
             <div class="container-fluid">
-                  <player />
+                  <player :music="entity" ref="player"/>
             </div>
           </footer>
-
-
-
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import _ from 'lodash'
+
 import Player from "@/components/player.vue";
 import LeftBlock from "@/components/leftBlock.vue";
 import mainHeader from "@/components/header.vue";
@@ -33,7 +31,30 @@ export default {
   components: {
     Player,
     LeftBlock,
-    mainHeader
+    mainHeader,
+  },
+  data() {
+    return {
+      entity: require("./assets/responses.json"),
+      songPlayed: null,
+    }
+  },
+  mounted() {
+    this.rewriteEntityForPlayer();
+    this.$root.$on('playSong', data => {
+      this.songPlayed = data;
+    });
+},
+  methods: {
+    rewriteEntityForPlayer(){
+      this.$refs.player.music = _.map(this.entity, function(currentObject) {
+        currentObject.name = currentObject.title;
+        currentObject.cover = currentObject.image_url;
+        currentObject.url = currentObject.audiofile_url;
+        currentObject.artist = "Аэростат"
+        return currentObject;
+      })
+    },
   }
 };
 </script>
