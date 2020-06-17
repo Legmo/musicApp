@@ -9,8 +9,22 @@
   <p> текст что это такое и чего там когда выходит
   </p>
 <div class="tag" >
-  <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.count) }"><a @click="reroute(item.id)" >{{item.name}}</a></span>
-  <span class="tag-item tag-item--all"><a @click="reroute('All')" >все тэги</a></span>
+  <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.count) }">
+    <template v-if="$route.params.tagId == item.id">
+        <span class="tag-item">{{item.name}}</span>
+    </template>
+    <template v-else>
+      <a class="tag-item" @click="reroute(item.id)" >{{item.name}}</a>
+    </template>
+  </span>
+  <span class="tag-item tag-item--all">
+    <template v-if="$route.params.tagId == 'All'">
+        <span class="tag-item">все тэги</span>
+    </template>
+    <template v-else>
+      <a class="tag-item" @click="reroute('All')" >все тэги</a>
+    </template>
+  </span>
 </div>
 <div class="">
 соцсети</div>

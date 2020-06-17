@@ -6,11 +6,15 @@
         <div class="titleAndCo">
           <div class="title ">{{entity.title}}</div>
           <span class="small gray">{{entity.date}} | Выпуск {{entity.number}}</span>
-          <div class="rating">нету рейтинга в json</div>
+          <div class="rating" v-if="entity.rating">нету рейтинга в json</div>
           <div class="buttons">
             <div @click="playSong(entity)">
-                <i class="el-icon-video-play"></i>
-                <i class="el-icon-video-pause"></i>
+              <template v-if="$store.state.songPlayed == entity.number">
+                <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == entity.number && $store.state.isPaused == false}"></i>
+              </template>
+              <template v-else>
+                <i class="el-icon-video-play" />
+              </template>
             </div>
             <a :href="entity.audiofile_url" download> <i class="el-icon-download"></i></a>
           </div>
@@ -79,8 +83,14 @@ export default {
   components: {},
   methods: {
     playSong(item) {
-      console.log(item)
-      //this.$root.$emit('playSong', item.number);
+      if(this.$store.state.isPaused) {
+        this.$store.commit('setSong', item.number);
+      } else {
+        this.$store.commit('setPaused', true);
+      }
+    },
+    reroute(id) {
+        this.$router.push({name: 'Tags', params: { tagId: id }});
     },
   }
 };

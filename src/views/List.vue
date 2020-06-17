@@ -39,9 +39,6 @@ export default {
     this.$store.watch(() =>  this.$store.state.layout, newValue => {
       this.layout = newValue
     })
-    // this.$root.$on('handleLayoutChange', data => {
-    //     this.layout = data
-    // });
     this.$root.$on('sortingDateChange', data => {
         this.getSorted('date', data)
     });

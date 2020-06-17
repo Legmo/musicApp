@@ -16,7 +16,8 @@
     <router-link
       :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
       class="read-more"
-      >Читать</router-link>
+      >Читать
+    </router-link>
       <el-collapse>
         <el-collapse-item title="Список композиций" name="1">
           <div v-for="(song, index) in itemEntity.composition_list" :key="index"> {{song.composition_name}}</div>
@@ -28,7 +29,12 @@
 <div class="date">{{itemEntity.date}}</div>
 <div class="tags">
   <span v-for="(tag, index) in itemEntity.tags" :key="index">
-    <a @click="reroute(tag.id)" >{{tag.title}}</a>
+      <template v-if="$route.params.tagId == tag.id">
+          <span class="tag-item">{{tag.title}}</span>
+      </template>
+      <template v-else>
+        <a class="tag-item" @click="reroute(tag.id)" >{{tag.title}}</a>
+      </template>
   </span>
 </div>
 </template>

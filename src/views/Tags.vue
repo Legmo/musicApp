@@ -47,10 +47,10 @@ export default {
     }
   },
   mounted() {
-    this.$root.$on('handleLayoutChange', data => {
-        this.layout = data
-    });
-    this.rewriteEntityForPagination()
+    this.$store.watch(() =>  this.$store.state.layout, newValue => {
+      this.layout = newValue
+    })
+    this.identifyTags(this.tagId)
 },
 computed: {
   pagedEntity () {
@@ -87,17 +87,20 @@ computed: {
       handleCurrentChange(val) {
         this.currentPage = val;
       },
+      identifyTags(val) {
+        if (val == "All"){
+          this.entity = require("../assets/tags.json");
+          this.rewriteEntityForPagination()
+        }
+        else {
+          this.entity = require("../assets/tag20.json");
+          this.rewriteEntityForPagination()
+        }
+      },
   },
   watch: {
     'tagId': function (newValue) {
-      if (newValue == "All"){
-        this.entity = require("../assets/tags.json");
-        this.rewriteEntityForPagination()
-      }
-      else {
-        this.entity = require("../assets/tag20.json");
-        this.rewriteEntityForPagination()
-      }
+      this.identifyTags(newValue)
     },
   }
 };
