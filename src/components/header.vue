@@ -53,6 +53,11 @@ export default {
       }
     }
   },
+  mounted() {
+    this.$store.watch(() =>  this.$store.state.layout, newValue => {
+      this.layout = newValue
+    })
+  },
   methods: {
     changeLayout(data){
       this.$store.commit('setLayout', data);
@@ -88,7 +93,6 @@ export default {
         this.$store.commit('setSort', data);
       }
     },
-
 },
 };
 </script>

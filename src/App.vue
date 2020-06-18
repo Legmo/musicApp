@@ -13,7 +13,7 @@
       </main>
       <footer class="footer fixed-bottom">
             <div class="container-fluid">
-                  <player :music="entity" ref="player"/>
+                  <player ref="player"/>
             </div>
           </footer>
   </div>
@@ -35,19 +35,28 @@ export default {
   },
   data() {
     return {
-      entity: require("./assets/responses.json"),
-      songPlayed: null,
+      entity: [],
     }
   },
-  mounted() {
-    this.rewriteEntityForPlayer();
-    this.$root.$on('playSong', data => {
-      this.songPlayed = data;
+  created: function () {
+    var self = this;
+    this.$http.get(this.$rootApiPath + 'releases?_format=json').then(function (e) {
+        self.entity = e.body;
+        self.rewriteEntityForPlayer(self.entity);
+    }).catch(function () {
+      self.entity = require("./assets/responses.json");
+      self.$message.error("There was an error while reading data");
+      self.rewriteEntityForPlayer(self.entity);
+    }).finally(function () {
+
     });
+  },
+  mounted() {
 },
   methods: {
-    rewriteEntityForPlayer(){
-      this.$refs.player.music = _.map(this.entity, function(currentObject) {
+    rewriteEntityForPlayer(ent){
+      this.$store.commit('setList', ent);
+      this.$refs.player.music = _.map(ent, function(currentObject) {
         currentObject.name = currentObject.title;
         currentObject.cover = currentObject.image_url;
         currentObject.url = currentObject.audiofile_url;

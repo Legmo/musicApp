@@ -30,7 +30,7 @@
           <p>{{ entity.number }}.{{ entity.name }}</p>
           <span>{{ entity.date }}</span>
           <router-link
-            :to="{ name: 'Article', params: { id: entity.node_path } }"
+            :to="{ name: 'Article', params: { path: entity.node_path } }"
             class="read-more"
             >Читать</router-link>
         </div>
@@ -61,23 +61,22 @@ export default {
     return {
       entity: {
       },
-      music:[],
+      music: [],
     };
   },
   mounted() {
-    this.$nextTick(function () {
+    var self = this;
+    this.$store.watch(() =>  this.$store.state.mainList, () => {
       this.getCurrentMusic()
-  })
-var self = this;
-this.$store.watch(() => this.$store.state.songPlayed, newValue => {
-  let songIndex = _.findIndex(self.music, function(o) { return o.number == newValue; })
-  self.$refs.aplayer.switch(songIndex);
-  self.$store.commit('setPaused', false);
-})
-
-  this.$store.watch(() =>  this.$store.state.isPaused, newValue => {
-    if(newValue == true) self.$refs.aplayer.pause();
-  })
+    })
+    this.$store.watch(() => this.$store.state.songPlayed, newValue => {
+      let songIndex = _.findIndex(self.music, function(o) { return o.number == newValue; })
+      self.$refs.aplayer.switch(songIndex);
+      self.$store.commit('setPaused', false);
+    })
+    this.$store.watch(() =>  this.$store.state.isPaused, newValue => {
+      if(newValue == true) self.$refs.aplayer.pause();
+    })
   },
   methods: {
     getCurrentMusic() {

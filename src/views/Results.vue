@@ -39,7 +39,7 @@ export default {
     return {
       itemsPerPage: 8,
       currentPage: 1,
-      entity: require("../assets/search_cogo.json"),
+      entity: [],
       localQuery: ''
     }
   },
@@ -50,16 +50,10 @@ export default {
   },
   mounted() {
     if (this.searchQuery == '') {
-      this.localQuery = this.$route.params.searchQuery
+      this.localQuery = this.$route.query.text
     } else {
       this.localQuery = this.searchQuery;
     }
-    // let self = this;
-    // this.$http.get(`${this.apiUrl}/releases/search?text=${this.localQuery}&_format=json`).then(function (e) {
-    //   self.entity = e.body;
-    // }).catch(function (e) {
-    //   self.$message.error("There was an error while reading data");
-    // });
   },
   methods: {
     handleSizeChange(val) {
@@ -69,5 +63,16 @@ export default {
       this.currentPage = val;
     },
   },
+  watch: {
+    'localQuery': function (newValue) {
+      let self = this;
+     this.$http.get(`${this.$rootApiPath}releases/search?text=${newValue}&_format=json`).then(function (e) {
+       self.entity = e.body;
+     }).catch(function () {
+       self.entity = require("../assets/search_cogo.json");
+       self.$message.error("There was an error while reading data");
+     });
+    },
+  }
 };
 </script>

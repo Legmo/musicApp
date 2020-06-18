@@ -36,26 +36,26 @@
         }
     },
     methods: {
-        sendQueryString() {
-            clearTimeout(this.delayTimer);
-            this.delayTimer = setTimeout(() => {
-                if (this.queryString.length >= 3) {
-                    this.isChanged = false;
-                    this.searchQuery.queryString = this.queryString.toLowerCase();
-                    this.$http.get(`${this.$rootApiPath}result?queryString=${this.searchQuery.queryString}`)
-                        .then(function () {
-                        })
-                        .catch(function () {
-                            this.$message.error("There was an error while reading data");
-                        });
-                    this.isActive = true;
-                } else {
-                    this.searchQuery.queryString = '';
-                    this.isActive = false;
-                }
-            }, 1000);
-
-        },
+        // sendQueryString() {
+        //     clearTimeout(this.delayTimer);
+        //     this.delayTimer = setTimeout(() => {
+        //         if (this.queryString.length >= 3) {
+        //             this.isChanged = false;
+        //             this.searchQuery.queryString = this.queryString.toLowerCase();
+        //             this.$http.get(`${this.$rootApiPath}result?queryString=${this.searchQuery.queryString}`)
+        //                 .then(function () {
+        //                 })
+        //                 .catch(function () {
+        //                     this.$message.error("There was an error while reading data");
+        //                 });
+        //             this.isActive = true;
+        //         } else {
+        //             this.searchQuery.queryString = '';
+        //             this.isActive = false;
+        //         }
+        //     }, 1000);
+        //
+        // },
         },
     mounted() {}
 }

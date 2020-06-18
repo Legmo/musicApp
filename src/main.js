@@ -20,6 +20,7 @@ var rootPath = '';
 Vue.prototype.$rootPath = rootPath;
 Vue.prototype.$rootApiPath = rootPath + '/api/';
 
+
 Vue.use(VueResource);
 Vue.use(ElementUI, { locale });
 Vue.use(APlayer, {
@@ -27,13 +28,16 @@ Vue.use(APlayer, {
   productionTip: false // disable console output
 });
 Vue.use(VueLodash, {lodash: lodash })
-// Vue.http.options.root = '/';
+
 // Vue.http.options.headers = {
-//     "Expires": "-1",
 //     "Cache-Control": "no-cache",
-//     "Pragma": "no-cache"
+//     "Pragma": "no-cache",
+//     "Content-Type": "application/json",
+//     "Access-Control-Allow-Origin": "*",
+//     "Access-Control-Allow-Methods": "OPTIONS",
+//     "Access-Control-Allow-Headers": "Content-Type, Authorization",
+//     "Access-Control-Allow-Credentials": "true"
 // };
-// Vue.http.headers.common['Authorization'] = 'Basic ' + btoa("i20:devsites");
 
 Vue.config.productionTip = false;
 

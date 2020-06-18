@@ -70,9 +70,9 @@
 export default {
   name: "Article",
   props: {
-    id: {
-      type: Number,
-      default: null
+    path: {
+      type: String,
+      default: ''
     }
   },
   data() {

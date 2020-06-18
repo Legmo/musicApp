@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      entity: require("../assets/tags.json"),
+      entity: {},
       cloneEntity: {},
       tagNames: [],
       itemsPerPage: 8,
@@ -88,14 +88,28 @@ computed: {
         this.currentPage = val;
       },
       identifyTags(val) {
+        let self = this;
         if (val == "All"){
-          this.entity = require("../assets/tags.json");
-          this.rewriteEntityForPagination()
+         this.$http.get(`${this.$rootApiPath}releases/tags?_format=json`).then(function (e) {
+           self.entity = e.body;
+         }).catch(function () {
+           self.entity = require("../assets/tags.json");
+           self.$message.error("There was an error while reading data");
+         }).finally(function () {
+           this.rewriteEntityForPagination()
+         });
         }
         else {
-          this.entity = require("../assets/tag20.json");
-          this.rewriteEntityForPagination()
+          this.$http.get(`${this.$rootApiPath}releases/tags/${val}?_format=json`).then(function (e) {
+            self.entity = e.body;
+          }).catch(function () {
+            self.entity = require("../assets/tag20.json");
+            self.$message.error("There was an error while reading data");
+          }).finally(function () {
+            this.rewriteEntityForPagination()
+          });
         }
+
       },
   },
   watch: {

@@ -10,7 +10,8 @@ export default new Vuex.Store({
         sort: {
           dir: 'asc',
           sortBy: 'date'
-        }
+        },
+        mainList: []
     },
     mutations: {
         setSong(state, value) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
         },
         setSort(state, value) {
             state.sort = value;
+        },
+        setList(state, value) {
+            state.mainList = value;
         },
     }
 })

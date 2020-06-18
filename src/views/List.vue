@@ -32,7 +32,7 @@ export default {
       itemsPerPage: 8,
       currentPage: 1,
       layout: 'list',
-      entity: require("../assets/responses.json"),
+      entity: this.$store.state.mainList
     }
   },
   mounted() {
@@ -41,6 +41,9 @@ export default {
     })
     this.$store.watch(() =>  this.$store.state.sort, newValue => {
       this.getSorted(newValue.dir, newValue.sortBy)
+    })
+    this.$store.watch(() =>  this.$store.state.mainList, newValue => {
+      this.entity = newValue
     })
   },
   computed: {
@@ -56,16 +59,19 @@ export default {
       this.currentPage = val;
     },
     getSorted(order, field) {
+      let self = this;
       if(field == 'title') {
-          this.$http.get(`${this.$rootApiPath}releases?_format=json?sort_by=title&sort_order=${order}`).then(function (e) {
+          this.$http.get(`${this.$rootApiPath}releases?_format=json&sort_by=title&sort_order=${order}`).then(function (e) {
             self.entity = e.body;
           }).catch(function () {
+            self.entity = require("../assets/responses.json");
             self.$message.error("There was an error while reading data");
           });
       } else if(field == 'date') {
-          this.$http.get(`${this.$rootApiPath}releases?_format=json?sort_by=field_release_date_value&sort_order=${order}`).then(function (e) {
+          this.$http.get(`${this.$rootApiPath}releases?_format=json&sort_by=field_release_date_value&sort_order=${order}`).then(function (e) {
             self.entity = e.body;
           }).catch(function () {
+            self.entity = require("../assets/responses.json");
             self.$message.error("There was an error while reading data");
           });
       }
