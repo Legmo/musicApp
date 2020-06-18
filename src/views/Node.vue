@@ -77,10 +77,18 @@ export default {
   },
   data() {
     return {
-      entity: require("../assets/article.json").release,
+      entity: []
     }
   },
-  components: {},
+  mounted() {
+    let self = this;
+    this.$http.get(`${this.$rootApiPath}release${this.path}?_format=json`).then(function (e) {
+        self.entity = e.body.release;
+    }).catch(function () {
+      self.entity = require("../assets/article.json").release;
+      self.$message.error("There was an error while reading data");
+    });
+  },
   methods: {
     playSong(item) {
       if(this.$store.state.isPaused) {
@@ -91,6 +99,17 @@ export default {
     },
     reroute(id) {
         this.$router.push({name: 'Tags', params: { tagId: id }});
+    },
+  },
+  watch: {
+    'path': function (newValue) {
+      let self = this;
+      this.$http.get(`${this.$rootApiPath}release${newValue}?_format=json`).then(function (e) {
+          self.entity = e.body.release;
+      }).catch(function () {
+        self.entity = require("../assets/article.json").release;
+        self.$message.error("There was an error while reading data");
+      });
     },
   }
 };

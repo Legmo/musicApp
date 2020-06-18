@@ -60,15 +60,16 @@ export default {
     },
     getSorted(order, field) {
       let self = this;
+      let orderCap = order.toUpperCase();
       if(field == 'title') {
-          this.$http.get(`${this.$rootApiPath}releases?_format=json&sort_by=title&sort_order=${order}`).then(function (e) {
+          this.$http.get(`${this.$rootApiPath}releases?_format=json&sort_by=title&sort_order=${orderCap}`).then(function (e) {
             self.entity = e.body;
           }).catch(function () {
             self.entity = require("../assets/responses.json");
             self.$message.error("There was an error while reading data");
           });
       } else if(field == 'date') {
-          this.$http.get(`${this.$rootApiPath}releases?_format=json&sort_by=field_release_date_value&sort_order=${order}`).then(function (e) {
+          this.$http.get(`${this.$rootApiPath}releases?_format=json&sort_by=field_release_date_value&sort_order=${orderCap}`).then(function (e) {
             self.entity = e.body;
           }).catch(function () {
             self.entity = require("../assets/responses.json");
