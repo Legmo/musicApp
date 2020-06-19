@@ -1,13 +1,13 @@
 <template>
 <div class="mainList">
   <h1 v-if="tagId=='All'">Выпуски по тэгам</h1>
-  <div v-for="(item, key) in pagedEntity" :key="key">
+  <div v-for="(item, key) in pagedEntity" :key="key" :class="{'tag-header':item.additionalTagInfo}">
     <template v-if="item.additionalTagInfo">
       <h3>Тэг {{item.additionalTagInfo.tagTitle}} <span class="small gray">({{item.additionalTagInfo.tagLength}} {{getNoun(item.additionalTagInfo.tagLength, 'выпуск', 'выпуска', 'выпусков')}} )</span></h3>
-      <itemList :itemEntity='item'/>
+      <itemList :itemEntity="item" :layout="layout"/>
     </template>
     <template v-else>
-      <itemList :itemEntity='item'/>
+      <itemList :itemEntity="item" :layout="layout"/>
     </template>
   </div>
   <el-pagination
@@ -40,6 +40,7 @@ export default {
   data() {
     return {
       entity: {},
+      layout: 'list',
       cloneEntity: {},
       tagNames: [],
       itemsPerPage: 8,

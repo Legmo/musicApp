@@ -64,7 +64,7 @@ export default {
     },
     ifShowSort() {
       //let names = ['List', 'Tags', 'Results'] - if we decide to use sorting & different layouts on all these pages
-      let names = ['List']
+      let names = ['List', 'Tags']
       return names.includes(this.$route.name);
     },
     changeDirection(dir, changed) {
