@@ -1,17 +1,10 @@
 <template>
   <div class="leftBlock">
     <ul class="sidebar-menu">
-<<<<<<< HEAD
-      <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">Выпуски</router-link></li>
-      <li><router-link to="/about" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">О проекте</router-link></li>
-    <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">Приложение</router-link></li>
-    <li><router-link to="/contacts" :class="{'sidebar-nav-link':true, 'active': isSelected('invoicing') }">Контакты</router-link></li>
-=======
-      <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">выпуски</router-link></li>
-      <li><router-link to="/about" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">о проекте</router-link></li>
-    <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">приложение</router-link></li>
-    <li><router-link to="/contacts" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">контакты</router-link></li>
->>>>>>> d53b34705a4f8d514f0e1bb0faba8552b49ad126
+      <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">Выпуски</router-link></li>
+      <li><router-link to="/about" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">О проекте</router-link></li>
+    <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">Приложение</router-link></li>
+    <li><router-link to="/contacts" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">Контакты</router-link></li>
   </ul>
   <p>Программа музыканта Бориса Гребенщикова.</p>
   <p>Выходит еженедельно на «Радио России» и на радиостанции «Культура».</p>
