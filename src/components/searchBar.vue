@@ -6,7 +6,7 @@
                          id="mainSearch"
                          class="form-control"
                          name="x"
-                         placeholder="Search"
+                         placeholder="Поиск по сайту"
                          v-model.trim="queryString" />
                   <span class="input-group-btn">
                       <router-link :to="{

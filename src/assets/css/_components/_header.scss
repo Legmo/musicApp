@@ -1,0 +1,87 @@
+header{
+  .navbar {
+    background: #ebebeb; //todo - выводить цвет через переменную
+    padding: 5px 16px 6px; //todo - выводить размер через переменную
+    & > a {
+      line-height: 1;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #fd5622; //todo - выводить цвет через переменную
+      padding: 0;
+      img {
+        height: 50px;
+        width: 50px;
+        margin-right: 8px; //todo - выводить размер через переменную
+      }
+    }
+  }
+  #navbarCollapse {
+    justify-content: space-between;
+    #searchBar {
+      .nav-searchbar {
+        margin-right: 16px; //todo - выводить размер через переменную
+        .input-group-btn {
+          button.btn.btn-search {
+            background-color: silver; //todo - выводить цвет через переменную
+            border-radius: 0 4px 4px 0; //todo - выводить через переменную
+            &:hover {
+              background-color: #a7a6a2; //todo - выводить цвет через переменную
+              transition: all 0.3s ease-out; //todo - выводить через переменную
+            }
+          }
+        }
+      }
+    }
+    .list-settings-block{
+      display: flex;
+      .sorting {
+        margin-right: 32px; //todo - выводить размер через переменную
+        span {
+          padding-right: 8px;
+          color: #a7a6a2; //todo - выводить цвет через переменную
+          cursor: pointer;
+          &.active {
+            color: #414141; //todo - выводить цвет через переменную
+            transition: all 0.3s ease-out; //todo - выводить через переменную
+            background-color: transparent;
+          }
+          &:not(.active){
+            &:hover {
+              color: #414141; //todo - выводить цвет через переменную
+              transition: all 0.3s ease-out; //todo - выводить через переменную
+            }
+          }
+          &:last-of-type {
+            padding-right: 0;
+          }
+          &:first-of-type {
+            &:hover {
+              color: #a7a6a2; //todo - выводить цвет через переменную
+            }
+          }
+        }
+      }
+      .layout-switch {
+        .layout-icon {
+          color: #a7a6a2; //todo - выводить цвет через переменную
+          cursor: pointer;
+          &.active i:before {
+            //color: #fd5622;
+            color: #414141; //todo - выводить цвет через переменную
+            transition: all 0.3s ease-out; //todo - выводить через переменную
+          }
+          &:not(.active){
+            &:hover i:before{
+              color: #414141; //todo - выводить цвет через переменную
+              transition: all 0.3s ease-out; //todo - выводить через переменную
+            }
+          }
+          &:nth-child(2) {
+            margin-left: 8px; //todo - выводить размер через переменную
+          }
+        }
+      }
+    }
+  }
+
+}

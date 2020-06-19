@@ -1,0 +1,135 @@
+/*Потом перенесу в отдельный файл темы (с переменными)
+
+ЦВЕТА:
+  - orange main  - #fd5622 (оранжевый основной)
+  - gray light   - #a7a6a2 (серый светлый - кнопки не активные)
+  - gray light x - #ebebeb (серый светлый очень - )
+  - gray dark x  - #414141 (серый тёмный очень - кнопка наведенная )
+*/
+
+#mainPlayer {
+  padding-top: 8px; //todo - выводить размер через переменную
+  .aplayer {
+    overflow: visible!important;
+    margin: 0;
+    .aplayer-body {
+      height: 10px; //todo - выводить размер через переменную
+      .aplayer-info {
+        margin: 0;
+        padding: 0;
+        height: 10px; //todo - выводить размер через переменную
+        border: none;
+        .aplayer-music {
+          display: none;
+        }
+        .aplayer-controller {
+          .aplayer-bar-wrap {
+            margin: 0;
+            padding: 0;
+            .aplayer-bar,
+            .aplayer-loaded,
+            .aplayer-played {
+              height: 10px!important; //todo - выводить размер через переменную
+            }
+            .aplayer-bar {
+              background-color: white;
+              border-radius: 4px; //todo - выводить размер через переменную
+              .aplayer-played {
+                background-color: #fd5622 !important; //todo - выводить цвет через переменную
+              }
+              .aplayer-loaded {
+                background: silver !important; //todo - выводить цвет через переменную
+              }
+            }
+          }
+          .aplayer-time {
+            position: absolute!important;
+            bottom: -35px!important; //todo - выводить размер через переменную
+            padding: 0;
+            .aplayer-icon-menu,
+            .aplayer-time-inner {
+              display: none!important;
+            }
+            .aplayer-icon {
+              width: 28px!important; //todo - выводить размер через переменную
+              height: 28px!important; //todo - выводить размер через переменную
+              &:hover path {
+                fill: #fd5622; //todo - выводить цвет через переменную
+                transition: all 0.3s ease-out; //todo - выводить через переменную
+              }
+            }
+
+          }
+        }
+      }
+      .aplayer-pic {
+        display: none;
+      }
+      .aplayer-notice {
+        display: none;
+      }
+    }
+    .aplayer-list {
+      display: none;
+    }
+  }
+  .player-bottom{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 105px 5px 0; //todo - выводить размер через переменную
+    align-items: center;
+    .buttons-block {
+      padding-right: 8px; //todo - выводить размер через переменную
+      .player-button {
+        font-size: 28px; //todo - выводить размер через переменную
+        color: #a7a6a2;
+        cursor: pointer;
+        transition: all 0.3s ease-out; //todo - выводить через переменную
+        &:hover {
+          color: #fd5622; //todo - выводить цвет через переменную
+          transition: all 0.3s ease-out; //todo - выводить через переменную
+        }
+      }
+    }
+    .info-block {
+      flex: 1;
+      display: flex;
+      .cover--thumb {
+        height: 50px; //todo - выводить размер через переменную
+        width: 50px; //todo - выводить размер через переменную
+        background-color: silver; //todo - выводить цвет через переменную
+        img {
+          object-fit: cover;
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .text {
+        padding-left: 16px; //todo - выводить размер через переменную
+        p {
+          margin: 0;
+        }
+        a,
+        span {
+          font-size: 12px; //todo - выводить кегль через переменную
+        }
+        span {
+          padding-right: 8px;
+        }
+      }
+    }
+    .rating-controls {
+      a i {
+        font-size: 21px; //todo - выводить размер через переменную
+        padding-top: 8px; //todo - выводить размер через переменную
+        color: #a7a6a2; //todo - выводить цвет через переменную
+        transition: all 0.3s ease-out; //todo - выводить через переменную
+        &:hover {
+          color: #fd5622;
+          transition: all 0.3s ease-out; //todo - выводить через переменную
+        }
+      }
+    }
+  }
+}
