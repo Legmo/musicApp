@@ -3,10 +3,10 @@
       <mainHeader />
       <main role="main" class="container-fluid">
         <div class="row">
-             <div class="col-xl-4">
+             <div class="col-xl-3">
                <leftBlock />
              </div>
-             <div class="col-xl-8 col-md-6">
+             <div class="col-xl-9 col-md-6">
                  <router-view />
              </div>
         </div>

@@ -12,7 +12,8 @@
           <div class="mt-2 mt-md-0">
             <searchBar/>
           </div>
-          <template v-if="ifShowSort()">
+          <div class="list-settings-block">
+            <template v-if="ifShowSort()">
           <div class="sorting">
             <span>Сортировка:</span>
             <span :class="{'active': $store.state.sort.sortBy == 'date'}" @click="sorting('date')">по date
@@ -29,6 +30,7 @@
             <a class="layout-icon" @click="changeLayout('grid')" :class="{ 'active': layout == 'grid'}" title="Grid"><i class="el-icon-menu" /></a>
           </div>
         </template>
+          </div>
         </div>
       </nav>
     </header>
