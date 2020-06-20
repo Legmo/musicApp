@@ -1,6 +1,6 @@
 <template>
   <div>
-<div class="mainList">
+<div  :class="['mainList', layout === 'grid' ? 'view-grid' : 'view-list']">
     <div v-for="item in pagedEntity" :key="item.number">
       <itemList :itemEntity='item' :layout="layout"/>
     </div>
