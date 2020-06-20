@@ -2,10 +2,14 @@
 
 // Components
 
-@import '_components/_test.scss';
+@import 'variables.scss';
+@import '_components/_other.scss';
+@import '_components/_typography.scss';
 @import '_components/_header.scss';
 @import '_components/_itemList.scss';
+@import '_components/_leftBlock.scss';
 @import '_components/_player.scss';
+@import '_components/_release.scss';
 
 // @import '_variables.scss';
 // @import '_components/_general.scss';

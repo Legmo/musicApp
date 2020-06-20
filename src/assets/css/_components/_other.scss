@@ -1,0 +1,68 @@
+#app {
+  //margin: ($space_8 * 7.5) 0 ($space_8 * 12);
+  margin: 0 0 ($space_8 * 12);
+}
+.footer{
+  //background-color: $gray_light_xxx;
+  background-color: white;
+  & > div.container-fluid {
+    padding: 0;
+  }
+}
+.tag-header {
+  clear: both;
+}
+.layout-icon {
+  opacity: 0.5;
+  &.active {
+    opacity: 1;
+  }
+}
+.mainList {
+  overflow: hidden;
+  margin-top: 20px;
+  &.view-grid {
+    display: flex;
+    flex-wrap: wrap;
+    & > div {
+      width: 25%;
+    }
+  }
+}
+.sorting {
+  .active {
+    background: white;
+  }
+}
+
+
+.tag {
+  &-item {
+    display: inline-block;
+    margin: 0 3px;
+  }
+}
+.tags .tag-item {
+  color: $gray;
+  text-decoration: underline;
+  transition: $transition;
+  cursor: pointer;
+  font-size: 14px;
+  &:hover {
+    color: $orange;
+    //color: $gray_dark_x;
+    transition: $transition;
+  }
+}
+.tags-list-all {
+  & > h1 {
+    margin-bottom: 24px;
+  }
+  .tag-header h4 {
+    margin-bottom: 16px;
+  }
+}
+.number {
+  font-size: 40px;
+}
+

@@ -1,7 +1,8 @@
 <template>
   <header>
       <!-- Fixed navbar -->
-      <nav class="navbar navbar-expand-md fixed-top">
+      <!--<nav class="navbar navbar-expand-md fixed-top">-->
+      <nav class="navbar navbar-expand-md">
           <router-link to="/" class="navbar-brand">
            <img src="./../assets/logo.png" height="30" alt="Аэростат" /> Аэростат
          </router-link>
@@ -16,7 +17,7 @@
             <template v-if="ifShowSort()">
           <div class="sorting">
             <span>Сортировка:</span>
-            <span :class="{'active': $store.state.sort.sortBy == 'date'}" @click="sorting('date')">по date
+            <span :class="{'active': $store.state.sort.sortBy == 'date'}" @click="sorting('date')">по дате
               <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
               v-if="$store.state.sort.sortBy == 'date'" />
             </span>
