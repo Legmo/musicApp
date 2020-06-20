@@ -66,9 +66,10 @@
             </span>
           <a class="link-download" :href="itemEntity.audiofile_url" download> <i class="el-icon-download"></i></a>
           <router-link
-                  :to="{ name: 'Article', params: { id: itemEntity.id } }"
-                  class="read-more"
-          >Читать</router-link>
+          :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
+          class="read-more"
+          >Читать
+        </router-link>
         </div>
       </div>
       <div class="title ">{{itemEntity.title}}</div>
