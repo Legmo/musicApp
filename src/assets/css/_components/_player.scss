@@ -1,17 +1,10 @@
-/*Потом перенесу в отдельный файл темы (с переменными)
 
-ЦВЕТА:
-  - orange main  - #fd5622 (оранжевый основной)
-  - gray light   - #a7a6a2 (серый светлый - кнопки не активные)
-  - gray light x - #ebebeb (серый светлый очень - )
-  - gray dark x  - #414141 (серый тёмный очень - кнопка наведенная )
-*/
 
 #mainPlayer {
-  padding-top: 8px; //todo - выводить размер через переменную
   .aplayer {
     overflow: visible!important;
     margin: 0;
+    box-shadow: none;
     .aplayer-body {
       height: 10px; //todo - выводить размер через переменную
       .aplayer-info {
@@ -32,19 +25,20 @@
               height: 10px!important; //todo - выводить размер через переменную
             }
             .aplayer-bar {
-              background-color: white;
-              border-radius: 4px; //todo - выводить размер через переменную
+              background-color: $gray_light_xxx;
+              //background-color: white;
               .aplayer-played {
-                background-color: #fd5622 !important; //todo - выводить цвет через переменную
+                background-color: $orange_light !important;
               }
               .aplayer-loaded {
-                background: silver !important; //todo - выводить цвет через переменную
+                background: $gray_light_xx !important;
               }
             }
           }
           .aplayer-time {
             position: absolute!important;
             bottom: -35px!important; //todo - выводить размер через переменную
+            right: 15px!important; //todo - выводить размер через переменную
             padding: 0;
             .aplayer-icon-menu,
             .aplayer-time-inner {
@@ -54,8 +48,8 @@
               width: 28px!important; //todo - выводить размер через переменную
               height: 28px!important; //todo - выводить размер через переменную
               &:hover path {
-                fill: #fd5622; //todo - выводить цвет через переменную
-                transition: all 0.3s ease-out; //todo - выводить через переменную
+                fill: $orange;
+                transition: $transition;
               }
             }
 
@@ -76,18 +70,20 @@
   .player-bottom{
     display: flex;
     justify-content: space-between;
+    margin-left: 15px;
+    margin-right: 15px;
     padding: 5px 105px 5px 0; //todo - выводить размер через переменную
     align-items: center;
     .buttons-block {
       padding-right: 8px; //todo - выводить размер через переменную
       .player-button {
         font-size: 28px; //todo - выводить размер через переменную
-        color: #a7a6a2;
+        color: $gray_light;
         cursor: pointer;
-        transition: all 0.3s ease-out; //todo - выводить через переменную
+        transition: $transition;
         &:hover {
-          color: #fd5622; //todo - выводить цвет через переменную
-          transition: all 0.3s ease-out; //todo - выводить через переменную
+          color: $orange;
+          transition: $transition;
         }
       }
     }
@@ -97,7 +93,7 @@
       .cover--thumb {
         height: 50px; //todo - выводить размер через переменную
         width: 50px; //todo - выводить размер через переменную
-        background-color: silver; //todo - выводить цвет через переменную
+        background-color: $gray_light_xx;
         img {
           object-fit: cover;
           display: block;
@@ -122,12 +118,12 @@
     .rating-controls {
       a i {
         font-size: 21px; //todo - выводить размер через переменную
-        padding-top: 8px; //todo - выводить размер через переменную
-        color: #a7a6a2; //todo - выводить цвет через переменную
-        transition: all 0.3s ease-out; //todo - выводить через переменную
+        padding-top: $space_8;
+        color: $gray_light;
+        transition: $transition;
         &:hover {
-          color: #fd5622;
-          transition: all 0.3s ease-out; //todo - выводить через переменную
+          color: $orange;
+          transition: $transition;
         }
       }
     }

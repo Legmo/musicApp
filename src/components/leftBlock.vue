@@ -6,8 +6,10 @@
     <li><router-link to="/" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">Приложение</router-link></li>
     <li><router-link to="/contacts" :class="{'sidebar-nav-link':true, 'active': isSelected('link') }">Контакты</router-link></li>
   </ul>
-  <p>Программа музыканта Бориса Гребенщикова.</p>
-  <p>Выходит еженедельно на «Радио России» и на радиостанции «Культура».</p>
+    <div class="about-txt">
+      <p>Программа музыканта Бориса Гребенщикова.</p>
+      <p>Выходит еженедельно на «Радио России» <br>и на радиостанции «Культура».</p>
+    </div>
 <div class="tag" >
   <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.count) }">
     <template v-if="$route.params.tagId == item.id">

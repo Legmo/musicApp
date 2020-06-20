@@ -1,0 +1,41 @@
+body {
+  color: $black_txt
+}
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h1, h2, h3, h4, h5 {
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+li {
+  line-height: 1.2
+}
+a {
+  line-height: 1.2;
+  text-decoration: underline;
+  color: $black_txt
+  &:hover {
+    text-decoration: none;
+    color: $orange;
+  }
+}

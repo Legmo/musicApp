@@ -1,9 +1,9 @@
 <template>
-<div class="mainList">
+<div class="mainList tags-list-all">
   <h1 v-if="tagId=='All'">Выпуски по тэгам</h1>
   <div v-for="(item, key) in pagedEntity" :key="key" :class="{'tag-header':item.additionalTagInfo}">
     <template v-if="item.additionalTagInfo">
-      <h3>Тэг {{item.additionalTagInfo.tagTitle}} <span class="small gray">({{item.additionalTagInfo.tagLength}} {{getNoun(item.additionalTagInfo.tagLength, 'выпуск', 'выпуска', 'выпусков')}} )</span></h3>
+      <h4>Тэг {{item.additionalTagInfo.tagTitle}} <span class="small gray">({{item.additionalTagInfo.tagLength}} {{getNoun(item.additionalTagInfo.tagLength, 'выпуск', 'выпуска', 'выпусков')}} )</span></h4>
       <itemList :itemEntity="item" :layout="layout"/>
     </template>
     <template v-else>

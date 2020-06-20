@@ -4,11 +4,13 @@
     <div class="release-header row">
       <div class="col-xl-8">
         <div class="titleAndCo">
-          <div class="title ">{{entity.title}}</div>
-          <span class="small gray">{{entity.date}} | Выпуск {{entity.number}}</span>
-          <div class="rating" v-if="entity.rating">нету рейтинга в json</div>
+          <div class="info">
+            <h1 class="title ">{{entity.title}}</h1>
+            <span class="small gray">{{entity.date}} | Выпуск {{entity.number}}</span>
+            <div class="rating" v-if="entity.rating">нету рейтинга в json</div>
+          </div>
           <div class="buttons">
-            <div @click="playSong(entity)">
+            <div class="buttodiplay" @click="playSong(entity)">
               <template v-if="$store.state.songPlayed == entity.number">
                 <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == entity.number && $store.state.isPaused == false}"></i>
               </template>
@@ -16,14 +18,18 @@
                 <i class="el-icon-video-play" />
               </template>
             </div>
-            <a :href="entity.audiofile_url" download> <i class="el-icon-download"></i></a>
+            <a class="button-download" :href="entity.audiofile_url" download>
+              <i class="el-icon-download"></i>
+            </a>
           </div>
         </div>
         <div class="contents">
-          <span>Содержание</span>
-          <ul >
-            <li v-for="(item, index) in entity.content" :key="index"> <a :href="`#composition-${index}`">{{item.composition_name}}</a></li>
-          </ul>
+          <h5>Содержание</h5>
+          <ol >
+            <li v-for="(item, index) in entity.content" :key="index">
+              <a :href="`#composition-${index}`">{{item.composition_name}}</a>
+            </li>
+          </ol>
         </div>
       </div>
       <div class="col-xl-4">
@@ -34,13 +40,17 @@
     </div>
 
   <div class="release-content">
-    <div class="" v-for="(item, index) in entity.content" :key="index" :id="`composition-${index}`">
-      <div>{{item.composition_name}}</div>
-      <div v-html="item.text"></div>
+    <div class="composition" v-for="(item, index) in entity.content" :key="index" :id="`composition-${index}`">
+      <div class="composition-name">
+        <p>
+          {{item.composition_name}}
+        </p>
+      </div>
+      <div v-html="item.text" class="composition-txt"></div>
     </div>
     <div class="tags">
       <span v-for="(tag, index) in entity.tags" :key="index">
-        <a @click="reroute(tag.id)" >{{tag.title}}</a>
+        <a class="tag-item" @click="reroute(tag.id)" >{{tag.title}}</a>
       </span>
     </div>
     <div class="release-controls">

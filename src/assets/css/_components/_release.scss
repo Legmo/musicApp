@@ -1,0 +1,141 @@
+.release {
+  .release-header {
+    .release-image {
+      display: flex;
+      justify-content: end;
+      img {
+        width: 300px;
+        height: auto;
+        background-color: $gray_light_xxx;
+      }
+    }
+    .titleAndCo {
+      display: flex;
+      .info {
+        h1 {
+          margin-bottom: 0;
+        }
+        .small.gray {
+          font-size: 12px;
+          color: $gray;
+        }
+      }
+      .buttons {
+        margin-left: 24px;
+        padding-top: 8px;
+        width: 120px;
+        position: relative;
+        & > * {
+          position: absolute;
+        }
+        .button-play {
+          left: 0;
+        }
+        .button-download {
+          left: 48px;
+        }
+        i {
+          cursor: pointer;
+          &:before {
+            width: 32px;
+            height: 32px;
+            font-size: 32px;
+            color: $black_txt;
+            transition: $transition;
+          }
+          &:hover {
+            &:before {
+              width: 40px;
+              height: 40px;
+              font-size: 40px;
+              color: $orange;
+              transition: $transition;
+            }
+          }
+        }
+
+      }
+    }
+    .contents {
+      margin-top: 24px;
+      ol {
+        //padding-top: 4px;
+        padding-left: 16px;
+        li {
+          color: $gray;
+          font-size: 13px;
+          padding-bottom: 4px;
+          a {
+          font-size: 14px;
+          text-decoration: none;
+          color: $black_txt;
+          border-bottom: 1px dashed;
+          margin-left: 6px;
+            &:hover {
+              border-bottom: none;
+              color: $orange;
+              transition: $transition;
+            }
+          }
+        }
+      }
+    }
+  }
+  .release-content {
+    .composition {
+      .composition-name {
+        margin: 24px 0 0 0;
+        p {
+          font-weight: bold;
+        }
+      }
+      .composition-txt {
+        img {
+          display: block;
+          margin: 20px auto;
+          width: 300px;
+          height: 300px;
+          background-color: $gray_light_xxx;
+
+        }
+      }
+    }
+    .tags {
+      margin: 24px 0 48px;
+      span {
+        padding-right: 16px;
+        a {
+          font-size: 16px;
+        }
+      }
+    }
+    .release-controls {
+      button {
+        transition: $transition;
+        span {
+          a {
+            color: $black_txt;
+            text-decoration: none;
+          }
+          i {
+            line-height: 1;
+            &.el-icon-arrow-left {
+              padding-right: 8px;
+            }
+            &.el-icon-arrow-right {
+              padding-left: 8px;
+            }
+          }
+        }
+        &:hover {
+          background-color: $orange_light_x;
+          border-color: $orange;
+          transition: $transition;;
+          i:before {
+            color: $orange;
+          }
+        }
+      }
+    }
+  }
+}

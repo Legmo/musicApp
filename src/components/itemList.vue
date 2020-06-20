@@ -58,22 +58,23 @@
 
     <!-- Grid layout -->
     <template v-else-if="layout=='grid'">
-      <div style v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
+      <div class="background" style v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
         <div class="rating"  v-if="itemEntity.rating">нету рейтинга в json</div>
         <div class="showOnHover">
-          <span class="player-button" @click="playSong(itemEntity)">
-            <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
-          </span>
-          <a :href="itemEntity.audiofile_url" download> <i class="el-icon-download"></i></a>
+            <span class="player-button" @click="playSong(itemEntity)">
+              <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
+            </span>
+          <a class="link-download" :href="itemEntity.audiofile_url" download> <i class="el-icon-download"></i></a>
           <router-link
-            :to="{ name: 'Article', params: { id: itemEntity.id } }"
-            class="read-more"
-            >Читать</router-link>
+                  :to="{ name: 'Article', params: { id: itemEntity.id } }"
+                  class="read-more"
+          >Читать</router-link>
         </div>
       </div>
       <div class="title ">{{itemEntity.title}}</div>
-      <div>
-        <div class="number">{{itemEntity.number}}</div><div class="date">{{itemEntity.date}}</div>
+      <div class="bottom">
+        <div class="number">{{itemEntity.number}}</div>
+        <div class="date">{{itemEntity.date}}</div>
       </div>
     </template>
 

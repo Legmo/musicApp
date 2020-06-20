@@ -1,0 +1,41 @@
+.leftBlock {
+  padding: 30px;
+  margin: 20px 0;
+  border: 1px solid $gray_light_x;
+  text-align: center;
+  ul {
+    padding: 0;
+    li {
+      list-style: none;
+      a {
+        color: $orange;
+        &.router-link-active {
+          color: $black_txt;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .about-txt {
+    width: 200px;
+    margin: 16px auto 40px;
+    font-weight: 200;
+    p {
+      margin-bottom: 10px;
+      color: $gray;
+      font-weight: 300;
+    }
+  }
+  .tag {
+    margin-bottom: 40px;
+    .tag-item {
+      line-height: 1;
+      cursor: pointer;
+      transition: $transition;
+      &:hover {
+        color: $orange;
+        transition: $transition;
+      }
+    }
+  }
+}
