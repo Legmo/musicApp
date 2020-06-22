@@ -100,13 +100,13 @@ export default {
       this.$store.commit('setPaused', true);
     },
     next() {
-      this.entity = this.$refs.aplayer.currentMusic;
       this.$refs.aplayer.skipForward();
+      this.entity = this.$refs.aplayer.currentMusic;
       this.$store.commit('setSong', this.$refs.aplayer.currentMusic.number);
     },
     back() {
-      this.entity = this.$refs.aplayer.currentMusic;
       this.$refs.aplayer.skipBack();
+      this.entity = this.$refs.aplayer.currentMusic;
       this.$store.commit('setSong', this.$refs.aplayer.currentMusic.number);
     }
   }

@@ -7,7 +7,4 @@ module.exports = {
       patterns: [path.resolve(__dirname,"./src/assets/css/site.scss")]
     }
   },
-  // devServer: {
-  //   proxy: 'http://aerostat.dev.baikalweb.com/'
-  // }
 };

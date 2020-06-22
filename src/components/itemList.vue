@@ -109,10 +109,12 @@ export default {
   },
   methods: {
     playSong(item) {
-      if(this.$store.state.isPaused) {
-        this.$store.commit('setSong', item.number);
+      if( this.$store.state.songPlayed == item.number) {
+        if(!this.$store.state.isPaused) {
+          this.$store.commit('setPaused', true);
+        }
       } else {
-        this.$store.commit('setPaused', true);
+        this.$store.commit('setSong', item.number);
       }
     },
     reroute(id) {

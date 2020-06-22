@@ -29,16 +29,6 @@ Vue.use(APlayer, {
 });
 Vue.use(VueLodash, {lodash: lodash })
 
-// Vue.http.options.headers = {
-//     "Cache-Control": "no-cache",
-//     "Pragma": "no-cache",
-//     "Content-Type": "application/json",
-//     "Access-Control-Allow-Origin": "*",
-//     "Access-Control-Allow-Methods": "OPTIONS",
-//     "Access-Control-Allow-Headers": "Content-Type, Authorization",
-//     "Access-Control-Allow-Credentials": "true"
-// };
-
 Vue.config.productionTip = false;
 
 new Vue({

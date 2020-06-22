@@ -40,11 +40,11 @@ export default {
   },
   created: function () {
     var self = this;
-    this.$http.get(this.$rootApiPath + 'releases?_format=json').then(function (e) {
-        self.entity = e.body;
+    this.$http.get(this.$rootApiPath + 'releases?items_per_page=All&_format=json').then(function (e) {
+        self.entity = e.body.rows;
         self.rewriteEntityForPlayer(self.entity);
     }).catch(function () {
-      self.entity = require("./assets/responses.json");
+      self.entity = require("./assets/responses.json").rows;
       self.$message.error("There was an error while reading data");
       self.rewriteEntityForPlayer(self.entity);
     }).finally(function () {

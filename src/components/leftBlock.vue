@@ -11,7 +11,7 @@
       <p>Выходит еженедельно на «Радио России» <br>и на радиостанции «Культура».</p>
     </div>
 <div class="tag" >
-  <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.count) }">
+  <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.releases_number) }">
     <template v-if="$route.params.tagId == item.id">
         <span class="tag-item">{{item.name}}</span>
     </template>
@@ -48,19 +48,7 @@ export default {
     this.$http.get(`${this.$rootApiPath}popular-tags?_format=json`).then(function (e) {
       self.tags = e.body;
     }).catch(function () {
-      self.tags = [{title: 'ситар', count: 1, id: 1},
-    {title: 'притчи', count: 3, id: 2},
-    {title: 'гитара', count: 4, id: 3},
-    {title: 'Индия', count: 9, id: 4},
-    {title: 'Beatles', count: 78, id: 5},
-    {title: 'поэзия', count: 10, id: 6},
-    {title: 'Джаз', count: 92, id: 7},
-    {title: 'блюз', count: 34, id: 8},
-    {title: '60-е', count: 54, id: 9},
-    {title: 'кельты', count: 11, id: 10},
-    {title: 'T.Rex', count: 62, id: 11},
-      {title: 'Буддизм', count: 100, id: 12}
-      ],
+      self.tags = require("../assets/popular-tags.json");
       self.$message.error("There was an error while reading data");
     });
   },
@@ -74,8 +62,8 @@ export default {
     },
     calculateTagSize(count) {
       let sizeDepending=''
-      var maxVal = Math.max.apply(Math, this.tags.map(function(o) { return o.count; }))
-      var minVal = Math.min.apply(Math, this.tags.map(function(o) { return o.count; }))
+      var maxVal = Math.max.apply(Math, this.tags.map(function(o) { return parseInt(o.releases_number) ; }))
+      var minVal = Math.min.apply(Math, this.tags.map(function(o) { return parseInt(o.releases_number); }))
       var baseFont ='14px';
       var fontsplit = baseFont.match(/([0-9]+)\s?([a-z]+)/);
       var minFont = parseInt(fontsplit[1]);
