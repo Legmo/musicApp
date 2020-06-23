@@ -16,7 +16,12 @@
       <div class="column-right">
         <div class="top">
           <div class="part-one">
-            <div class="title ">{{itemEntity.title}}</div>
+            <router-link
+            :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
+            class=""
+            ><div class="title ">{{itemEntity.title}}</div>
+          </router-link>
+
             <router-link
             :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
             class="read-more"
@@ -38,7 +43,9 @@
             </div>
             <div class="rating" v-if="itemEntity.rating" >нету рейтинга в json</div>
             <div class="date">{{itemEntity.date}}</div>
-            <a :href="itemEntity.audiofile_url" download>
+            <!-- <a :href="itemEntity.audiofile_url"
+  @click.prevent="downloadItem(itemEntity)" >  <i class="el-icon-download"></i></a> -->
+            <a :href="itemEntity.audiofile_url" download target="_blank">
               <i class="el-icon-download"></i>
             </a>
           </div>
@@ -61,10 +68,15 @@
       <div class="background" style v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
         <div class="rating"  v-if="itemEntity.rating">нету рейтинга в json</div>
         <div class="showOnHover">
+
             <span class="player-button" @click="playSong(itemEntity)">
-              <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
-            </span>
-          <a class="link-download" :href="itemEntity.audiofile_url" download> <i class="el-icon-download"></i></a>
+              <template v-if="$store.state.songPlayed == itemEntity.number">
+                <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
+              </template>
+              <template v-else>
+                <i class="el-icon-video-play" />
+              </template>            </span>
+          <a class="link-download" :href="itemEntity.audiofile_url" download target="_blank"> <i class="el-icon-download"></i></a>
           <router-link
           :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
           class="read-more"
@@ -108,6 +120,17 @@ export default {
   mounted() {
   },
   methods: {
+//     downloadItem (ent) {
+//   this.$http.get(ent.audiofile_url, { responseType: 'blob' })
+//     .then(response => {
+//       const blob = new Blob([response.data], { type: 'application/pdf' })
+//       const link = document.createElement('a')
+//       link.href = URL.createObjectURL(blob)
+//       link.download = ent.number
+//       link.click()
+//       URL.revokeObjectURL(link.href)
+//     }).catch(console.error)
+// },
     playSong(item) {
       if( this.$store.state.songPlayed == item.number) {
         if(!this.$store.state.isPaused) {

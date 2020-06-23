@@ -18,7 +18,7 @@
                 <i class="el-icon-video-play" />
               </template>
             </div>
-            <a class="button-download" :href="entity.audiofile_url" download>
+            <a class="button-download" :href="entity.audiofile_url" download target="_blank">
               <i class="el-icon-download"></i>
             </a>
           </div>
@@ -55,9 +55,13 @@
     </div>
     <div class="release-controls">
        <el-button :disabled="entity.prev_release_path==null"><i class="el-icon-arrow-left" />
+         <template v-if="entity.prev_release_path!=null">
          <router-link
              :to="{ name: 'Article', params: { path: entity.prev_release_path } }"
-             class="read-more">Предыдущий выпуск</router-link></el-button>
+             class="read-more" @click.native="scrollToTop">Предыдущий выпуск</router-link>
+        </template>
+        <template v-else>Предыдущий выпуск</template>
+        </el-button>
         <el-button>
           <router-link
              :to="{ name: 'List'}"
@@ -65,9 +69,14 @@
              Список выпусков
            </router-link>
         </el-button>
-         <el-button :disabled="entity.next_release_path==null"><router-link
-              :to="{ name: 'Article', params: { path: entity.next_release_path } }"
-              class="read-more">Следующий выпуск</router-link><i class="el-icon-arrow-right" /> </el-button>
+         <el-button :disabled="entity.next_release_path==null">
+           <template v-if="entity.next_release_path!=null">
+             <router-link
+                :to="{ name: 'Article', params: { path: entity.next_release_path } }"
+                class="read-more" @click.native="scrollToTop">Следующий выпуск</router-link><i class="el-icon-arrow-right" />
+          </template>
+          <template v-else>Следующий выпуск</template>
+        </el-button>
     </div>
   </div>
 
@@ -100,11 +109,16 @@ export default {
     });
   },
   methods: {
+    scrollToTop() {
+                window.scrollTo(0,0);
+    },
     playSong(item) {
-      if(this.$store.state.isPaused) {
-        this.$store.commit('setSong', item.number);
+      if( this.$store.state.songPlayed == item.number) {
+        if(!this.$store.state.isPaused) {
+          this.$store.commit('setPaused', true);
+        }
       } else {
-        this.$store.commit('setPaused', true);
+        this.$store.commit('setSong', item.number);
       }
     },
     reroute(id) {

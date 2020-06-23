@@ -16,15 +16,17 @@
           <div class="list-settings-block">
             <template v-if="ifShowSort()">
           <div class="sorting">
-            <span>Сортировка:</span>
-            <span :class="{'active': $store.state.sort.sortBy == 'date'}" @click="sorting('date')">по дате
-              <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
-              v-if="$store.state.sort.sortBy == 'date'" />
-            </span>
-            <span :class="{'active': $store.state.sort.sortBy == 'title'}" @click="sorting('title')">по названию
-              <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
-              v-if="$store.state.sort.sortBy == 'title'" />
-            </span>
+            <template v-if="$route.name == 'List'">
+              <span>Сортировка:</span>
+              <span :class="{'active': $store.state.sort.sortBy == 'date'}" @click="sorting('date')">по дате
+                <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
+                v-if="$store.state.sort.sortBy == 'date'" />
+              </span>
+              <span :class="{'active': $store.state.sort.sortBy == 'title'}" @click="sorting('title')">по названию
+                <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
+                v-if="$store.state.sort.sortBy == 'title'" />
+              </span>
+            </template>
           </div>
           <div class="layout-switch">
             <a class="layout-icon" @click="changeLayout('list')" :class="{ 'active': layout == 'list'}" title="List"><i class="el-icon-s-grid" /></a>
