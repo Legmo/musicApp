@@ -1,6 +1,7 @@
 <template>
   <div class="about">
-    <h1>{{path}}</h1>
+    <h1>{{entity.title}}</h1>
+      <div v-html="entity.content"></div>
   </div>
 </template>
 
@@ -22,9 +23,9 @@ export default {
   mounted() {
     let self = this;
     this.$http.get(`${this.$rootApiPath}page/${this.path}?_format=json`).then(function (e) {
-        self.entity = e.body;
+        self.entity = e.body.release;
     }).catch(function () {
-      self.entity = require("../assets/article.json").release;
+      self.entity = require("../assets/node.json").release;
       self.$message.error("There was an error while reading data");
     });
   },
@@ -37,10 +38,10 @@ export default {
     'path': function (newValue) {
       let self = this;
       this.$http.get(`${this.$rootApiPath}page/${newValue}?_format=json`).then(function (e) {
-          self.entity = e.body;
+          self.entity = e.body.release;
           self.scrollToTop()
       }).catch(function () {
-        self.entity = require("../assets/article.json").release;
+        self.entity = require("../assets/node.json").release;
         self.$message.error("There was an error while reading data");
         self.scrollToTop()
       });

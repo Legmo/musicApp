@@ -110,7 +110,7 @@ export default {
   },
   methods: {
     scrollToTop() {
-                window.scrollTo(0,0);
+        window.scrollTo(0,0);
     },
     playSong(item) {
       if( this.$store.state.songPlayed == item.number) {
