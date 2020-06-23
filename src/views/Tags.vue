@@ -63,8 +63,8 @@ computed: {
     rewriteEntityForPagination(){
       this.cloneEntity = _.cloneDeep(this.entity);
       this.cloneEntity = _.flatMap(_.map(this.cloneEntity, function(currentObject, key) {
-        currentObject[0].additionalTagInfo = {'tagTitle':key, 'tagLength': currentObject.length}
-        return currentObject;
+        currentObject.releases[0].additionalTagInfo = {'tagTitle':key, 'tagLength': currentObject.releases.length}
+        return currentObject.releases;
       }))
     },
     getNoun(number, one, two, five) {
@@ -92,9 +92,9 @@ computed: {
         let self = this;
         if (val == "All"){
          this.$http.get(`${this.$rootApiPath}releases/tags?_format=json`).then(function (e) {
-           self.entity = e.body;
+           self.entity = e.body.rows;
          }).catch(function () {
-           self.entity = require("../assets/tags.json");
+           self.entity = require("../assets/tags.json").rows;
            self.$message.error("There was an error while reading data");
          }).finally(function () {
            this.rewriteEntityForPagination()
@@ -102,9 +102,9 @@ computed: {
         }
         else {
           this.$http.get(`${this.$rootApiPath}releases/tags/${val}?_format=json`).then(function (e) {
-            self.entity = e.body;
+            self.entity = e.body.rows;
           }).catch(function () {
-            self.entity = require("../assets/tag20.json");
+            self.entity = require("../assets/tag20.json").rows;
             self.$message.error("There was an error while reading data");
           }).finally(function () {
             this.rewriteEntityForPagination()
