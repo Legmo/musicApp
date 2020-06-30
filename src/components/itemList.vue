@@ -65,10 +65,9 @@
 
     <!-- Grid layout -->
     <template v-else-if="layout=='grid'">
-      <div class="background" style v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
+      <div class="background" v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
         <div class="rating"  v-if="itemEntity.rating">нету рейтинга в json</div>
         <div class="showOnHover">
-
             <span class="player-button" @click="playSong(itemEntity)">
               <template v-if="$store.state.songPlayed == itemEntity.number">
                 <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
@@ -84,7 +83,11 @@
         </router-link>
         </div>
       </div>
-      <div class="title ">{{itemEntity.title}}</div>
+      <router-link
+      :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
+      class=""
+      ><div class="title ">{{itemEntity.title}}</div>
+    </router-link>
       <div class="bottom">
         <div class="number">{{itemEntity.number}}</div>
         <div class="date">{{itemEntity.date}}</div>
