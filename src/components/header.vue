@@ -4,7 +4,8 @@
       <!--<nav class="navbar navbar-expand-md fixed-top">-->
       <nav class="navbar navbar-expand-md">
           <router-link to="/" class="navbar-brand">
-           <img src="./../assets/logo.png" height="30" alt="Аэростат" /> Аэростат
+            <img class="logo" src="./../assets/logo.svg" alt="Аэростат" />
+            <span>Аэростат</span>
          </router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

@@ -18,15 +18,15 @@
           <div class="part-one">
             <router-link
             :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
-            class=""
-            ><div class="title ">{{itemEntity.title}}</div>
+            class="title-link"
+            ><div class="title">{{itemEntity.title}}</div>
           </router-link>
 
-            <router-link
+          <!--<router-link
             :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
             class="read-more"
             >Читать
-          </router-link>
+          </router-link>-->
             <el-collapse>
               <el-collapse-item title="Список композиций" name="1">
                 <ol>
@@ -85,7 +85,7 @@
       </div>
       <router-link
       :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
-      class=""
+      class="title-link"
       ><div class="title ">{{itemEntity.title}}</div>
     </router-link>
       <div class="bottom">

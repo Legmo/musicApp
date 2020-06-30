@@ -7,7 +7,9 @@
                <leftBlock />
              </div>
              <div class="col-xl-9 col-md-6">
-                 <router-view />
+               <div class="mainContent">
+                   <router-view />
+               </div>
              </div>
         </div>
       </main>
