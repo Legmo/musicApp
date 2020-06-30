@@ -19,18 +19,26 @@
             <template v-if="$route.name == 'List'">
               <span>Сортировка:</span>
               <span :class="{'active': $store.state.sort.sortBy == 'date'}" @click="sorting('date')">по дате
-                <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
-                v-if="$store.state.sort.sortBy == 'date'" />
+                <template v-if="$store.state.sort.sortBy == 'date'">
+                  <template v-if="$store.state.sort.dir == 'asc'"> <icon-sorting-up /></template>
+                  <template v-else-if="$store.state.sort.dir == 'desc'"><icon-sorting-down /></template>
+                </template>
+                <!-- <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
+                v-if="$store.state.sort.sortBy == 'date'" /> -->
               </span>
               <span :class="{'active': $store.state.sort.sortBy == 'title'}" @click="sorting('title')">по названию
-                <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
-                v-if="$store.state.sort.sortBy == 'title'" />
+                <template v-if="$store.state.sort.sortBy == 'title'">
+                  <template v-if="$store.state.sort.dir == 'asc'"> <icon-sorting-up /></template>
+                  <template v-else-if="$store.state.sort.dir == 'desc'"><icon-sorting-down /></template>
+                </template>
+                <!-- <i :class="{'el-icon-sort-up': $store.state.sort.dir == 'asc', 'el-icon-sort-down': $store.state.sort.dir == 'desc' }"
+                v-if="$store.state.sort.sortBy == 'title'" /> -->
               </span>
             </template>
           </div>
           <div class="layout-switch">
-            <a class="layout-icon" @click="changeLayout('list')" :class="{ 'active': layout == 'list'}" title="List"><i class="el-icon-s-grid" /></a>
-            <a class="layout-icon" @click="changeLayout('grid')" :class="{ 'active': layout == 'grid'}" title="Grid"><i class="el-icon-menu" /></a>
+            <a @click="changeLayout('list')" :class="{'layout-icon':true, 'active': layout == 'list'}" title="List"><icon-list /></a>
+            <a class="layout-icon" @click="changeLayout('grid')" :class="{ 'active': layout == 'grid'}" title="Grid"><icon-tiles /></a>
           </div>
         </template>
           </div>
@@ -45,7 +53,8 @@ import searchBar from "@/components/searchBar.vue";
 export default {
   name: "mainHeader",
   components: {
-    searchBar
+    searchBar,
+    // iconList
   },
   props: {
   },
