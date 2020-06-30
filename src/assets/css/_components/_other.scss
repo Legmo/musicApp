@@ -19,12 +19,6 @@
     margin-bottom: $space * 2;
   }
 }
-.layout-icon {
-  opacity: 0.5;
-  &.active {
-    opacity: 1;
-  }
-}
 .mainContent {
   overflow: hidden;
   margin-top: $space * 2.5;

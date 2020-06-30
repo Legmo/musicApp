@@ -49,6 +49,7 @@ a {
   line-height: 1.2;
   text-decoration: underline;
   color: $black_txt;
+  outline: none;
   &:hover {
     text-decoration: none;
     color: $orange;
