@@ -1,8 +1,10 @@
 .leftBlock {
-  padding: 30px;
-  margin: 20px 0;
+  padding: $space_5 * 6;
+  margin: ($space * 2.5) 0;
   border: 1px solid $gray_light_x;
   text-align: center;
+  position: sticky;
+  top: $space * 2.5;
   ul {
     padding: 0;
     li {
@@ -17,17 +19,17 @@
     }
   }
   .about-txt {
-    width: 200px;
-    margin: 16px auto 40px;
+    width: $space * 25;
+    margin: ($space * 2) auto ($space * 7.5);
     font-weight: 200;
     p {
-      margin-bottom: 10px;
+      margin-bottom: $space_5 * 2;
       color: $gray;
       font-weight: 300;
     }
   }
   .tag {
-    margin-bottom: 40px;
+    margin-bottom: $space * 7.5;
     .tag-item {
       line-height: 1;
       cursor: pointer;

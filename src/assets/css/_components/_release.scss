@@ -4,26 +4,27 @@
       display: flex;
       justify-content: end;
       img {
-        width: 300px;
+        width: $space_5 * 60;
         height: auto;
         background-color: $gray_light_xxx;
       }
     }
     .titleAndCo {
       display: flex;
+      margin-top: -($space_5 * 2);
       .info {
         h1 {
           margin-bottom: 0;
         }
         .small.gray {
-          font-size: 12px;
+          font-size: 0.75rem; //12px;
           color: $gray;
         }
       }
       .buttons {
-        margin-left: 24px;
-        padding-top: 8px;
-        width: 120px;
+        margin-left: $space * 3;
+        padding-top: $space;
+        width: $space * 15;
         position: relative;
         & > * {
           position: absolute;
@@ -32,22 +33,22 @@
           left: 0;
         }
         .button-download {
-          left: 48px;
+          left: $space * 6;
         }
         i {
           cursor: pointer;
           &:before {
-            width: 32px;
-            height: 32px;
-            font-size: 32px;
+            width: $space * 4;
+            height: $space * 4;
+            font-size: 2rem ; //32px;
             color: $black_txt;
             transition: $transition;
           }
           &:hover {
             &:before {
-              width: 40px;
-              height: 40px;
-              font-size: 40px;
+              width: $space * 5;
+              height: $space * 5;
+              font-size: 2.5rem; //40px;
               color: $orange;
               transition: $transition;
             }
@@ -57,16 +58,16 @@
       }
     }
     .contents {
-      margin-top: 24px;
+      margin-top: $space * 3;
       ol {
         //padding-top: 4px;
-        padding-left: 16px;
+        padding-left: $space * 2;
         li {
           color: $gray;
-          font-size: 13px;
-          padding-bottom: 4px;
+          font-size: 0.812rem; //13px;
+          padding-bottom: $space / 2;
           a {
-          font-size: 14px;
+          font-size: 0.875rem; //14px;
           text-decoration: none;
           color: $black_txt;
           border-bottom: 1px dashed;
@@ -84,7 +85,7 @@
   .release-content {
     .composition {
       .composition-name {
-        margin: 24px 0 0 0;
+        margin: ($space * 3) 0 0 0;
         p {
           font-weight: bold;
         }
@@ -92,20 +93,19 @@
       .composition-txt {
         img {
           display: block;
-          margin: 20px auto;
-          width: 300px;
-          height: 300px;
+          margin: ($space_5 * 4) auto;
+          width: $space_5 * 60;
+          height: $space_5 * 60;
           background-color: $gray_light_xxx;
-
         }
       }
     }
     .tags {
-      margin: 24px 0 48px;
+      margin: ($space * 3) 0 ($space * 8);
       span {
-        padding-right: 16px;
+        padding-right: $space * 2;
         a {
-          font-size: 16px;
+          font-size: 1rem; //16px;
         }
       }
     }
@@ -120,10 +120,10 @@
           i {
             line-height: 1;
             &.el-icon-arrow-left {
-              padding-right: 8px;
+              padding-right: $space / 2;
             }
             &.el-icon-arrow-right {
-              padding-left: 8px;
+              padding-left: $space / 2;
             }
           }
         }

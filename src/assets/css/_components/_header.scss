@@ -1,17 +1,21 @@
 header{
+  background: $gray_light_xxx;
   .navbar {
-    background: $gray_light_xxx;
-    padding: 5px 16px 6px; //todo - выводить размер через переменную
+    width: auto;
+    max-width: 3000px;
+    margin: 0 auto;
+    padding: $space_5 ($space * 2) 6px;
     & > a {
       line-height: 1;
       text-transform: uppercase;
       font-weight: bold;
       color: $orange;
       padding: 0;
+      text-decoration: none;
       img {
-        height: 50px;
-        width: 50px;
-        margin-right: 8px; //todo - выводить размер через переменную
+        height: $space_5 * 10;
+        width: $space_5 * 10;
+        margin-right: $space * 2;
       }
     }
   }
@@ -19,11 +23,11 @@ header{
     justify-content: space-between;
     #searchBar {
       .nav-searchbar {
-        margin-right: 16px; //todo - выводить размер через переменную
+        margin-right: $space * 2;
         .input-group-btn {
           button.btn.btn-search {
             background-color: $gray_light_x;
-            border-radius: 0 4px 4px 0; //todo - выводить через переменную
+            border-radius: 0 ($space / 2) ($space / 2) 0;
             &:hover {
               background-color: $gray_light;
               transition: $transition;
@@ -35,9 +39,9 @@ header{
     .list-settings-block{
       display: flex;
       .sorting {
-        margin-right: 32px; //todo - выводить размер через переменную
+        margin-right: $space * 4;
         span {
-          padding-right: 8px;
+          padding-right: $space;
           color: $gray_light;
           cursor: pointer;
           &.active {
@@ -63,21 +67,27 @@ header{
       }
       .layout-switch {
         .layout-icon {
-          color: $gray_light;
           cursor: pointer;
-          &.active i:before {
+          line-height: 1;
+          svg {
+            width: $space * 2;
+            height: $space * 2;
+            //fill: $gray_light;
+            fill:  $gray;
+          }
+          &.active svg {
             //color: $orange;
-            color: $gray_dark_x;
             transition: $transition;
+            fill:  $gray_dark_x;
           }
           &:not(.active){
-            &:hover i:before{
-              color: $gray_dark_x;
+            &:hover svg{
+              fill: $gray_dark_x;
               transition: $transition;
             }
           }
           &:nth-child(2) {
-            margin-left: $space_8;
+            margin-left: $space;
           }
         }
       }

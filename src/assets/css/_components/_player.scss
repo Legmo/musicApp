@@ -1,16 +1,18 @@
-
-
 #mainPlayer {
   .aplayer {
     overflow: visible!important;
     margin: 0;
     box-shadow: none;
     .aplayer-body {
-      height: 10px; //todo - выводить размер через переменную
+      height: $space_5 * 2;
+      background-color: $gray_light_xxx;
+      //background-color: red;
       .aplayer-info {
-        margin: 0;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 3000px;
         padding: 0;
-        height: 10px; //todo - выводить размер через переменную
+        height: $space_5 * 2;
         border: none;
         .aplayer-music {
           display: none;
@@ -22,7 +24,7 @@
             .aplayer-bar,
             .aplayer-loaded,
             .aplayer-played {
-              height: 10px!important; //todo - выводить размер через переменную
+              height: $space_5 * 2 !important;
             }
             .aplayer-bar {
               background-color: $gray_light_xxx;
@@ -37,16 +39,16 @@
           }
           .aplayer-time {
             position: absolute!important;
-            bottom: -35px!important; //todo - выводить размер через переменную
-            right: 15px!important; //todo - выводить размер через переменную
+            bottom: -($space_5 * 7)!important;
+            right: $space_5 * 3 !important;
             padding: 0;
             .aplayer-icon-menu,
             .aplayer-time-inner {
               display: none!important;
             }
             .aplayer-icon {
-              width: 28px!important; //todo - выводить размер через переменную
-              height: 28px!important; //todo - выводить размер через переменную
+              width: $space * 3.5 !important;
+              height: $space * 3.5 !important;
               &:hover path {
                 fill: $orange;
                 transition: $transition;
@@ -70,14 +72,15 @@
   .player-bottom{
     display: flex;
     justify-content: space-between;
-    margin-left: 15px;
-    margin-right: 15px;
-    padding: 5px 105px 5px 0; //todo - выводить размер через переменную
+    margin: 0 auto;
+    width: calc(100% - (2 * 15px));
+    max-width: 3000px;
+    padding: $space_5 ($space_5 * 21) $space_5 0;
     align-items: center;
     .buttons-block {
-      padding-right: 8px; //todo - выводить размер через переменную
+      padding-right: $space;
       .player-button {
-        font-size: 28px; //todo - выводить размер через переменную
+        font-size: 1.75rem; //28px;
         color: $gray_light;
         cursor: pointer;
         transition: $transition;
@@ -91,8 +94,8 @@
       flex: 1;
       display: flex;
       .cover--thumb {
-        height: 50px; //todo - выводить размер через переменную
-        width: 50px; //todo - выводить размер через переменную
+        height: $space_5 * 10;
+        width: $space_5 * 10;
         background-color: $gray_light_xx;
         img {
           object-fit: cover;
@@ -102,23 +105,23 @@
         }
       }
       .text {
-        padding-left: 16px; //todo - выводить размер через переменную
+        padding-left: $space * 2;
         p {
           margin: 0;
         }
         a,
         span {
-          font-size: 12px; //todo - выводить кегль через переменную
+          font-size: 0.75rem; //12px;
         }
         span {
-          padding-right: 8px;
+          padding-right: $space / 2;
         }
       }
     }
     .rating-controls {
       a i {
-        font-size: 21px; //todo - выводить размер через переменную
-        padding-top: $space_8;
+        font-size: 1.312rem; //21px;
+        padding-top: $space;
         color: $gray_light;
         transition: $transition;
         &:hover {
