@@ -58,7 +58,7 @@
        <el-button :disabled="entity.prev_release_path==null"><i class="el-icon-arrow-left" />
          <template v-if="entity.prev_release_path!=null">
          <router-link
-             :to="{ name: 'Article', params: { path: entity.prev_release_path } }"
+             :to="{ name: 'Article', params: { path: getUrl(entity.prev_release_path) } }"
              class="read-more" @click.native="scrollToTop">Предыдущий выпуск</router-link>
         </template>
         <template v-else>Предыдущий выпуск</template>
@@ -73,7 +73,7 @@
          <el-button :disabled="entity.next_release_path==null">
            <template v-if="entity.next_release_path!=null">
              <router-link
-                :to="{ name: 'Article', params: { path: entity.next_release_path } }"
+                :to="{ name: 'Article', params: { path: getUrl(entity.next_release_path) } }"
                 class="read-more" @click.native="scrollToTop">Следующий выпуск</router-link><i class="el-icon-arrow-right" />
           </template>
           <template v-else>Следующий выпуск</template>
@@ -125,6 +125,10 @@ export default {
     reroute(id) {
         this.$router.push({name: 'Tags', params: { tagId: id }});
     },
+    getUrl(str) {
+      let result=str.split("/").pop();
+      return result
+    }
   },
   watch: {
     'path': function (newValue) {
