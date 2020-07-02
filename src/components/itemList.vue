@@ -17,7 +17,7 @@
         <div class="top">
           <div class="part-one">
             <router-link
-            :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
+            :to="{ name: 'Article', params: { path: itemEntity.number } }"
             class="title-link"
             ><div class="title">{{itemEntity.title}}</div>
           </router-link>
@@ -30,9 +30,11 @@
             <el-collapse>
               <el-collapse-item title="Список композиций" name="1">
                 <ol>
-                  <li v-for="(song, index) in itemEntity.composition_list" :key="index">
+                  <template  v-for="(song, index) in itemEntity.composition_list" >
+                  <li v-if="song.composition_name" :key="index">
                     {{song.composition_name}}
                   </li>
+                </template>
                 </ol>
               </el-collapse-item>
             </el-collapse>
@@ -77,7 +79,7 @@
               </template>            </span>
           <a class="link-download" :href="itemEntity.audiofile_url" download target="_blank"> <i class="el-icon-download"></i></a>
           <router-link
-          :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
+          :to="{ name: 'Article', params: { path: itemEntity.number } }"
           class="read-more"
           >Читать
         </router-link>

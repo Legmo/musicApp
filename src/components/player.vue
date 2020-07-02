@@ -30,7 +30,7 @@
           <p>{{ entity.number }}.{{ entity.name }}</p>
           <span>{{ entity.date }}</span>
           <router-link
-            :to="{ name: 'Article', params: { path: entity.node_path } }"
+            :to="{ name: 'Article', params: { path: entity.number } }"
             class="read-more"
             >Читать</router-link>
         </div>
