@@ -86,7 +86,7 @@
         </div>
       </div>
       <router-link
-      :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
+      :to="{ name: 'Article', params: { path: itemEntity.number } }"
       class="title-link"
       ><div class="title ">{{itemEntity.title}}</div>
     </router-link>

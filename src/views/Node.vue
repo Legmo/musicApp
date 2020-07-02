@@ -102,7 +102,7 @@ export default {
   },
   mounted() {
     let self = this;
-    this.$http.get(`${this.$rootApiPath}release${this.path}?_format=json`).then(function (e) {
+    this.$http.get(`${this.$rootApiPath}release/${this.path}?_format=json`).then(function (e) {
         self.entity = e.body.release;
     }).catch(function () {
       self.entity = require("../assets/article.json").release;
