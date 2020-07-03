@@ -115,6 +115,10 @@
         }
         span {
           padding-right: $space / 2;
+          color: $gray;
+        }
+        a.read-more {
+          margin-right: $space_5 * 2;
         }
       }
     }

@@ -27,12 +27,12 @@
           <img :src="entity.cover" />
         </div>
         <div class="text right">
-          <p>{{ entity.number }}.{{ entity.name }}</p>
-          <span>{{ entity.date }}</span>
+          <p>{{ entity.number }}. {{ entity.name }}</p>
           <router-link
             :to="{ name: 'Article', params: { path: entity.number } }"
             class="read-more"
             >Читать</router-link>
+          <span>{{ entity.date }}</span>
         </div>
       </div>
 

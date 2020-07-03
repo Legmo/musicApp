@@ -40,9 +40,58 @@
     }
   }
 }
-.sorting {
-  .active {
-    background: white;
+.el-pagination {
+  display: flex;
+  padding: $space 0;
+  button:not(:disabled) {
+    &:hover {
+      i.el-icon{
+        &::before {
+          color: $orange;
+        }
+      }
+    }
+  }
+  .el-pager {
+    .number {
+      color: $black_txt;
+      transition: $transition;
+      &.active {
+        color: $gray;
+        font-weight: 300;
+      }
+      &:not(.active){
+        &:hover {
+          color: $orange;
+          transition: $transition;
+        }
+      }
+    }
+  }
+  .el-pagination__sizes {
+    margin-left: auto;
+    margin-right: 0;
+    .el-input {
+      margin: 0;
+      width: $space_5 * 26;
+      .el-input__inner:hover {
+        border-color: $gray_light;
+      }
+      .el-input__suffix:hover {
+        i::before,
+        i::after {
+          color: $gray_dark_x;
+        }
+      }
+    }
+  }
+}
+.el-select-dropdown {
+  .el-select-dropdown__item {
+    &.selected {
+      //color: $orange;
+      color: $gray_dark_x;
+    }
   }
 }
 

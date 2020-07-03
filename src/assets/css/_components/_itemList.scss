@@ -1,7 +1,10 @@
 .item {
-  margin: 0 0 ($space * 4);
+  margin: 0 0 ($space * 3);
+  padding: $space;
   display: flex;
+  border: 1px solid white;
   &:hover {
+    border: 1px solid $orange_light_x;
     .column-left {
       i {
         display: block;

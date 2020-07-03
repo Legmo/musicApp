@@ -16,7 +16,7 @@
                                    tag="button"
                                    class="btn btn-search"
                                    typeof="submit">
-                          Найти
+                          <icon-search />
                       </router-link>
                   </span>
               </div>
