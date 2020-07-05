@@ -1,6 +1,7 @@
 <template v-if="music.length >0">
   <div id="mainPlayer">
-    <aplayer     preload="none"
+    <aplayer
+      preload="none"
       :audio="music"
       :listFolded="true"
       ref="aplayer"
@@ -44,7 +45,10 @@
           text-color="#ff9900"
         >
         </el-rate>
-        <a :href="entity.url" download :disabled="entity.id == null"> <i class="el-icon-download"></i></a>
+        <!--<a :href="entity.url" download :disabled="entity.id == null"> <i class="el-icon-download"></i></a>-->
+        <a :href="entity.url" download :disabled="entity.id == null" class="button-download">
+          <icon-download-small />
+        </a>
       </div>
     </div>
   </div>

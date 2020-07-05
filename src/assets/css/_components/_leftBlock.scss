@@ -70,27 +70,13 @@
         margin-right: 0;
       }
       svg {
-        width: $space * 3;
-        height: $space * 3;
+        width: $space * 4;
+        height: $space * 4;
         fill: $gray_light_x;
         transition: $transition;
         &:hover {
           fill: $orange;
           transition: $transition;
-        }
-      }
-      &.vk {
-        width: 26px;
-        height: 26px;
-        svg {
-          #XMLID_11_{
-            fill: $gray_light_x;
-          }
-          &:hover {
-            #XMLID_11_{
-              fill: $orange;
-            }
-          }
         }
       }
     }

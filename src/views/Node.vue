@@ -19,7 +19,7 @@
               </template>
             </div>
             <a class="button-download" :href="entity.audiofile_url" download target="_blank">
-              <i class="el-icon-download"></i>
+              <icon-download />
             </a>
           </div>
         </div>

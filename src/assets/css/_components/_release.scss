@@ -23,7 +23,7 @@
       }
       .buttons {
         margin-left: $space * 3;
-        padding-top: $space;
+        padding-top: $space* 1.5;
         width: $space * 15;
         position: relative;
         & > * {
@@ -44,17 +44,20 @@
             color: $black_txt;
             transition: $transition;
           }
+        }
+        svg {
+          cursor: pointer;
+          width: $space * 4;
+          height: $space * 4;
+          fill: $gray_light_x;
+          transition: $transition;
           &:hover {
-            &:before {
               width: $space * 5;
               height: $space * 5;
-              font-size: 2.5rem; //40px;
-              color: $orange;
+              fill: $orange;
               transition: $transition;
-            }
           }
         }
-
       }
     }
     .contents {
@@ -128,11 +131,13 @@
           }
         }
         &:hover {
-          background-color: $orange_light_x;
-          border-color: $orange;
-          transition: $transition;;
-          i:before {
-            color: $orange;
+          &:not(.is-disabled) {
+            background-color: $orange_light_x;
+            border-color: $orange;
+            transition: $transition;;
+            i:before {
+              color: $orange;
+            }
           }
         }
       }

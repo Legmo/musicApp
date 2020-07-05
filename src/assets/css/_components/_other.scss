@@ -122,3 +122,20 @@
   font-size: 2.5rem; //40px;
 }
 
+.button-download svg {
+  width: $space * 3;
+  height: $space * 3;
+  fill: $gray_light_xx;
+  transition: $transition;
+  &:hover {
+    fill: $orange;
+    transition: $transition;
+  }
+}
+
+.el-button.is-disabled,
+.el-button.is-disabled:focus,
+.el-button.is-disabled:hover {
+  cursor: default;
+}
+
