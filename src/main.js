@@ -59,7 +59,6 @@ Vue.prototype.$rootApiPath = rootPath + '/api/';
 Vue.use(VueResource);
 Vue.use(ElementUI, { locale });
 Vue.use(APlayer, {
-  defaultCover: 'https://github.com/u3u.png',
   productionTip: false // disable console output
 });
 Vue.use(VueLodash, {lodash: lodash })
