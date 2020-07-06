@@ -9,7 +9,8 @@
             <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
           </template>
           <template v-else>
-            <i class="el-icon-video-play" />
+            <!--<i class="el-icon-video-play" />-->
+            <icon-play />
           </template>
         </div>
       </div>
@@ -45,10 +46,8 @@
             </div>
             <div class="rating" v-if="itemEntity.rating" >нету рейтинга в json</div>
             <div class="date">{{itemEntity.date}}</div>
-            <!-- <a :href="itemEntity.audiofile_url"
-  @click.prevent="downloadItem(itemEntity)" >  <i class="el-icon-download"></i></a> -->
-            <a :href="itemEntity.audiofile_url" download target="_blank">
-              <i class="el-icon-download"></i>
+            <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank">
+              <icon-download />
             </a>
           </div>
         </div>
@@ -76,20 +75,25 @@
               </template>
               <template v-else>
                 <i class="el-icon-video-play" />
-              </template>            </span>
-          <a class="link-download" :href="itemEntity.audiofile_url" download target="_blank"> <i class="el-icon-download"></i></a>
+              </template>
+            </span>
+            <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank">
+              <icon-download />
+            </a>
           <router-link
-          :to="{ name: 'Article', params: { path: itemEntity.number } }"
-          class="read-more"
-          >Читать
-        </router-link>
+            :to="{ name: 'Article', params: { path: itemEntity.number } }"
+            class="read-more"
+          >
+            Читать
+          </router-link>
         </div>
       </div>
       <router-link
-      :to="{ name: 'Article', params: { path: itemEntity.number } }"
-      class="title-link"
-      ><div class="title ">{{itemEntity.title}}</div>
-    </router-link>
+        :to="{ name: 'Article', params: { path: itemEntity.number } }"
+        class="title-link"
+      >
+        <div class="title ">{{itemEntity.title}}</div>
+      </router-link>
       <div class="bottom">
         <div class="number">{{itemEntity.number}}</div>
         <div class="date">{{itemEntity.date}}</div>

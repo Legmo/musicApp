@@ -8,7 +8,7 @@
     </ul>
     <div class="about-txt">
       <p>Программа музыканта Бориса Гребенщикова.</p>
-      <p>Выходит еженедельно на «Радио России» <br>и на радиостанции «Культура».</p>
+      <p>Выходит еженедельно на <a href="https://www.radiorus.ru/brand/57083/episodes" target="_blank" title="Страница передачи на сайте «Радио России»">«Радио России»</a><br>и на радиостанции «Культура».</p>
     </div>
 <div class="tag" >
   <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.releases_number) }">
@@ -28,8 +28,17 @@
     </template>
   </span>
 </div>
-<div class="">
-соцсети</div>
+<div class="bottom-links">
+  <a href="https://vk.com/aerostatbg" target="_blank" title="Группа в Контакте" class="vk">
+    <icon-social-vk />
+  </a>
+  <a href="https://apps.apple.com/us/app/aerostat-avtorskaa-programma/id1035297304" target="_blank" title="Приложение для iOS">
+    <icon-app-apple />
+  </a>
+  <a href="https://play.google.com/store/apps/details?id=ru.mobileup.aerostat" target="_blank" title="Приложение для Android">
+    <icon-app-google />
+  </a>
+</div>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 .leftBlock {
   padding: $space_5 * 6;
   margin: ($space * 2.5) 0;
-  border: 1px solid $gray_light_x;
+  border: 1px solid $gray_light_xx;
   text-align: center;
   position: sticky;
   top: $space * 2.5;
@@ -26,6 +26,14 @@
       margin-bottom: $space_5 * 2;
       color: $gray;
       font-weight: 300;
+      a {
+        color: $gray;
+        transition: $transition;
+        &:hover {
+          color: $orange;
+          transition: $transition;
+        }
+      }
     }
   }
   .tag {
@@ -34,9 +42,42 @@
       line-height: 1;
       cursor: pointer;
       transition: $transition;
+      &.tag-item--all {
+        padding-top: $space_5;
+        display: block;
+        a {
+          color: gray;
+          font-weight: 300;
+          text-decoration: underline;
+          &:hover {
+            color: $orange;
+            text-decoration: none;
+          }
+        }
+      }
       &:hover {
         color: $orange;
         transition: $transition;
+      }
+    }
+  }
+  .bottom-links {
+    display: flex;
+    justify-content: center;
+    a {
+      margin-right: $space * 2;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      svg {
+        width: $space * 4;
+        height: $space * 4;
+        fill: $gray_light_x;
+        transition: $transition;
+        &:hover {
+          fill: $orange;
+          transition: $transition;
+        }
       }
     }
   }

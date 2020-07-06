@@ -1,36 +1,70 @@
 header{
-  background: $gray_light_xxx;
+  background: $gray_light_xxxx;
   .navbar {
     width: auto;
     max-width: 3000px;
     margin: 0 auto;
-    padding: $space_5 ($space * 2) 6px;
-    & > a {
+    padding: $space_5 0 6px;
+    display: block; //todo - подумать, как без этого обойтись
+    a.navbar-brand {
       line-height: 1;
-      text-transform: uppercase;
-      font-weight: bold;
-      color: $orange;
       padding: 0;
       text-decoration: none;
+      margin-top: $space;
       img {
         height: $space_5 * 10;
         width: $space_5 * 10;
         margin-right: $space * 2;
+        margin-top: -($space * 2);
+      }
+      span {
+        font-size: 2rem; //32px
+        text-transform: uppercase;
+        font-weight: bold;
+        color: $orange;
       }
     }
   }
   #navbarCollapse {
     justify-content: space-between;
     #searchBar {
+      width: 100%;
+      min-width: $space_5 * 40;
+      padding-top: $space;
+      margin-left: $space * 2;
       .nav-searchbar {
         margin-right: $space * 2;
-        .input-group-btn {
-          button.btn.btn-search {
-            background-color: $gray_light_x;
-            border-radius: 0 ($space / 2) ($space / 2) 0;
-            &:hover {
-              background-color: $gray_light;
+        input#mainSearch {
+          height: $space * 4;
+          padding-top: 4px;
+          &:focus {
+            box-shadow: none;
+            border: none;
+          }
+        }
+        button.btn.btn-search {
+          height: $space * 4;
+          background-color: $gray_light_x;
+          border-radius: 0 ($space / 2) ($space / 2) 0;
+          padding: 0 $space ($space / 2);
+          svg {
+            width: $space_5 * 4;
+            height: $space_5 * 4;
+            fill: $gray_dark_x;
+            opacity: 0.7;
+            transition: $transition;
+          }
+          &:focus {
+            box-shadow: none;
+            border: none;
+          }
+          &:hover {
+            background-color: $gray_light;
+            transition: $transition;
+            svg {
+              opacity: 1;
               transition: $transition;
+              //fill: $gray_dark_x;
             }
           }
         }
@@ -38,38 +72,56 @@ header{
     }
     .list-settings-block{
       display: flex;
+      width: $space_5 * 120;
+      margin-top: $space;
+      justify-content: flex-end;
       .sorting {
-        margin-right: $space * 4;
-        span {
-          padding-right: $space;
+        margin-right: $space * 2;
+        & > span {
           color: $gray;
-          cursor: pointer;
-          svg {
-            width: $space * 2 ;
-            height: $space * 2 ;
-          }
-          &.active {
-            transition: $transition;
-            color: $gray_dark_x;
-            background-color: transparent;
-            svg {
-              fill: $gray_dark_x;
-            }
-          }
-          &:not(.active){
-            &:hover {
-              color: $gray_dark_x;
-              transition: $transition;
-            }
-          }
-          &:last-of-type {
-            padding-right: 0;
-          }
-          &:first-of-type {
+          padding-right: $space_5 * 2;
+          &.line-label {
             color: $gray_light;
             cursor: default;
             &:hover {
               color: $gray_light;
+            }
+          }
+          .sorting-label {
+            cursor: pointer;
+          }
+          .sorting-icon {
+            display: inline-block;
+            //background-color: red;
+            width: 16px;
+            height: 16px;
+            padding-left: 2px;
+          }
+          svg {
+            width: $space * 2 ;
+            height: $space * 2 ;
+            fill: $gray;
+            transition: $transition;
+            cursor: pointer;
+          }
+          &:hover {
+            color: $gray_dark_x;
+            transition: $transition;
+            svg {
+              fill: $gray_dark_x;
+              transition: $transition;
+            }
+          }
+          &.active {
+            transition: $transition;
+            color: $gray_dark_x;
+            &:hover {
+              fill: $gray_dark_x;
+              transition: $transition;
+              svg {
+                fill: $gray_dark_x;
+                transition: $transition;
+              }
             }
           }
         }

@@ -1,9 +1,12 @@
 .item {
-  margin: 0 0 ($space * 4);
+  margin: 0 0 ($space * 3);
+  padding: $space;
   display: flex;
+  border: 1px solid white;
   &:hover {
+    //border: 1px solid $orange_light_x;
     .column-left {
-      i {
+      svg {
         display: block;
       }
       .digit {
@@ -28,14 +31,19 @@
       font-size: 1.625rem; //26px;
       color: $gray;
     }
-    i {
+    svg {
       display: none;
       margin-top: $space / 2;
-      font-size: 1.625rem; //26px;
+      width: $space * 4;
+      height: $space * 4;
       cursor: pointer;
-      color: $gray_light;
+      fill: $gray_light_xx;
+      transition: $transition;
       &:hover {
-        color: $orange;
+        fill: $orange;
+        width: $space * 6;
+        height: $space * 6;
+        transition: $transition;
       }
     }
   }
@@ -114,23 +122,8 @@
         justify-content: right;
         display: flex;
         & > a {
-          width: 26px;
-          height: 26px;
           text-align: center;
-          padding: 3px ($space / 2) ($space / 2);
-          line-height: 0;
           display: inline-block;
-          color: $gray;
-          //background-color: $gray_light_xxx;
-          border: 2px solid $gray_light_xxx;
-          border-radius: 50%;
-          transition: $transition;
-          &:hover {
-            color: white;
-            background-color: $orange;
-            border-color: $orange;
-            transition: $transition;
-          }
         }
       }
     }
@@ -140,11 +133,27 @@
     }
   }
 
+  &-list {
+    border: 3px solid transparent;
+    &:hover {
+      border: 3px solid $orange_light_x;
+      border-radius: 2px;
+    }
+    .column-left .number {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      .digit {
+        height: 100%;
+      }
+    }
+  }
   &-grid {
     margin: $space_5 * 2;
     min-height: $space_5 * 70;
     display: block;
     .background {
+      border: 1px solid $gray_light_xx;
       background-color: $gray_light_x;
       height: $space_5 * 50;
       width: 100%;
@@ -184,17 +193,25 @@
             transition: $transition;
           }
         }
-        a.link-download {
+        a.button-download {
           position: absolute;
           top: $space_5 * 28;
           left: 0;
           right: 0;
           display: block;
           margin: 0 auto;
-          i {
-            padding: $space;
+          svg {
+            padding: 6px;
+            width: $space * 5;
+            height: $space * 5;
             border-radius: 50%;
             background-color: rgba(255,255,255,0.7);
+            transition: $transition;
+          }
+          &:hover svg {
+            width: $space * 6;
+            height:  $space * 6;
+            transition: $transition;
           }
         }
         a.read-more {
