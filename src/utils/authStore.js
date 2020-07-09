@@ -8,7 +8,7 @@ export default new Vuex.Store({
         isPaused: true,
         layout: 'list',
         sort: {
-          dir: 'asc',
+          dir: 'desc',
           sortBy: 'date'
         },
         mainList: []

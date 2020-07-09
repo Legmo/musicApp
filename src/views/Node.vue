@@ -26,9 +26,11 @@
         <div class="contents">
           <h5>Содержание</h5>
           <ol >
-            <li v-for="(item, index) in entity.content" :key="index">
-              <a :href="`#composition-${index}`">{{item.composition_name}}</a>
+            <template  v-for="(song, index) in entity.content" >
+            <li v-if="song.composition_name" :key="index">
+              <a v-if="song.composition_name" :href="`#composition-${index}`">{{song.composition_name}}</a>
             </li>
+          </template>
           </ol>
         </div>
       </div>
