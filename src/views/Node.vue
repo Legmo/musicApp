@@ -38,7 +38,9 @@
         <div class="release-image">
           <img :src="entity.image_url" />
         </div>
-        <div class="release-image--artist" v-if="entity.image_artist">{{entity.image_artist}}</div>
+        <div class="release-image--artist" v-if="entity.image_artist">
+          <p>{{entity.image_artist}}</p>
+        </div>
       </div>
     </div>
 
