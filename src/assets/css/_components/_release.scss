@@ -8,6 +8,12 @@
         height: auto;
         background-color: $gray_light_xxx;
       }
+      .release-image--artist p {
+        text-align: right;
+        padding-top: $space;
+        font-size: 0.75rem; //12px
+        font-style: italic;
+      }
     }
     .titleAndCo {
       display: flex;
@@ -64,7 +70,7 @@
       margin-top: $space * 3;
       ol {
         //padding-top: 4px;
-        padding-left: $space * 2;
+        padding-left: $space * 3;
         li {
           color: $gray;
           font-size: 0.812rem; //13px;

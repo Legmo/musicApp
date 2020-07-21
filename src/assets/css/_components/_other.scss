@@ -139,3 +139,52 @@
   cursor: default;
 }
 
+ul.contactsList {
+  margin-top: -1.8rem;
+  li {
+    & > span {
+      display: inline-block;;
+      width: $space_5 * 50;
+    }
+    & > a {
+      font-weight: 600;
+    }
+  }
+}
+
+.appLinks {
+  margin-top: -1.8rem;
+  display: flex;
+  flex-wrap: nowrap;
+  .appLink {
+    margin-right: $space * 2;
+    display: block;
+    text-indent: -10000000;
+    overflow: hidden;
+    width: $space * 4;
+    height: $space * 4;
+    &.google {
+      background: url(../../icons/icon_app-google.jpg) top left;
+    }
+    &.apple  {
+      background: url(../../icons/icon_app-apple.jpg) top left;
+    }
+    &.yandex {
+      background: url(../../icons/icon_app-yandex.jpg) top left;
+      margin-right: 0;
+    }
+    &:hover (
+      background-position: top right
+    )
+  }
+}
+
+.appImages {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  img {
+    width: 19.5%;
+  }
+}
+
