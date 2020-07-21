@@ -164,13 +164,13 @@ ul.contactsList {
     width: $space * 4;
     height: $space * 4;
     &.google {
-      background: url(../../icons/icon_app-google.jpg) top left;
+      background: url(./../icons/icon_app-google.jpg) top left;
     }
     &.apple  {
-      background: url(../../icons/icon_app-apple.jpg) top left;
+      background: url(./../icons/icon_app-apple.jpg) top left;
     }
     &.yandex {
-      background: url(../../icons/icon_app-yandex.jpg) top left;
+      background: url(./../icons/icon_app-yandex.jpg) top left;
       margin-right: 0;
     }
     &:hover {
