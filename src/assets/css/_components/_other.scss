@@ -173,9 +173,9 @@ ul.contactsList {
       background: url(../../icons/icon_app-yandex.jpg) top left;
       margin-right: 0;
     }
-    &:hover (
-      background-position: top right
-    )
+    &:hover {
+      background-position: top right;
+    }
   }
 }
 
