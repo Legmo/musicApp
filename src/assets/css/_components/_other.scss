@@ -141,6 +141,7 @@
 
 ul.contactsList {
   margin-top: -1.8rem;
+  margin-bottom: $space * 2;
   li {
     & > span {
       display: inline-block;;
@@ -152,25 +153,30 @@ ul.contactsList {
   }
 }
 
+.appList {
+  margin-top: -1.8rem;
+}
 .appLinks {
   margin-top: -1.8rem;
+  margin-bottom: $space * 2;
   display: flex;
   flex-wrap: nowrap;
   .appLink {
     margin-right: $space * 2;
     display: block;
-    text-indent: -10000000;
+    text-indent: -10000000px;
     overflow: hidden;
     width: $space * 4;
     height: $space * 4;
+    border-radius: 50%;
     &.google {
-      background: url(./../icons/icon_app-google.jpg) top left;
+      background: url(./../icons/icon_app-google.png) top left;
     }
     &.apple  {
-      background: url(./../icons/icon_app-apple.jpg) top left;
+      background: url(./../icons/icon_app-apple.png) top left;
     }
     &.yandex {
-      background: url(./../icons/icon_app-yandex.jpg) top left;
+      background: url(./../icons/icon_app-yandex.png) top left;
       margin-right: 0;
     }
     &:hover {
