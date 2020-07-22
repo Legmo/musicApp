@@ -25,6 +25,7 @@ import iconList          from '@/assets/icons/icon_layout-list.svg?inline'
 import iconTiles         from '@/assets/icons/icon_layout-tiles.svg?inline'
 import iconPlayerLeft    from '@/assets/icons/icon_player-left.svg?inline'
 import iconPlay          from '@/assets/icons/icon_player-play.svg?inline'
+import iconPause         from '@/assets/icons/icon_player-pause.svg?inline'
 import iconRepeat        from '@/assets/icons/icon_player-repeat.svg?inline'
 import iconPlayerRight   from '@/assets/icons/icon_player-right.svg?inline'
 import iconSearch        from '@/assets/icons/icon_search.svg?inline'
@@ -41,6 +42,7 @@ Vue.component('icon-download',       iconDownload);
 Vue.component('icon-download-small', iconDownloadSmall);
 Vue.component('icon-list',           iconList);
 Vue.component('icon-play',           iconPlay);
+Vue.component('icon-pause',          iconPause);
 Vue.component('icon-player-left',    iconPlayerLeft);
 Vue.component('icon-player-right',   iconPlayerRight);
 Vue.component('icon-repeat',         iconRepeat);

@@ -4,7 +4,9 @@
     <template v-if="layout=='list'">
       <div class="column-left" @click="playSong(itemEntity)">
         <div class="number">
-          <span class="digit">{{itemEntity.number}}</span>
+          <template v-if="$store.state.songPlayed !== itemEntity.number">
+            <span class="digit">{{itemEntity.number}}</span>
+          </template>
           <template v-if="$store.state.songPlayed == itemEntity.number">
             <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
           </template>
