@@ -6,7 +6,6 @@
     .aplayer-body {
       height: $space_5 * 2;
       background-color: $gray_light_xxx;
-      //background-color: red;
       .aplayer-info {
         margin: 0 auto;
         width: 100%;
@@ -14,10 +13,8 @@
         padding: 0;
         height: $space_5 * 2;
         border: none;
-        .aplayer-music {
-          display: none;
-        }
         .aplayer-controller {
+          //Трек
           .aplayer-bar-wrap {
             margin: 0;
             padding: 0;
@@ -29,6 +26,9 @@
             .aplayer-bar {
               background-color: $gray_light_xxx;
               //background-color: white;
+              .aplayer-thumb {
+                background-color: $orange !important;
+              }
               .aplayer-played {
                 background-color: $orange_light !important;
               }
@@ -42,34 +42,62 @@
             bottom: -($space_5 * 7)!important;
             right: $space_5 * 3 !important;
             padding: 0;
-            .aplayer-icon-menu,
-            .aplayer-time-inner {
-              display: none!important;
-            }
-            .aplayer-icon {
-              width: $space * 3.5 !important;
-              height: $space * 3.5 !important;
-              &:hover path {
-                fill: $orange;
-                transition: $transition;
+
+          }
+          //Громкость
+          .aplayer-time .aplayer-volume-wrap {
+            &:hover {
+              .aplayer-icon svg path {
+                fill: $orange !important;
               }
             }
-
+            &:hover .aplayer-volume-bar-wrap {
+              height: 117px;
+            }
+            &:hover .aplayer-volume-bar {
+              height: 100px;
+              background: $gray_light_xx !important;
+            }
+            .aplayer-volume-bar-wrap {
+              bottom: $space_5 * 6;
+              background: rgba(255,255,255,0.7);
+              box-shadow: 0 0 6px 0 rgba(0,0,0,.25);
+              width: $space * 3;
+              border-radius: $space/2;
+              right: 2px;
+              .aplayer-volume-bar {
+                height: 100px;
+                width: $space;
+                border-radius: $space;
+                top: 8px;
+                bottom: 8px;
+                right: $space;
+                height: 100px;
+                .aplayer-volume {
+                  width: $space;
+                  background-color: $orange_light !important;
+                }
+              }
+            }
+          }
+          // Пиктограммы справа
+          .aplayer-time .aplayer-icon {
+            width: $space * 3.5 !important;
+            height: $space * 3.5 !important;
           }
         }
       }
-      .aplayer-pic {
-        display: none;
-      }
-      .aplayer-notice {
-        display: none;
-      }
     }
-    .aplayer-list {
-      display: none;
+    .aplayer-list,
+    .aplayer-body .aplayer-pic,
+    .aplayer-body .aplayer-notice,
+    .aplayer-body .aplayer-info .aplayer-music,
+    .aplayer-body .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon-menu,
+    .aplayer-body .aplayer-info .aplayer-controller .aplayer-time .aplayer-time-inner {
+      display: none!important;
     }
   }
-  .player-bottom{
+  .player-bottom {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -77,16 +105,51 @@
     max-width: 3000px;
     padding: $space_5 ($space_5 * 21) $space_5 0;
     align-items: center;
+    //Пиктограммы слева
     .buttons-block {
-      padding-right: $space;
+      padding-right: $space * 2;
+      display: flex;
+      margin-bottom: -$space_5 * 2;
       .player-button {
         font-size: 1.75rem; //28px;
         color: $gray_light;
         cursor: pointer;
         transition: $transition;
+        i {
+          display: inline-block;
+          overflow: hidden;
+          &:before,
+          &:after {
+            display: none;
+          }
+          &.el-icon-d-arrow-left,
+          &.el-icon-d-arrow-right {
+            width: 28px;
+            height: 22px;
+            background: url(./../icons/icon_player-left.png) top left;
+          }
+          &.el-icon-d-arrow-right {
+            background: url(./../icons/icon_player-right.png) top left;
+          }
+          &.el-icon-video-play,
+          &.el-icon-video-pause {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            margin: 0 $space;
+            background: url(./../icons/icon_player-play.png) top left;
+          }
+          &.el-icon-video-pause {
+            background: url(./../icons/icon_player-pause.png) top left;
+          }
+        }
         &:hover {
           color: $orange;
           transition: $transition;
+          i {
+            background-position: top right;
+            //transition: $transition;
+          }
         }
       }
     }
@@ -132,6 +195,23 @@
           color: $orange;
           transition: $transition;
         }
+      }
+    }
+  }
+
+  //Пиктограммы справа
+  .aplayer-icon,
+  .rating-controls .button-download {
+    opacity: 1;
+    path {
+      fill: $gray;
+      transition: $transition;
+    }
+    &:hover {
+      opacity: 1;
+      path {
+        fill: $orange;
+        transition: $transition;
       }
     }
   }
