@@ -14,6 +14,7 @@
       padding-top: $space;
       font-size: 0.75rem; //12px
       font-style: italic;
+      color: $gray;
     }
     .titleAndCo {
       display: flex;
@@ -40,6 +41,10 @@
         }
         .button-download {
           left: $space * 6;
+          &:hover svg {
+            width: $space * 4;
+            height: $space * 4;
+          }
         }
         i {
           cursor: pointer;
