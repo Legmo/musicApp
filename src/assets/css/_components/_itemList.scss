@@ -17,6 +17,12 @@
   }
   .title {
   }
+  .text {
+    padding-top: $space;
+    p:last-of-type {
+      margin-bottom: $space/2;
+    }
+  }
   .date {
     padding: 3px $space 0 0;
     color: $gray;

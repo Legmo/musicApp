@@ -49,15 +49,15 @@
             </el-collapse>
           </div>
           <div class="part-two">
-            <div class="text" v-if="itemEntity.search_excerpt">
-              <p v-html="itemEntity.search_excerpt"></p>
-            </div>
             <div class="rating" v-if="itemEntity.rating" >нету рейтинга в json</div>
             <div class="date">{{itemEntity.date}}</div>
             <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank">
               <icon-download />
             </a>
           </div>
+        </div>
+        <div class="text" v-if="itemEntity.search_excerpt">
+          <p v-html="itemEntity.search_excerpt"></p>
         </div>
         <div class="tags">
             <span v-for="(tag, index) in itemEntity.tags" :key="index">
