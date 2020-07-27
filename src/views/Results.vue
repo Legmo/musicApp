@@ -67,9 +67,9 @@ export default {
     'localQuery': function (newValue) {
       let self = this;
      this.$http.get(`${this.$rootApiPath}releases/search?text=${newValue}&_format=json`).then(function (e) {
-       self.entity = e.body;
+       self.entity = e.body.rows;
      }).catch(function () {
-       self.entity = require("../assets/search_cogo.json");
+       self.entity = require("../assets/search_names.json").rows;
        self.$message.error("There was an error while reading data");
      });
     },
