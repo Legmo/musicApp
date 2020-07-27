@@ -15,7 +15,7 @@
         <span class="tag-item">{{item.name}}</span>
     </template>
     <template v-else>
-      <a class="tag-item" @click="reroute(item.id)" >{{item.title}}</a>
+      <a class="tag-item" @click="reroute(item.id)" v-html="item.title" ></a>
     </template>
   </span>
   <span class="tag-item tag-item--all">
