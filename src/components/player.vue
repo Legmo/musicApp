@@ -80,6 +80,7 @@ export default {
     })
     this.$store.watch(() =>  this.$store.state.isPaused, newValue => {
       if(newValue == true) self.$refs.aplayer.pause();
+      if(newValue == false) self.$refs.aplayer.play();
     })
   },
   methods: {

@@ -157,6 +157,7 @@ export default {
         }
       } else {
         this.$store.commit('setSong', item.number);
+        this.$store.commit('setPaused', false);
       }
     },
     reroute(id) {
