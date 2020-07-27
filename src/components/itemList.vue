@@ -3,12 +3,18 @@
     <!-- List layout -->
     <template v-if="layout=='list'">
       <div class="column-left" @click="playSong(itemEntity)">
-        <div class="number">
+        <div :class="['number', ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === false) ? 'active' : null, ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === true) ? 'pause' : 'normal' ]">
           <template v-if="$store.state.songPlayed !== itemEntity.number">
             <span class="digit">{{itemEntity.number}}</span>
           </template>
           <template v-if="$store.state.songPlayed == itemEntity.number">
-            <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
+            <!--<i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>-->
+              <template v-if="$store.state.isPaused == true">
+                <icon-play />
+              </template>
+              <template v-if="$store.state.songPlayed == itemEntity.number && $store.state.isPaused == false">
+                <icon-pause class='icon-pause'/>
+              </template>
           </template>
           <template v-else>
             <!--<i class="el-icon-video-play" />-->

@@ -6,7 +6,8 @@
   &:hover {
     //border: 1px solid $orange_light_x;
     .column-left {
-      svg {
+      svg,
+      .normal:not(.active) svg {
         display: block;
       }
       .digit {
@@ -31,8 +32,15 @@
       font-size: 1.625rem; //26px;
       color: $gray;
     }
+    .normal:not(.active) svg {
+        display: none;
+    }
+    .pause svg ,
+    .active svg {
+        display: block;
+    }
     svg {
-      display: none;
+      //display: none;
       margin-top: $space / 2;
       width: $space * 4;
       height: $space * 4;
@@ -44,6 +52,9 @@
         width: $space * 6;
         height: $space * 6;
         transition: $transition;
+      }
+      &.icon-pause:hover {
+        fill: white;
       }
     }
   }
@@ -72,14 +83,19 @@
         }
         .el-collapse {
           border: none;
-          //margin-top: -20.5px;
-          margin-top: $space / 2;
           max-width: $space_5 * 180;
+          &:before {
+            content: '';
+            display: block;
+            height:  $space;
+            overflow: hidden;
+          }
           .el-collapse-item__header {
             border: none;
-            //border-bottom: 1px dashed $gray_light_x;
             height: $space * 2.5;
-            //padding-left: $space * 7.5;
+            width: 127px;
+            //width: 7.8rem;
+            border-bottom: 1px dashed;
             color: $gray;
             &:hover {
               color: $orange;
@@ -87,7 +103,7 @@
             }
             .el-collapse-item__arrow {
               position: absolute;
-              left: $space_5 * 46;
+              left: $space_5 * 47;
               margin-top: $space / 2;
               transform: rotate(90deg);
             }
@@ -176,6 +192,8 @@
           left: 0;
           right: 0;
           cursor: pointer;
+          margin: 4px auto;
+          transition: $transition;
           i::before {
             width: $space * 4;
             height: $space * 4;
@@ -185,12 +203,16 @@
             border-radius: 50%;
             background-color: rgba(255,255,255,0.7);
           }
-          &:hover i::before {
+          &:hover {
+            margin: 0 auto;
+            transition: $transition;
+            i::before {
             width: $space * 5;
             height:  $space * 5;
             font-size: 2.5rem; //40px;
             color: $orange;
             transition: $transition;
+          }
           }
         }
         a.button-download {
@@ -199,7 +221,8 @@
           left: 0;
           right: 0;
           display: block;
-          margin: 0 auto;
+          margin: 4px auto;
+          transition: $transition;
           svg {
             padding: 6px;
             width: $space * 5;
@@ -209,11 +232,15 @@
             fill: $gray;
             transition: $transition;
           }
-          &:hover svg {
-            fill: $orange;
-            width: $space * 6;
-            height:  $space * 6;
+          &:hover {
+            margin: 0 auto;
             transition: $transition;
+            svg {
+              fill: $orange;
+              width: $space * 6;
+              height:  $space * 6;
+              transition: $transition;
+            }
           }
         }
         a.read-more {
