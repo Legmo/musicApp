@@ -152,6 +152,8 @@ export default {
       if( this.$store.state.songPlayed == item.number) {
         if(!this.$store.state.isPaused) {
           this.$store.commit('setPaused', true);
+        } else {
+          this.$store.commit('setPaused', false);
         }
       } else {
         this.$store.commit('setSong', item.number);
