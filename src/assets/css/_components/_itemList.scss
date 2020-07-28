@@ -59,8 +59,15 @@
         height: $space * 6;
         transition: $transition;
       }
-      &.icon-pause:hover {
-        fill: white;
+      &.icon-pause {
+        path {
+          fill: $gray_light_xx;
+        }
+        &:hover {
+          path {
+            fill: $orange;
+          }
+        }
       }
     }
   }

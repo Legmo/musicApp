@@ -190,15 +190,28 @@ ul.contactsList {
     width: $space * 4;
     height: $space * 4;
     border-radius: 50%;
+    background-color: $orange;
     &.google {
-      background: url(./../icons/icon_app-google.png) top left;
+      background: url(./../icons/icon_app-google_Clean.png) top left;
+      background-color: $orange;
+      &:hover {
+        background-color: #1972ed;
+      }
     }
     &.apple  {
-      background: url(./../icons/icon_app-apple.png) top left;
+      background: url(./../icons/icon_app-apple_Clean.png) top left;
+      background-color: $orange;
+      &:hover {
+        background-color: white;
+      }
     }
     &.yandex {
-      background: url(./../icons/icon_app-yandex.png) top left;
+      background: url(./../icons/icon_app-yandex_Clean.png) top left;
+      background-color: $orange;
       margin-right: 0;
+      &:hover {
+        background-color: #ffcc00;
+      }
     }
     &:hover {
       background-position: top right;
