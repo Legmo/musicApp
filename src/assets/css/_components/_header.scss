@@ -11,6 +11,9 @@ header{
       padding: 0;
       text-decoration: none;
       margin-top: $space;
+      @media (min-width: 0) and (max-width: 970px) {  //todo - убрать этот костыль
+        margin-top: 24px;
+      }
       img {
         height: $space_5 * 10;
         width: $space_5 * 10;
@@ -22,14 +25,21 @@ header{
         text-transform: uppercase;
         font-weight: bold;
         color: $orange;
+        @media (min-width: 0) and (max-width: 970px) {  //todo - убрать этот костыль
+          font-size: 1.5rem;
+        }
       }
     }
   }
+  #navbarTmp,
   #navbarCollapse {
     justify-content: space-between;
+    @media (min-width: 0) and (max-width: 970px) { //todo - убрать этот костыль
+      flex-wrap: wrap;
+    }
     #searchBar {
       width: 100%;
-      min-width: $space_5 * 40;
+      min-width: $space * 20;
       padding-top: $space;
       margin-left: $space * 2;
       .nav-searchbar {
@@ -72,9 +82,12 @@ header{
     }
     .list-settings-block{
       display: flex;
-      width: $space_5 * 120;
       margin-top: $space;
       justify-content: flex-end;
+      width: $space_5 * 120;
+      @media (min-width: 0) and (max-width: 970px) { //todo - убрать этот костыль
+        width: 100%;
+      }
       .sorting {
         margin-right: $space * 2;
         & > span {
@@ -124,9 +137,13 @@ header{
               }
             }
           }
+          &.link-box {
+            white-space: nowrap;
+          }
         }
       }
       .layout-switch {
+        min-width: $space * 5;
         .layout-icon {
           cursor: pointer;
           line-height: 1;
