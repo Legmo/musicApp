@@ -41,20 +41,6 @@
         }
         .button-download {
           left: $space * 6;
-          &:hover svg {
-            width: $space * 4;
-            height: $space * 4;
-          }
-        }
-        i {
-          cursor: pointer;
-          &:before {
-            width: $space * 4;
-            height: $space * 4;
-            font-size: 2rem ; //32px;
-            color: $black_txt;
-            transition: $transition;
-          }
         }
         svg {
           cursor: pointer;
@@ -63,10 +49,20 @@
           fill: $gray_light_x;
           transition: $transition;
           &:hover {
-              width: $space * 5;
-              height: $space * 5;
               fill: $orange;
               transition: $transition;
+          }
+        }
+        .active {
+          svg path {
+            fill: $gray_light_x;
+            transition: $transition;
+          }
+          &:hover {
+            svg path {
+              fill: $orange;
+              transition: $transition;
+            }
           }
         }
       }

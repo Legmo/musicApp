@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-md">
           <div class="row">
-            <div class="col-xl-3">
+            <div class="col-md-3 col-sm-6">
               <router-link to="/" class="navbar-brand">
                 <img class="logo" src="./../assets/logo.svg" alt="Аэростат" />
                 <span>Аэростат</span>
@@ -14,15 +14,16 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
             </div>
-            <div class="col-xl-9 col-md-6">
-              <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="col-md-9 col-sm-6">
+              <!--<div class="collapse navbar-collapse" id="navbarCollapse">-->
+              <div class="navbar-collapse" id="navbarTmp">
                   <searchBar/>
                 <div class="list-settings-block">
                   <template v-if="ifShowSort()">
                     <div class="sorting">
                       <template v-if="$route.name == 'List'">
                         <span class="line-label">Сортировка:</span>
-                        <span :class="{'active': $store.state.sort.sortBy == 'date'}" @click="sorting('date')">
+                        <span :class="['link-box', ($store.state.sort.sortBy == 'date') && 'active']" @click="sorting('date')">
                           <span class="sorting-label">по дате</span>
                           <span class="sorting-icon">
                             <template v-if="$store.state.sort.sortBy == 'date'">
@@ -31,7 +32,7 @@
                             </template>
                           </span>
               </span>
-                        <span :class="{'active': $store.state.sort.sortBy == 'title'}" @click="sorting('title')">
+                        <span :class="['link-box', ($store.state.sort.sortBy == 'title') && 'active']" @click="sorting('title')">
                           <span class="sorting-label">по названию</span>
                           <span class="sorting-icon">
                             <template v-if="$store.state.sort.sortBy == 'title'">

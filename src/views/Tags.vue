@@ -1,25 +1,33 @@
 <template>
-<div class="mainList tags-list-all">
-  <h1 v-if="tagId=='All'">Выпуски по тэгам</h1>
-  <div v-for="(item, key) in pagedEntity" :key="key" :class="{'tag-header':item.additionalTagInfo}">
-    <template v-if="item.additionalTagInfo">
-      <h4>Тэг {{item.additionalTagInfo.tagTitle}} <span class="small gray">({{item.additionalTagInfo.tagLength}} {{getNoun(item.additionalTagInfo.tagLength, 'выпуск', 'выпуска', 'выпусков')}} )</span></h4>
-      <itemList :itemEntity="item" :layout="layout"/>
-    </template>
-    <template v-else>
-      <itemList :itemEntity="item" :layout="layout"/>
-    </template>
+  <div  :class="['mainList', 'tags-list-all', layout === 'grid' ? 'view-grid' : 'view-list']">
+    <h1 v-if="tagId=='All'" class="titleOne">Выпуски по тэгам</h1>
+    <div v-for="(item, key) in pagedEntity" :key="key" :class="{'tag-header':item.additionalTagInfo}">
+      <template v-if="item.additionalTagInfo">
+        <h4 class="titleTwo">
+          Тэг {{item.additionalTagInfo.tagTitle}}
+          <span class="small gray">
+            ({{item.additionalTagInfo.tagLength}}
+            {{getNoun(item.additionalTagInfo.tagLength, 'выпуск', 'выпуска', 'выпусков')}} )
+          </span>
+        </h4>
+      </template>
+      <template v-if="item.additionalTagInfo">
+        <itemList :itemEntity="item" :layout="layout"/>
+      </template>
+      <template v-else>
+        <itemList :itemEntity="item" :layout="layout"/>
+      </template>
+    </div>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page.sync="currentPage"
+      :page-sizes="[4, 8, 24, 48]"
+      :page-size.sync="itemsPerPage"
+      layout="prev, pager, next, sizes"
+      :total="Object.keys(entity).length">
+    </el-pagination>
   </div>
-  <el-pagination
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange"
-    :current-page.sync="currentPage"
-    :page-sizes="[4, 8, 24, 48]"
-    :page-size.sync="itemsPerPage"
-    layout="prev, pager, next, sizes"
-    :total="Object.keys(entity).length">
-  </el-pagination>
-</div>
 </template>
 
 <script>

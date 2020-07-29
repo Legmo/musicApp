@@ -3,12 +3,14 @@
     <!-- List layout -->
     <template v-if="layout=='list'">
       <div class="column-left" @click="playSong(itemEntity)">
-        <div :class="['number', ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === false) ? 'active' : null, ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === true) ? 'pause' : 'normal' ]">
+        <div :class="['number',
+        ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === false) ? 'active' : null,
+        ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === true)  ? 'pause'  : 'normal'
+        ]">
           <template v-if="$store.state.songPlayed !== itemEntity.number">
             <span class="digit">{{itemEntity.number}}</span>
           </template>
           <template v-if="$store.state.songPlayed == itemEntity.number">
-            <!--<i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>-->
               <template v-if="$store.state.isPaused == true">
                 <icon-play />
               </template>
@@ -17,7 +19,6 @@
               </template>
           </template>
           <template v-else>
-            <!--<i class="el-icon-video-play" />-->
             <icon-play />
           </template>
         </div>
@@ -49,15 +50,15 @@
             </el-collapse>
           </div>
           <div class="part-two">
-            <div class="text" v-if="itemEntity.search_excerpt">
-              <p v-html="itemEntity.search_excerpt"></p>
-            </div>
             <div class="rating" v-if="itemEntity.rating" >нету рейтинга в json</div>
             <div class="date">{{itemEntity.date}}</div>
             <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank">
               <icon-download />
             </a>
           </div>
+        </div>
+        <div class="text" v-if="itemEntity.search_excerpt">
+          <p v-html="itemEntity.search_excerpt"></p>
         </div>
         <div class="tags">
             <span v-for="(tag, index) in itemEntity.tags" :key="index">
@@ -76,14 +77,23 @@
     <template v-else-if="layout=='grid'">
       <div class="background" v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
         <div class="rating"  v-if="itemEntity.rating">нету рейтинга в json</div>
-        <div class="showOnHover">
+        <div :class="['showOnHover', ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === false) ? 'active' : null, ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === true) ? 'pause' : 'normal' ]"
+        >
             <span class="player-button" @click="playSong(itemEntity)">
-              <template v-if="$store.state.songPlayed == itemEntity.number">
+              <template v-if="$store.state.isPaused == true">
+                <icon-play />
+              </template>
+              <template v-if="$store.state.songPlayed == itemEntity.number && $store.state.isPaused == false">
+                <icon-pause class='icon-pause'/>
+              </template>
+
+
+              <!--<template v-if="$store.state.songPlayed == itemEntity.number">
                 <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
               </template>
               <template v-else>
                 <i class="el-icon-video-play" />
-              </template>
+              </template>-->
             </span>
             <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank">
               <icon-download />
@@ -125,10 +135,10 @@ export default {
         return {}
     }
   },
-  songPlayed: {
-    type: Number,
-    default: null
-  }
+    songPlayed: {
+      type: Number,
+      default: null
+    }
   },
   data() {
     return {

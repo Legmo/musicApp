@@ -19,7 +19,7 @@
     }
   }
   .about-txt {
-    width: $space * 25;
+    max-width: $space * 25;
     margin: ($space * 2) auto ($space * 7.5);
     font-weight: 200;
     p {

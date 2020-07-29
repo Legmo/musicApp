@@ -9,15 +9,33 @@
             <span class="small gray">{{entity.date}} | Выпуск {{entity.number}}</span>
             <div class="rating" v-if="entity.rating">нету рейтинга в json</div>
           </div>
-          <div class="buttons">
-            <div class="buttodiplay" @click="playSong(entity)">
+          <!--<div class="buttodiplay" @click="playSong(entity)">
+            <template v-if="$store.state.songPlayed == entity.number">
+              <i :class="{
+                    'el-icon-video-play': $store.state.isPaused == true,
+                    'el-icon-video-pause': $store.state.songPlayed == entity.number && $store.state.isPaused == false}"></i>
+            </template>
+            <template v-else>
+              <i class="el-icon-video-play" />
+            </template>
+          </div>-->
+          <div class="buttons" @click="playSong(entity)" >
+            <div :class="[
+              ($store.state.songPlayed == entity.number && $store.state.isPaused === false) && 'active',
+              ($store.state.songPlayed == entity.number && $store.state.isPaused === true)  && 'pause',
+            ]">
               <template v-if="$store.state.songPlayed == entity.number">
-                <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == entity.number && $store.state.isPaused == false}"></i>
+                <template v-if="$store.state.isPaused == true">
+                  <icon-play />
+                </template>
+                <template v-if="$store.state.songPlayed == entity.number && $store.state.isPaused == false">
+                  <icon-pause class='icon-pause'/>
+                </template>
               </template>
               <template v-else>
-                <i class="el-icon-video-play" />
+                <icon-play />
               </template>
-            </div>
+          </div>
             <a class="button-download" :href="entity.audiofile_url" download target="_blank">
               <icon-download />
             </a>
@@ -43,7 +61,6 @@
         </div>
       </div>
     </div>
-
   <div class="release-content">
     <div class="composition" v-for="(item, index) in entity.content" :key="index" :id="`composition-${index}`">
       <div class="composition-name">
@@ -84,8 +101,6 @@
         </el-button>
     </div>
   </div>
-
-
 </div>
 </template>
 
@@ -97,7 +112,11 @@ export default {
     path: {
       type: String,
       default: ''
-    }
+    },
+    songPlayed: {
+        type: Number,
+        default: null
+      }
   },
   data() {
     return {
@@ -117,14 +136,29 @@ export default {
     scrollToTop() {
         window.scrollTo(0,0);
     },
-    playSong(item) {
-      if( this.$store.state.songPlayed == item.number) {
+/*    playSong(item) {
+      if(this.$store.state.songPlayed == item.number) {
         if(!this.$store.state.isPaused) {
           this.$store.commit('setPaused', true);
         }
       } else {
         this.$store.commit('setSong', item.number);
       }
+    },*/
+    playSong(item) {
+        console.log('playSong');
+        if( this.$store.state.songPlayed == item.number) {
+            console.log('1');
+            if(!this.$store.state.isPaused) {
+                this.$store.commit('setPaused', true);
+            } else {
+                this.$store.commit('setPaused', false);
+            }
+        } else {
+            console.log('2', this.$store.state.songPlayed, item.number);
+            this.$store.commit('setSong', item.number);
+            this.$store.commit('setPaused', false);
+        }
     },
     reroute(id) {
         this.$router.push({name: 'Tags', params: { tagId: id }});

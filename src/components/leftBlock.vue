@@ -7,7 +7,7 @@
       <li><router-link :to="{ name: 'About', params: { path: 'contacts' } }" :class="{'sidebar-nav-link':true}">Контакты</router-link></li>
     </ul>
     <div class="about-txt">
-      <p>Программа Бориса Гребенщикова. <br>Выходит еженедельно на «<a href="https://www.radiorus.ru/brand/57083/episodes" target="_blank" title="Страница передачи на сайте «Радио России»">Радио России</a>».</p>
+      <p>Программа Бориса Гребенщикова. <br>Выходит еженедельно <br>на «<a href="https://www.radiorus.ru/brand/57083/episodes" target="_blank" title="Страница передачи на сайте «Радио России»">Радио России</a>» <br>и радио «<a href="http://www.cultradio.ru/brand/about/id/57083/" target="_blank" title="Страница передачи на сайте «Радио Культура»">Культура</a>».</p>
     </div>
   <div class="tag" >
   <span class="tag-item" v-for="item in tags" :key="item.id" v-bind:style="{ fontSize: calculateTagSize(item.releases_number) }">
