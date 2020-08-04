@@ -11,7 +11,8 @@ export default new Vuex.Store({
           dir: 'desc',
           sortBy: 'date'
         },
-        mainList: []
+        mainList: [],
+        playerList: []
     },
     mutations: {
         setSong(state, value) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
         },
         setList(state, value) {
             state.mainList = value;
+        },
+        setPlayerList(state, value) {
+            state.playerList = value;
         },
     }
 })

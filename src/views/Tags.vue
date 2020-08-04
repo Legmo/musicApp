@@ -18,7 +18,7 @@
         <itemList :itemEntity="item" :layout="layout"/>
       </template>
     </div>
-    <el-pagination
+    <!-- <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page.sync="currentPage"
@@ -26,12 +26,14 @@
       :page-size.sync="itemsPerPage"
       layout="prev, pager, next, sizes"
       :total="Object.keys(entity).length">
-    </el-pagination>
+    </el-pagination> -->
+    <pager  :pager="pager"/>
   </div>
 </template>
 
 <script>
 import itemList from "@/components/itemList.vue";
+import pager from "@/components/pager.vue";
 import _ from 'lodash'
 
 export default {
@@ -43,7 +45,8 @@ export default {
   }
   },
   components: {
-    itemList
+    itemList,
+    pager
   },
   data() {
     return {
@@ -52,7 +55,12 @@ export default {
       cloneEntity: {},
       tagNames: [],
       itemsPerPage: 8,
-      currentPage: 1,
+      currentPage: 0,
+      pager: {
+        current_page: 0,
+        items_per_page: 8,
+        total_pages: null
+      }
     }
   },
   mounted() {
@@ -64,8 +72,9 @@ export default {
 computed: {
   pagedEntity () {
     let ent = Object.keys(this.cloneEntity).map(i => this.cloneEntity[i]);
-    return ent.slice(((this.currentPage - 1) * this.itemsPerPage), (this.itemsPerPage * this.currentPage))
-  },
+    //return ent.slice(( (this.currentPage - 1) * this.itemsPerPage), (this.itemsPerPage * this.currentPage))
+    return ent
+  }
 },
   methods: {
     rewriteEntityForPagination(){
@@ -90,29 +99,40 @@ computed: {
         }
         return five;
       },
+      addPage() {
+        this.currentPage = this.pager.current_page +1
+      },
+      reducePage() {
+        this.currentPage = this.pager.current_page +1
+      },
+      changePage(val) {
+        this.currentPage = val-1
+      },
       handleSizeChange(val) {
         this.itemsPerPage = val;
-      },
-      handleCurrentChange(val) {
-        this.currentPage = val;
+        this.identifyTags(this.tagId);
       },
       identifyTags(val) {
         let self = this;
         if (val == "All"){
-         this.$http.get(`${this.$rootApiPath}releases/tags?_format=json`).then(function (e) {
+         this.$http.get(`${this.$rootApiPath}releases/tags?_format=json&items_per_page=${this.itemsPerPage}&page=${this.currentPage}`).then(function (e) {
            self.entity = e.body.rows;
+           self.pager = e.body.pager;
          }).catch(function () {
-           self.entity = require("../assets/tags.json").rows;
+           self.entity = require("../assets/tags-new.json").rows;
+           self.pager = require("../assets/tags-new.json").pager;
            self.$message.error("There was an error while reading data");
          }).finally(function () {
            this.rewriteEntityForPagination()
          });
         }
         else {
-          this.$http.get(`${this.$rootApiPath}releases/tags/${val}?_format=json`).then(function (e) {
+          this.$http.get(`${this.$rootApiPath}releases/tags/${val}?_format=json&items_per_page=${this.itemsPerPage}&page=${this.currentPage}`).then(function (e) {
             self.entity = e.body.rows;
+            self.pager = e.body.pager;
           }).catch(function () {
-            self.entity = require("../assets/tag20.json").rows;
+            self.entity = require("../assets/tag20-new.json").rows;
+            self.pager = require("../assets/tag20-new.json").pager;
             self.$message.error("There was an error while reading data");
           }).finally(function () {
             this.rewriteEntityForPagination()
@@ -123,7 +143,11 @@ computed: {
   },
   watch: {
     'tagId': function (newValue) {
+      this.currentPage = 0;
       this.identifyTags(newValue)
+    },
+    'currentPage': function () {
+      this.identifyTags(this.tagId);
     },
   }
 };

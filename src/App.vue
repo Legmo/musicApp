@@ -40,24 +40,54 @@ export default {
       entity: [],
     }
   },
-  created: function () {
-    var self = this;
+  // created: function () {
+  //   var self = this;
+  //   this.$http.get(this.$rootApiPath + 'releases?items_per_page=All&_format=json').then(function (e) {
+  //       self.entity = e.body.rows;
+  //       self.rewriteEntityForPlayer(self.entity);
+  //   }).catch(function () {
+  //     self.entity = require("./assets/responses.json").rows;
+  //     self.$message.error("There was an error while reading data");
+  //     self.rewriteEntityForPlayer(self.entity);
+  //   }).finally(function () {
+  //
+  //   });
+  // },
+  created: function (){
+    let self = this;
     this.$http.get(this.$rootApiPath + 'releases?items_per_page=All&_format=json').then(function (e) {
-        self.entity = e.body.rows;
-        self.rewriteEntityForPlayer(self.entity);
-    }).catch(function () {
-      self.entity = require("./assets/responses.json").rows;
-      self.$message.error("There was an error while reading data");
-      self.rewriteEntityForPlayer(self.entity);
-    }).finally(function () {
+          this.$store.commit('setPlayerList', e.body.rows);
+      }).catch(function () {
+        let ent = require("./assets/releasesAll.json").rows;
+        this.$store.commit('setPlayerList', ent);
+        self.$message.error("There was an error while reading data");
+      }).finally(function () {
+      });
 
-    });
+    // if(this.$store.state.mainList.length <= 0) {
+    //   this.$http.get(this.$rootApiPath + 'releases?items_per_page=8&page=0&_format=json').then(function (e) {
+    //         this.$store.commit('setList', e.body.rows);
+    //     }).catch(function () {
+    //       let ent = require("./assets/responses.json").rows;
+    //       this.$store.commit('setList', ent);
+    //       self.$message.error("There was an error while reading data");
+    //     }).finally(function () {
+    //     });
+    // }
+
+    // this.$store.watch(() =>  this.$store.state.mainList, newValue => {
+    //   self.entity = newValue;
+    //   self.rewriteEntityForPlayer(self.entity);
+    // })
+    this.$store.watch(() =>  this.$store.state.playerList, newValue => {
+      self.entity = newValue;
+      self.rewriteEntityForPlayer(self.entity);
+    })
+
   },
-  mounted() {
-},
   methods: {
     rewriteEntityForPlayer(ent){
-      this.$store.commit('setList', ent);
+      //this.$store.commit('setList', ent);
       this.$refs.player.music = _.map(ent, function(currentObject) {
         currentObject.name = currentObject.title;
         currentObject.cover = currentObject.image_url;

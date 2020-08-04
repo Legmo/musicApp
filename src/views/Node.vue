@@ -136,26 +136,14 @@ export default {
     scrollToTop() {
         window.scrollTo(0,0);
     },
-/*    playSong(item) {
-      if(this.$store.state.songPlayed == item.number) {
-        if(!this.$store.state.isPaused) {
-          this.$store.commit('setPaused', true);
-        }
-      } else {
-        this.$store.commit('setSong', item.number);
-      }
-    },*/
     playSong(item) {
-        console.log('playSong');
         if( this.$store.state.songPlayed == item.number) {
-            console.log('1');
             if(!this.$store.state.isPaused) {
                 this.$store.commit('setPaused', true);
             } else {
                 this.$store.commit('setPaused', false);
             }
         } else {
-            console.log('2', this.$store.state.songPlayed, item.number);
             this.$store.commit('setSong', item.number);
             this.$store.commit('setPaused', false);
         }
