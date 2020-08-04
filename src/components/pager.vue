@@ -12,7 +12,7 @@
       <li class="number" v-if="pager.current_page < pager.total_pages-10"><span v-on:click="$parent.changePage(pager.total_pages)">{{pager.total_pages}}</span></li>
     </ul>
 
-    <button type="button" :disabled="pager.current_page == pager.total_pages" class="btn-next" @click="$parent.addPage()"><i class="el-icon el-icon-arrow-right"></i></button>
+    <button type="button" :disabled="pager.current_page+1 == pager.total_pages" class="btn-next" @click="$parent.addPage()"><i class="el-icon el-icon-arrow-right"></i></button>
     <span class="el-pagination__sizes">
       <el-select v-model="pager.items_per_page" placeholder="Select" @change="$parent.handleSizeChange">
        <el-option v-for="size in pageSizes"
