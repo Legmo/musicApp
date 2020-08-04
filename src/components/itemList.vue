@@ -1,5 +1,6 @@
 <template>
   <div :class="['item', layout == 'grid' ? 'item-grid' : 'item-list']">
+
     <!-- List layout -->
     <template v-if="layout=='list'">
       <div class="column-left" @click="playSong(itemEntity)">
@@ -31,12 +32,6 @@
             class="title-link"
             ><div class="title">{{itemEntity.title}}</div>
           </router-link>
-
-          <!--<router-link
-            :to="{ name: 'Article', params: { path: itemEntity.node_path } }"
-            class="read-more"
-            >Читать
-          </router-link>-->
             <el-collapse>
               <el-collapse-item title="Список композиций" name="1">
                 <ol>
@@ -77,8 +72,7 @@
     <template v-else-if="layout=='grid'">
       <div class="background" v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
         <div class="rating"  v-if="itemEntity.rating">нету рейтинга в json</div>
-        <div :class="['showOnHover', ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === false) ? 'active' : null, ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === true) ? 'pause' : 'normal' ]"
-        >
+        <div :class="['showOnHover', ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === false) ? 'active' : null, ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === true) ? 'pause' : 'normal' ]">
             <span class="player-button" @click="playSong(itemEntity)">
               <template v-if="$store.state.isPaused == true">
                 <icon-play />
@@ -86,30 +80,23 @@
               <template v-if="$store.state.songPlayed == itemEntity.number && $store.state.isPaused == false">
                 <icon-pause class='icon-pause'/>
               </template>
-
-
-              <!--<template v-if="$store.state.songPlayed == itemEntity.number">
-                <i :class="{'el-icon-video-play': $store.state.isPaused == true, 'el-icon-video-pause': $store.state.songPlayed == itemEntity.number && $store.state.isPaused == false}"></i>
-              </template>
               <template v-else>
-                <i class="el-icon-video-play" />
-              </template>-->
+                <icon-play />
+              </template>
             </span>
             <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank">
               <icon-download />
             </a>
           <router-link
             :to="{ name: 'Article', params: { path: itemEntity.number } }"
-            class="read-more"
-          >
+            class="read-more">
             Читать
           </router-link>
         </div>
       </div>
       <router-link
         :to="{ name: 'Article', params: { path: itemEntity.number } }"
-        class="title-link"
-      >
+        class="title-link">
         <div class="title ">{{itemEntity.title}}</div>
       </router-link>
       <div class="bottom">

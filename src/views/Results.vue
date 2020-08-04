@@ -87,15 +87,10 @@ export default {
     },
   },
   watch: {
-    'localQuery': function (newValue) {
-     //  let self = this;
-     // this.$http.get(`${this.$rootApiPath}releases/search?text=${newValue}&_format=json`).then(function (e) {
-     //   self.entity = e.body.rows;
-     // }).catch(function () {
-     //   self.entity = require("../assets/search_names.json").rows;
-     //   self.$message.error("There was an error while reading data");
-     // });
-     this.getPageData(newValue)
+    '$route.query.text'(newValue) {
+      console.log(newValue)
+      this.localQuery = this.$route.query.text
+      this.getPageData(newValue)
     },
     'currentPage': function () {
       this.getPageData(this.localQuery);

@@ -1,32 +1,16 @@
 <template>
   <div  :class="['mainList', 'tags-list-all', layout === 'grid' ? 'view-grid' : 'view-list']">
     <h1 v-if="tagId=='All'" class="titleOne">Выпуски по тэгам</h1>
-    <div v-for="(item, key) in pagedEntity" :key="key" :class="{'tag-header':item.additionalTagInfo}">
-      <template v-if="item.additionalTagInfo">
-        <h4 class="titleTwo">
-          Тэг {{item.additionalTagInfo.tagTitle}}
-          <span class="small gray">
-            ({{item.additionalTagInfo.tagLength}}
-            {{getNoun(item.additionalTagInfo.tagLength, 'выпуск', 'выпуска', 'выпусков')}} )
-          </span>
-        </h4>
-      </template>
-      <template v-if="item.additionalTagInfo">
-        <itemList :itemEntity="item" :layout="layout"/>
-      </template>
-      <template v-else>
-        <itemList :itemEntity="item" :layout="layout"/>
-      </template>
+    <div v-for="(item, key) in cloneEntity" :key="key" :class="{'tag-header':item.additionalTagInfo, 'test': true}">
+      <h4 class="titleTwo">
+        Тэг {{key}}
+        <span class="small gray">
+          ({{item.releases.length}}
+          {{getNoun(item.releases.length, 'выпуск', 'выпуска', 'выпусков')}} )
+        </span>
+      </h4>
+      <itemList v-for="(release, index) in item.releases" :itemEntity="release" :layout="layout" :key="index"/>
     </div>
-    <!-- <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page.sync="currentPage"
-      :page-sizes="[4, 8, 24, 48]"
-      :page-size.sync="itemsPerPage"
-      layout="prev, pager, next, sizes"
-      :total="Object.keys(entity).length">
-    </el-pagination> -->
     <pager  :pager="pager"/>
   </div>
 </template>
@@ -70,19 +54,10 @@ export default {
     this.identifyTags(this.tagId)
 },
 computed: {
-  pagedEntity () {
-    let ent = Object.keys(this.cloneEntity).map(i => this.cloneEntity[i]);
-    //return ent.slice(( (this.currentPage - 1) * this.itemsPerPage), (this.itemsPerPage * this.currentPage))
-    return ent
-  }
 },
   methods: {
     rewriteEntityForPagination(){
       this.cloneEntity = _.cloneDeep(this.entity);
-      this.cloneEntity = _.flatMap(_.map(this.cloneEntity, function(currentObject, key) {
-        currentObject.releases[0].additionalTagInfo = {'tagTitle':key, 'tagLength': currentObject.releases.length}
-        return currentObject.releases;
-      }))
     },
     getNoun(number, one, two, five) {
         let n = Math.abs(number);

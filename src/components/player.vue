@@ -65,7 +65,6 @@ export default {
   data() {
     return {
       loading: true,
-      isReady: false,
       entity: {
       },
       music: [],
@@ -75,12 +74,12 @@ export default {
     var self = this;
     this.$store.watch(() =>  this.$store.state.playerList, () => {
       this.getCurrentMusic();
-      //isReady = true;
       this.loading = false
     })
     this.$store.watch(() => this.$store.state.songPlayed, newValue => {
       let songIndex = _.findIndex(self.music, function(o) { return o.number == newValue; })
       self.$refs.aplayer.switch(songIndex);
+      setTimeout(() => this.$refs.aplayer.play(), 300)
       self.$store.commit('setPaused', false);
     })
     this.$store.watch(() =>  this.$store.state.isPaused, newValue => {

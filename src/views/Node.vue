@@ -139,6 +139,7 @@ export default {
     playSong(item) {
         if( this.$store.state.songPlayed == item.number) {
             if(!this.$store.state.isPaused) {
+              console.log('set pause from node')
                 this.$store.commit('setPaused', true);
             } else {
                 this.$store.commit('setPaused', false);
