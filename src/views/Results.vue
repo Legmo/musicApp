@@ -65,7 +65,7 @@ export default {
       this.currentPage = this.pager.current_page +1
     },
     reducePage() {
-      this.currentPage = this.pager.current_page +1
+      this.currentPage = this.pager.current_page -1
     },
     changePage(val) {
       this.currentPage = val-1
@@ -87,10 +87,13 @@ export default {
     },
   },
   watch: {
-    '$route.query.text'(newValue) {
+    'localQuery': function (newValue) {
+     this.getPageData(newValue)
+    },
+    '$route.query.text': function(newValue) {
       console.log(newValue)
-      this.localQuery = this.$route.query.text
-      this.getPageData(newValue)
+      this.localQuery = newValue
+
     },
     'currentPage': function () {
       this.getPageData(this.localQuery);

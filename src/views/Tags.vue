@@ -78,7 +78,7 @@ computed: {
         this.currentPage = this.pager.current_page +1
       },
       reducePage() {
-        this.currentPage = this.pager.current_page +1
+        this.currentPage = this.pager.current_page -1
       },
       changePage(val) {
         this.currentPage = val-1
