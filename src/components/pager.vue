@@ -4,11 +4,11 @@
     <ul class="el-pager">
       <li class="active number" v-if="pager.current_page !=0">... </li>
       <li v-for="page in pagesSliced" :class="{'number':true, 'active': page == pager.current_page+1}" :key="page">
-
         <template v-if="page == pager.current_page+1">{{page}}</template>
         <template v-else><span v-on:click="$parent.changePage(page)">{{page}}</span></template>
       </li>
-      <li class="active number" v-if="pager.current_page != pager.total_pages">... </li>
+      <li class="active number" v-if="pager.current_page < pager.total_pages-10">... </li>
+      <li class="number" v-if="pager.current_page < pager.total_pages-10"><span v-on:click="$parent.changePage(pager.total_pages)">{{pager.total_pages}}</span></li>
     </ul>
     <button type="button" :disabled="pager.current_page == pager.total_pages" class="btn-next" @click="$parent.addPage()"><i class="el-icon el-icon-arrow-right"></i></button>
     <span class="el-pagination__sizes">
@@ -48,7 +48,10 @@ export default {
     pagesSliced () {
       let res
       if(this.pager.total_pages > 10) {
-        res = this.range(this.pager.current_page+1, this.pager.current_page+10);
+        if (this.pager.current_page+10 >= this.pager.total_pages) {
+          res = this.range(this.pager.total_pages-10, this.pager.total_pages);
+        } else { res = this.range(this.pager.current_page+1, this.pager.current_page+10);
+          }
       } else {
         res = this.range(this.pager.current_page+1, this.pager.total_pages);
       }
