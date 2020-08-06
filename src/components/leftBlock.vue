@@ -61,16 +61,6 @@ export default {
     });
   },
   methods: {
-    // isSelected(val) {
-    //   let selected = false
-    //   console.log(val)
-    //   if (this.$route.params.path == val) {
-    //     selected = true
-    //     console.log('true')
-    //   }
-    //   console.log('final '+ selected)
-    //   return selected
-    // },
     calculateTagSize(count) {
       let sizeDepending=''
       var maxVal = Math.max.apply(Math, this.tags.map(function(o) { return parseInt(o.releases_number) ; }))

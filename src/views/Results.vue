@@ -1,5 +1,6 @@
 <template>
   <div class="results">
+    <el-row v-loading="loading">
     <h1>Результаты поиска {{localQuery}}</h1>
     <div v-if="Object.keys(entity).length == 0">
       Ничего не найдено
@@ -9,15 +10,7 @@
         <itemList :itemEntity='item' />
       </div>
     </div>
-    <!-- <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page.sync="currentPage"
-      :page-sizes="[4, 8, 24, 48]"
-      :page-size.sync="itemsPerPage"
-      layout="prev, pager, next, sizes"
-      :total="Object.keys(entity).length">
-    </el-pagination> -->
+  </el-row>
     <pager  :pager="pager"/>
   </div>
 </template>
@@ -40,6 +33,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       itemsPerPage: 8,
       currentPage: 0,
       entity: [],
@@ -79,9 +73,11 @@ export default {
        this.$http.get(`${this.$rootApiPath}releases/search?text=${val}&items_per_page=${this.itemsPerPage}&page=${this.currentPage}&_format=json`).then(function (e) {
          self.entity = e.body.rows;
          self.pager = e.body.pager;
+         this.loading = false;
        }).catch(function () {
          self.entity = require("../assets/search_cogo.json").rows;
          self.pager = require("../assets/search_cogo.json").pager;
+         this.loading = false;
          self.$message.error("There was an error while reading data");
        });
     },
@@ -91,9 +87,8 @@ export default {
      this.getPageData(newValue)
     },
     '$route.query.text': function(newValue) {
-      console.log(newValue)
-      this.localQuery = newValue
-
+      this.localQuery = newValue;
+      this.loading = true;
     },
     'currentPage': function () {
       this.getPageData(this.localQuery);
