@@ -3,7 +3,8 @@
     <button type="button" :disabled="pager.current_page == 0" class="btn-prev" @click="$parent.reducePage()"><i class="el-icon el-icon-arrow-left"></i></button>
 
     <ul class="el-pager">
-      <li class="active number" v-if="pager.current_page > 5">... </li>
+      <li class="number" v-if="pager.current_page > 5 && pager.total_pages > 10"><span v-on:click="$parent.changePage(1)">1</span></li>
+      <li class="active number" v-if="pager.current_page > 5 && pager.total_pages > 10">... </li>
       <li v-for="page in pagesSliced" :class="{'number':true, 'active': page == pager.current_page+1}" :key="page">
         <template v-if="page == pager.current_page+1">{{page}}</template>
         <template v-else><span v-on:click="$parent.changePage(page)">{{page}}</span></template>
