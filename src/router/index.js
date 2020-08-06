@@ -11,7 +11,7 @@ const routes = [
     component: List
   },
   {
-    path: "/:path",
+    path: "/info/:path",
     name: "About",
     props: true,
     component: () =>

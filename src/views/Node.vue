@@ -72,7 +72,7 @@
     </div>
     <div class="tags">
       <span v-for="(tag, index) in entity.tags" :key="index">
-        <a class="tag-item" @click="reroute(tag.id)" >{{tag.title}}</a>
+        <a class="tag-item" @click="reroute(tag.id)" v-html="tag.title"></a>
       </span>
     </div>
     <div class="release-controls">

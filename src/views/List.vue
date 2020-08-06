@@ -1,29 +1,12 @@
 <template>
     <div>
+      <el-row v-loading="loading">
         <div  :class="['mainList', layout === 'grid' ? 'view-grid' : 'view-list']">
             <div v-for="item in entity" :key="item.number">
                 <itemList :itemEntity='item' :layout="layout"/>
             </div>
         </div>
-        <!-- <div class="el-pagination">
-          <button type="button" :disabled="pager.current_page == 0" class="btn-prev" @click="reducePage()"><i class="el-icon el-icon-arrow-left"></i></button>
-          <ul class="el-pager">
-            <li v-for="page in pager.total_pages" :class="{'number':true, 'active': page == pager.current_page+1}" :key="page">
-              <template v-if="page == pager.current_page+1">{{page}}</template>
-              <template v-else><span v-on:click="currentPage = page-1">{{page}}</span></template>
-            </li>
-          </ul>
-          <button type="button" :disabled="pager.current_page == pager.total_pages" class="btn-next" @click="addPage()"><i class="el-icon el-icon-arrow-right"></i></button>
-          <span class="el-pagination__sizes">
-            <el-select v-model="pager.items_per_page" placeholder="Select" @change="handleSizeChange">
-             <el-option v-for="size in pageSizes"
-               :key="size"
-               :label="`${size} на странице`"
-               :value="size">
-             </el-option>
-           </el-select>
-          </span>
-        </div> -->
+      </el-row>
         <pager  :pager="pager"/>
   </div>
 </template>
@@ -42,6 +25,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       itemsPerPage: 8,
       currentPage: 0,
       layout: 'list',
@@ -73,13 +57,14 @@ export default {
           self.entity = e.body.rows;
           self.pager = e.body.pager;
           self.$store.commit('setList', self.entity);
+          this.loading = false;
       }).catch(function () {
         self.entity = require("../assets/releases.json").rows;
         self.pager = require("../assets/releases.json").pager;
         self.$message.error("There was an error while reading data");
         self.$store.commit('setList', self.entity);
+        this.loading = false;
       }).finally(function () {
-
       });
     },
     addPage() {

@@ -1,9 +1,11 @@
 <template>
+
   <div  :class="['mainList', 'tags-list-all', layout === 'grid' ? 'view-grid' : 'view-list']">
+    <el-row v-loading="loading">
     <h1 v-if="tagId=='All'" class="titleOne">Выпуски по тэгам</h1>
     <div v-for="(item, key) in cloneEntity" :key="key" :class="{'tag-header':item.additionalTagInfo, 'test': true}">
       <h4 class="titleTwo">
-        Тэг {{key}}
+        Тэг <span v-html="key"></span>
         <span class="small gray">
           ({{item.releases.length}}
           {{getNoun(item.releases.length, 'выпуск', 'выпуска', 'выпусков')}} )
@@ -11,8 +13,10 @@
       </h4>
       <itemList v-for="(release, index) in item.releases" :itemEntity="release" :layout="layout" :key="index"/>
     </div>
+    </el-row>
     <pager  :pager="pager"/>
   </div>
+
 </template>
 
 <script>
@@ -34,6 +38,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       entity: {},
       layout: 'list',
       cloneEntity: {},
@@ -58,6 +63,7 @@ computed: {
   methods: {
     rewriteEntityForPagination(){
       this.cloneEntity = _.cloneDeep(this.entity);
+      this.loading = false;
     },
     getNoun(number, one, two, five) {
         let n = Math.abs(number);
@@ -94,11 +100,11 @@ computed: {
            self.entity = e.body.rows;
            self.pager = e.body.pager;
          }).catch(function () {
-           self.entity = require("../assets/tags-new.json").rows;
-           self.pager = require("../assets/tags-new.json").pager;
+           self.entity = require("../assets/tags.json").rows;
+           self.pager = require("../assets/tags.json").pager;
            self.$message.error("There was an error while reading data");
          }).finally(function () {
-           this.rewriteEntityForPagination()
+           this.rewriteEntityForPagination();
          });
         }
         else {
@@ -110,7 +116,7 @@ computed: {
             self.pager = require("../assets/tag20-new.json").pager;
             self.$message.error("There was an error while reading data");
           }).finally(function () {
-            this.rewriteEntityForPagination()
+            this.rewriteEntityForPagination();
           });
         }
 

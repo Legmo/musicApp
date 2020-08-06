@@ -58,10 +58,10 @@
         <div class="tags">
             <span v-for="(tag, index) in itemEntity.tags" :key="index">
                 <template v-if="$route.params.tagId == tag.id">
-                    <span class="tag-item">{{tag.title}}</span>
+                    <span class="tag-item" v-html="tag.title"></span>
                 </template>
                 <template v-else>
-                  <a class="tag-item" @click="reroute(tag.id)" >{{tag.title}}</a>
+                  <a class="tag-item" @click="reroute(tag.id)" v-html="tag.title"></a>
                 </template>
             </span>
         </div>
