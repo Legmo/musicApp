@@ -40,25 +40,12 @@ export default {
       entity: [],
     }
   },
-  // created: function () {
-  //   var self = this;
-  //   this.$http.get(this.$rootApiPath + 'releases?items_per_page=All&_format=json').then(function (e) {
-  //       self.entity = e.body.rows;
-  //       self.rewriteEntityForPlayer(self.entity);
-  //   }).catch(function () {
-  //     self.entity = require("./assets/responses.json").rows;
-  //     self.$message.error("There was an error while reading data");
-  //     self.rewriteEntityForPlayer(self.entity);
-  //   }).finally(function () {
-  //
-  //   });
-  // },
   created: function (){
     let self = this;
-    this.$http.get(this.$rootApiPath + 'releases?items_per_page=All&_format=json').then(function (e) {
-          this.$store.commit('setPlayerList', e.body.rows);
+    this.$http.get(this.$rootApiPath + 'player-releases?_format=json').then(function (e) {
+          this.$store.commit('setPlayerList', e.body);
       }).catch(function () {
-        let ent = require("./assets/releasesAll.json").rows;
+        let ent = require("./assets/player-releases.json");
         this.$store.commit('setPlayerList', ent);
         self.$message.error("There was an error while reading data");
       }).finally(function () {
@@ -72,13 +59,21 @@ export default {
   },
   methods: {
     rewriteEntityForPlayer(ent){
-      this.$refs.player.music = _.map(ent, function(currentObject) {
-        currentObject.name = currentObject.title;
-        currentObject.cover = currentObject.image_url;
-        currentObject.url = currentObject.audiofile_url;
+      var map = {
+        title : "name",
+        image_url: "cover",
+        audiofile_url: "url"
+    }
+      this.$refs.player.music  = _.map(ent, function(currentObject) {
+        _.each(currentObject, function(value, key) {
+            key = map[key] || key;
+            currentObject[key] = value;
+        })
         currentObject.artist = "Аэростат"
-        return currentObject;
+        currentObject = _.omit(currentObject, Object.keys(map))
+        return currentObject
       })
+
     },
   }
 };
