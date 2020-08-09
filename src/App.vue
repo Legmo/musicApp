@@ -23,7 +23,7 @@
 
 <script>
 import _ from 'lodash'
-import Vue from "vue"
+
 import Player from "@/components/player.vue";
 import LeftBlock from "@/components/leftBlock.vue";
 import mainHeader from "@/components/header.vue";
