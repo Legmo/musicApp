@@ -7,7 +7,9 @@
         <div :class="['number',
         ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === false) ? 'active' : null,
         ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === true)  ? 'pause'  : 'normal'
-        ]">
+        ]"
+           title="Играть / Пауза"
+        >
           <template v-if="$store.state.songPlayed !== itemEntity.number">
             <span class="digit">{{itemEntity.number}}</span>
           </template>
@@ -30,16 +32,19 @@
             <router-link
             :to="{ name: 'Article', params: { path: itemEntity.number } }"
             class="title-link"
-            ><div class="title">{{itemEntity.title}}</div>
+            title="Читать выпуск"
+            >
+              <div class="title">{{itemEntity.title}}
+            </div>
           </router-link>
-            <el-collapse>
-              <el-collapse-item title="Список композиций" name="1">
+            <el-collapse title="Трек-лист выпуска">
+              <el-collapse-item title="Список композиций" name="1" >
                 <ol>
                   <template  v-for="(song, index) in itemEntity.composition_list" >
-                  <li v-if="song.composition_name" :key="index">
-                    {{song.composition_name}}
-                  </li>
-                </template>
+                    <li v-if="song.composition_name" :key="index">
+                      {{song.composition_name}}
+                    </li>
+                  </template>
                 </ol>
               </el-collapse-item>
             </el-collapse>
@@ -47,7 +52,7 @@
           <div class="part-two">
             <div class="rating" v-if="itemEntity.rating" >нету рейтинга в json</div>
             <div class="date">{{itemEntity.date}}</div>
-            <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank">
+            <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank" title="Скачать mp3">
               <icon-download />
             </a>
           </div>
@@ -73,23 +78,25 @@
       <div class="background" v-bind:style="{ 'background-image': 'url(' + itemEntity.image_url + ')' }">
         <div class="rating"  v-if="itemEntity.rating">нету рейтинга в json</div>
         <div :class="['showOnHover', ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === false) ? 'active' : null, ($store.state.songPlayed == itemEntity.number && $store.state.isPaused === true) ? 'pause' : 'normal' ]">
-            <span class="player-button" @click="playSong(itemEntity)">
-              <template v-if="$store.state.isPaused == true">
+            <span class="player-button" @click="playSong(itemEntity)" title="Играть / Пауза">
+              <template v-if="$store.state.songPlayed == itemEntity.number && $store.state.isPaused == true">
                 <icon-play />
               </template>
               <template v-if="$store.state.songPlayed == itemEntity.number && $store.state.isPaused == false">
                 <icon-pause class='icon-pause'/>
               </template>
-              <template v-else>
+              <template v-if="$store.state.songPlayed !== itemEntity.number ">
                 <icon-play />
               </template>
             </span>
-            <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank">
+            <a class="button-download" :href="itemEntity.audiofile_url" download target="_blank" title="Скачать mp3">
               <icon-download />
             </a>
           <router-link
             :to="{ name: 'Article', params: { path: itemEntity.number } }"
-            class="read-more">
+            class="read-more"
+            title="Читать выпуск"
+          >
             Читать
           </router-link>
         </div>
@@ -97,7 +104,10 @@
       <router-link
         :to="{ name: 'Article', params: { path: itemEntity.number } }"
         class="title-link">
-        <div class="title ">{{itemEntity.title}}</div>
+        <div class="title"
+         title="Читать выпуск">
+          {{itemEntity.title}}
+        </div>
       </router-link>
       <div class="bottom">
         <div class="number">{{itemEntity.number}}</div>

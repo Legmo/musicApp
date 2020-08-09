@@ -1,0 +1,41 @@
+// Responsive mixins
+
+//Device sizes
+$phone-width:       576px; //sm
+$tablet-width:      768px; //md
+$notebook-width:    992px; //lg
+$big-screen-width: 1200px; //xl
+
+//Media-queries mixins
+@mixin phone-portrait {
+  @media (min-width: 0) and (max-width: #{$phone-width}) {
+    @content;
+  }
+}//0-576 (xs, extra-small)
+@mixin phone-landscape {
+  @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width}) {
+    @content;
+  }
+}//576-768 (sm, small)
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$notebook-width}) {
+    @content;
+  }
+}//768-992 (md, medium)
+@mixin notebook {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$big-screen-width}) {
+    @content;
+  }
+}//992-1200 (lg, large)
+@mixin big-screen {
+  @media (min-width: #{$big-screen-width}) {
+    @content;
+  }
+}//1200 - infinity (xl, extra-large)
+
+//SCSS sample
+/*
+  @include tablet {
+    background-color: red;
+  }
+*/

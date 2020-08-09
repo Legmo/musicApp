@@ -6,7 +6,7 @@
       <nav class="navbar navbar-expand-md">
           <div class="row">
             <div class="col-md-3 col-sm-6">
-              <router-link to="/" class="navbar-brand">
+              <router-link to="/" class="navbar-brand" title="Перейти к списку выпусков">
                 <img class="logo" src="./../assets/logo.svg" alt="Аэростат" />
                 <span>Аэростат</span>
               </router-link>
@@ -23,16 +23,16 @@
                     <div class="sorting">
                       <template v-if="$route.name == 'List'">
                         <span class="line-label">Сортировка:</span>
-                        <span :class="['link-box', ($store.state.sort.sortBy == 'date') && 'active']" @click="sorting('date')">
+                        <span :class="['link-box', ($store.state.sort.sortBy == 'date') && 'active']" @click="sorting('date')" title="Сортировка по дате" >
                           <span class="sorting-label">по дате</span>
                           <span class="sorting-icon">
                             <template v-if="$store.state.sort.sortBy == 'date'">
-                              <template v-if="$store.state.sort.dir == 'asc'"> <icon-sorting-up /></template>
+                              <template v-if="$store.state.sort.dir == 'asc'"> <icon-sorting-up  /></template>
                               <template v-else-if="$store.state.sort.dir == 'desc'"><icon-sorting-down /></template>
                             </template>
                           </span>
               </span>
-                        <span :class="['link-box', ($store.state.sort.sortBy == 'title') && 'active']" @click="sorting('title')">
+                        <span :class="['link-box', ($store.state.sort.sortBy == 'title') && 'active']" @click="sorting('title')" title="Сортировка по названию">
                           <span class="sorting-label">по названию</span>
                           <span class="sorting-icon">
                             <template v-if="$store.state.sort.sortBy == 'title'">
@@ -44,8 +44,8 @@
                       </template>
                     </div>
                     <div class="layout-switch">
-                      <a @click="changeLayout('list')" :class="{'layout-icon':true, 'active': layout == 'list'}" title="List"><icon-list /></a>
-                      <a class="layout-icon" @click="changeLayout('grid')" :class="{ 'active': layout == 'grid'}" title="Grid"><icon-tiles /></a>
+                      <a @click="changeLayout('list')" :class="{'layout-icon':true, 'active': layout == 'list'}" title="В виде списка"><icon-list /></a>
+                      <a class="layout-icon" @click="changeLayout('grid')" :class="{ 'active': layout == 'grid'}" title="В виде плитки"><icon-tiles /></a>
                     </div>
                   </template>
                 </div>

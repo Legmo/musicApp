@@ -8,7 +8,7 @@
                          name="x"
                          placeholder="Поиск по сайту"
                          v-model.trim="queryString" />
-                  <span class="input-group-btn">
+                  <span class="input-group-btn" title="Поиск по сайту">
                       <router-link :to="{
                                    name: 'Results',
                                    query: { text: queryString,}

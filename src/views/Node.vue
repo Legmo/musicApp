@@ -23,7 +23,7 @@
             <div :class="[
               ($store.state.songPlayed == entity.number && $store.state.isPaused === false) && 'active',
               ($store.state.songPlayed == entity.number && $store.state.isPaused === true)  && 'pause',
-            ]">
+            ]" title="Играть / Пауза">
               <template v-if="$store.state.songPlayed == entity.number">
                 <template v-if="$store.state.isPaused == true">
                   <icon-play />
@@ -36,7 +36,7 @@
                 <icon-play />
               </template>
           </div>
-            <a class="button-download" :href="entity.audiofile_url" download target="_blank">
+            <a class="button-download" :href="entity.audiofile_url" download target="_blank" title="Скачать mp3">
               <icon-download />
             </a>
           </div>
@@ -76,7 +76,8 @@
       </span>
     </div>
     <div class="release-controls">
-       <el-button :disabled="entity.prev_release_path==null"><i class="el-icon-arrow-left" />
+       <el-button :disabled="entity.prev_release_path==null" title="Читать предыдущий выпуск">
+         <i class="el-icon-arrow-left" />
          <template v-if="entity.prev_release_path!=null">
          <router-link
              :to="{ name: 'Article', params: { path: getUrl(entity.prev_release_path) } }"
@@ -84,14 +85,15 @@
         </template>
         <template v-else>Предыдущий выпуск</template>
         </el-button>
-        <el-button>
+       <el-button title="Вернуться к списку выпусков">
           <router-link
              :to="{ name: 'List'}"
-             class="read-more">
+             class="read-more"
+          >
              Список выпусков
            </router-link>
         </el-button>
-         <el-button :disabled="entity.next_release_path==null">
+       <el-button :disabled="entity.next_release_path==null" title="Читать следующий выпуск">
            <template v-if="entity.next_release_path!=null">
              <router-link
                 :to="{ name: 'Article', params: { path: getUrl(entity.next_release_path) } }"
@@ -139,7 +141,6 @@ export default {
     playSong(item) {
         if( this.$store.state.songPlayed == item.number) {
             if(!this.$store.state.isPaused) {
-              console.log('set pause from node')
                 this.$store.commit('setPaused', true);
             } else {
                 this.$store.commit('setPaused', false);

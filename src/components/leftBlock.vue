@@ -1,10 +1,10 @@
 <template>
   <div class="leftBlock">
     <ul class="sidebar-menu">
-      <li> <router-link to="/" :class="{'sidebar-nav-link':true}">Выпуски</router-link></li>
-      <li><router-link :to="{ name: 'About', params: { path: 'about' } }" :class="{'sidebar-nav-link':true}">О проекте</router-link></li>
-      <li><router-link :to="{ name: 'About', params: { path: 'app' } }" :class="{'sidebar-nav-link':true}">Приложение</router-link></li>
-      <li><router-link :to="{ name: 'About', params: { path: 'contacts' } }" :class="{'sidebar-nav-link':true}">Контакты</router-link></li>
+      <li><router-link to="/" :class="{'sidebar-nav-link':true}" title="Список выпусков">Выпуски</router-link></li>
+      <li><router-link :to="{ name: 'About', params: { path: 'about' } }" :class="{'sidebar-nav-link':true}"  title="Подробнее о передаче и сайте">О проекте</router-link></li>
+      <li><router-link :to="{ name: 'About', params: { path: 'app' } }" :class="{'sidebar-nav-link':true}"  title="Приложения для мобильных">Приложение</router-link></li>
+      <li><router-link :to="{ name: 'About', params: { path: 'contacts' } }" :class="{'sidebar-nav-link':true}"  title="Как с нами связаться?">Контакты</router-link></li>
     </ul>
     <div class="about-txt">
       <p>Программа Бориса Гребенщикова. <br>Выходит еженедельно <br>на «<a href="https://www.radiorus.ru/brand/57083/episodes" target="_blank" title="Страница передачи на сайте «Радио России»">Радио России</a>» <br>и радио «<a href="http://www.cultradio.ru/brand/about/id/57083/" target="_blank" title="Страница передачи на сайте «Радио Культура»">Культура</a>».</p>
@@ -23,7 +23,7 @@
         <span class="tag-item">все тэги</span>
     </template>
     <template v-else>
-      <a class="tag-item" @click="reroute('All')" >все тэги</a>
+      <a title="Список всех тэгов" class="tag-item" @click="reroute('All')">все тэги</a>
     </template>
   </span>
 </div>

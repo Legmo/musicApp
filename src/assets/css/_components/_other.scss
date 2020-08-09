@@ -1,6 +1,7 @@
 #app {
   //margin: ($space_8 * 7.5) 0 ($space_8 * 12);
   margin: 0 0 ($space * 12);
+  scroll-behavior: smooth;
   & > main {
     max-width: 3000px;
   }
@@ -41,50 +42,57 @@
     flex-wrap: wrap;
     & > div {
       width: 25%;
+      &.tag-header,
+      &.el-pagination {
+        width: 100%;
+      }
+      &.empty-header {
+        display: none;
+      }
     }
-    & > div.tag-header {
-      width: 100%;
-    }
-    & > div.empty-header {
-      display: none;
-    }
-    & > div.el-pagination {
-      width: 100%;
-    }
-/*    & > div.tag-header:before {
-      content: '';
-      flex-basis: 100%;
-      display: block;
-      width: 100%;
-      height: 25px;
-      background: red;
-    }*/
-  }
-}
-.el-pagination {
-  display: flex;
-  padding: $space 0;
-  button:not(:disabled) {
-    &:hover {
-      i.el-icon{
-        &::before {
-          color: $orange;
+    &.tags-list-all {
+      & > div {
+        width: 100%;
+      }
+      .items-wrapper {
+        .item.item-grid {
+          width: 25%;
+          margin: 0 0 ($space * 3);
         }
       }
     }
   }
-  .el-pager {
-    .number {
-      color: $black_txt;
-      transition: $transition;
-      &.active {
-        color: $gray;
-        font-weight: 300;
+}
+.el-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  padding: $space 0;
+  white-space: normal;
+  .el-pagination__pager {
+    display: flex;
+    margin-bottom: 10px;
+    button:not(:disabled) {
+      &:hover {
+        i.el-icon{
+          &::before {
+            color: $orange;
+          }
+        }
       }
-      &:not(.active){
-        &:hover {
-          color: $orange;
-          transition: $transition;
+    }
+    .el-pager {
+      .number {
+        color: $black_txt;
+        transition: $transition;
+        &.active {
+          color: $gray;
+          font-weight: 300;
+        }
+        &:not(.active){
+          &:hover {
+            color: $orange;
+            transition: $transition;
+          }
         }
       }
     }
@@ -93,7 +101,7 @@
     margin-left: auto;
     margin-right: 0;
     .el-input {
-      margin: 0;
+      margin: -($space_5*2) 0 0;
       width: $space_5 * 26;
       .el-input__inner:hover {
         border-color: $gray_light;
@@ -160,6 +168,12 @@
   cursor: default;
 }
 
+.el-loading-mask .el-loading-spinner svg circle.path {
+  stroke: $orange !important;
+  stroke-width: 3;
+}
+
+//Текстовые страницы - «Контакты», «Приложение», «О проекте»
 ul.contactsList {
   margin-top: -1.8rem;
   margin-bottom: $space * 2;

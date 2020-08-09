@@ -2,7 +2,7 @@
   .release-header {
     .release-image {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       img {
         width: $space_5 * 60;
         height: auto;

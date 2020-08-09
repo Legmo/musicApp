@@ -3,7 +3,7 @@
   <div  :class="['mainList', 'tags-list-all', layout === 'grid' ? 'view-grid' : 'view-list']">
     <el-row v-loading="loading">
     <h1 v-if="tagId=='All'" class="titleOne">Выпуски по тэгам</h1>
-    <div v-for="(item, key) in cloneEntity" :key="key" :class="{'tag-header':item.additionalTagInfo, 'test': true}">
+    <div v-for="(item, key) in cloneEntity" :key="key" :class="{'tag-header':item.additionalTagInfo, 'items-wrapper': true}">
       <h4 class="titleTwo">
         Тэг <span v-html="key"></span>
         <span class="small gray">
